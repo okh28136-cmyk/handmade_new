@@ -1,0 +1,87 @@
+.floating-kakao {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: #FEE500; /* 카카오톡 공식 옐로우 */
+  color: #3C1E1E; /* 카카오톡 공식 브라운/블랙 */
+  width: 70px;
+  height: 70px;
+  border-radius: 50%; /* 둥근 원형태 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.floating-kakao:hover {
+  transform: translateY(-50%) scale(1.1); /* 마우스 오버 시 살짝 커짐 */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.kakao-icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 2px;
+}
+
+.kakao-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.kakao-text {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* 모바일 화면 대응 */
+@media (max-width: 768px) {
+  .floating-kakao {
+    width: 60px;
+    height: 60px;
+    right: 15px;
+    /* 모바일에서는 하단 우측으로 이동시키는 경우도 많지만, 요청하신 '우측 중앙'을 유지합니다 */
+  }
+  .kakao-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .kakao-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* 시선 집중용 빨간 점 (알림 뱃지) */
+.notification-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-primary); /* 포인트 레드 컬러 */
+  border-radius: 50%;
+  border: 2px solid var(--color-white); /* 겹치는 부분 깔끔하게 처리 */
+  z-index: 10;
+  animation: pulse-ring 2s infinite; /* 심장 박동처럼 뛰는 효과 */
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(217, 4, 41, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(217, 4, 41, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(217, 4, 41, 0);
+  }
+}

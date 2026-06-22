@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# AI Crawlers explicitly allowed (though covered by *)
+User-agent: GPTBot
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.iroum.com/sitemap.xml

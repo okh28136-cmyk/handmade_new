@@ -1,0 +1,219 @@
+.service {
+  padding-top: 80px;
+  padding-bottom: 160px; /* 하단 여백을 160px로 대폭 늘려 강점 영역(블랙)과의 경계에 시원한 공간 확보 */
+  background-color: var(--color-white);
+}
+
+.section-header {
+  margin-bottom: 40px; /* 기존 60px에서 40px로 줄여 제목과 카드 사이의 거리를 좁힘 */
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--color-black);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.section-subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-black);
+  letter-spacing: -0.5px;
+}
+
+.service-cards {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  height: 400px; /* 카드가 펼쳐질 때 글씨가 줄바꿈되면서 상자 높이가 출렁이는 현상을 막기 위해 높이를 아예 고정 (Layout Shift 방지) */
+}
+
+/* 카드 기본 스타일 및 부드러운 애니메이션 (아코디언 효과) */
+.service-card {
+  flex: 1;
+  background-color: var(--color-gray-100); /* 기본 상태일때 배경을 살짝 회색조로 주면 대비가 삼 */
+  padding: 40px 30px; /* 상단 좌측에 더 밀착하도록 패딩 축소 */
+  display: flex;
+  flex-direction: column;
+  transition: all 0.6s ease; /* 튀지 않고 차분하고 스무스하게 동작하도록 변경 */
+  overflow: hidden;
+  cursor: pointer;
+  
+  /* 개별 독립된 상자(카드) 스타일 추가 */
+  background-color: var(--color-white);
+  border-radius: 0; /* 둥근 모서리 제거하여 매거진/브루탈리즘 톤앤매너로 통일 */
+  border: 1px solid var(--color-black); /* 묵직하고 강렬한 검은색 솔리드 테두리로 톤앤매너 일치 */
+}
+
+/* 펼쳐졌을 때 (마우스 오버 시) 붉은 테두리마저 배제하여 극도의 심플함 추구 */
+.service-card.expanded {
+  flex: 3; 
+  border: 1px solid var(--color-black);
+}
+
+/* 접혔을 때 (너비 비율) */
+.service-card.folded {
+  flex: 1;
+  /* 패딩 변화로 인한 덜컥거림을 없애기 위해 개별 패딩 설정을 삭제하고 기본 패딩(40px 30px)을 유지 */
+  align-items: flex-start; 
+}
+
+/* 컬러 설정 */
+/* (white-card, center-card, black-card 색상 클래스 모두 삭제됨) */
+
+/* 내부 콘텐츠 래퍼 */
+.card-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* 높이를 100% 확실히 채워 수직 중앙 정렬이 완벽하게 되도록 보강 */
+  width: 100%;
+  min-width: 150px; /* 기존 200px에서 줄여서 접힌 상태일 때 글씨가 넘치지 않게 함 */
+  justify-content: flex-start; /* 상단(Top)으로 붙이기 */
+  align-items: flex-start; /* 좌측(Left)으로 붙이기 */
+  text-align: left; /* 전체 좌측 정렬 */
+}
+
+.service-card.folded .card-content-wrapper {
+  align-items: center;
+}
+
+/* 접혔을 때 텍스트 숨기기 */
+.service-card.folded .card-text p.subtitle,
+.service-card.folded .card-text p.description {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* 펼쳐졌을 때 텍스트 서서히 보이기 */
+.service-card.expanded .card-text p.subtitle,
+.service-card.expanded .card-text p.description {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease 0.3s;
+}
+
+/* 타이틀 스타일 */
+.card-text {
+  margin-bottom: 40px;
+  transition: all 0.4s;
+}
+
+.service-card.folded .card-text {
+  margin-bottom: 0;
+}
+
+.card-text h3 {
+  font-size: 6rem; 
+  font-weight: 900; 
+  margin-top: -25px; /* 테두리에서 15px 정도 떨어지도록 숨통 트임 */
+  margin-left: -20px; /* 왼쪽 테두리에서 10px 정도 떨어지도록 여백 확보 */
+  margin-bottom: 25px; 
+  letter-spacing: -3px; 
+  line-height: 1;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
+
+/* 접혔을 때 타이틀 축소 */
+.service-card.folded .card-text h3 {
+  font-size: 3.5rem; 
+  margin-top: -20px; 
+  margin-left: -10px; /* 접힌 상태에서도 약간의 숨통 트임 */
+  color: var(--color-gray-400); 
+}
+
+/* 추가된 설명 텍스트 스타일 */
+.card-text p.subtitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-gray-700);
+  margin-bottom: 30px; /* 부제목과 설명 사이 여백 확대 */
+}
+
+.card-text p.description {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-gray-600);
+  line-height: 1.6;
+  max-width: 380px; 
+  word-break: keep-all; 
+  text-align: left; /* 설명 텍스트도 좌측 정렬 확실히 보장 */
+}
+
+/* 펼쳐진 상태(활성화)일 때 카드의 타이틀을 붉은색으로 강조 */
+.service-card.expanded .card-text h3 {
+  color: var(--color-primary);
+}
+
+/* (아래쪽 중복된 .black-card.expanded .card-text h3 부분 제거) */
+
+/* (일러스트 영역 삭제됨) */
+
+/* 서비스 하단 뱃지/버튼 컨테이너 */
+.service-cta-container {
+  display: flex;
+  justify-content: center; /* 버튼을 중앙에 배치 */
+  margin-top: 60px;
+}
+
+.service-cta-button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 18px 40px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  border-radius: 0;
+}
+
+.service-cta-button:hover {
+  background-color: var(--color-black); /* 마우스 오버 시 시크한 블랙 전환 */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 모바일 화면 대응 */
+@media (max-width: 992px) {
+  .service-cards {
+    flex-direction: column;
+    border: none;
+    min-height: auto;
+  }
+  .service-card {
+    border: 1px solid var(--color-gray-200);
+    margin-bottom: 20px;
+    min-height: 100px;
+  }
+  
+  /* 모바일에서는 높이로 아코디언 작동하게 변경 */
+  .service-card.expanded {
+    min-height: 280px;
+  }
+  .service-card.folded {
+    min-height: 70px;
+    padding: 15px 20px;
+  }
+  .card-text h3 {
+    font-size: 2.5rem !important; /* 모바일에서 텍스트 넘침 방지 */
+    margin-top: -10px;
+    margin-left: 0;
+  }
+  .service-card.folded .card-text h3 {
+    font-size: 1.8rem !important;
+    margin-top: -5px;
+  }
+  .service-cta-container {
+    margin-top: 40px;
+  }
+  .service-cta-button {
+    font-size: 1rem;
+    padding: 15px 30px;
+  }
+}

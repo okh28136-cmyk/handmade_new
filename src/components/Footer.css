@@ -1,0 +1,95 @@
+.footer {
+  background-color: var(--color-black);
+  color: var(--color-gray-400);
+  padding: 80px 0 40px 0;
+  /* FAQ(화이트) 컴포넌트 밑에 바로 붙기 때문에 배경색 대비로 칼같이 나누어짐 */
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  margin-bottom: 30px;
+}
+
+.footer-logo {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-white);
+  letter-spacing: -1px;
+}
+
+.footer-info {
+  margin-bottom: 50px;
+}
+
+.footer-info p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--color-gray-500);
+  margin-bottom: 5px;
+  word-break: keep-all;
+}
+
+.footer-contact {
+  margin-top: 15px;
+  color: var(--color-gray-400) !important;
+  font-weight: 600;
+}
+
+.divider {
+  margin: 0 10px;
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 0.8rem;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* 하단 카피라이트 얇은 구분선 */
+  padding-top: 30px;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: var(--color-gray-600);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  color: var(--color-gray-500);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-white);
+}
+
+/* 모바일 화면 대응 */
+@media (max-width: 768px) {
+  .footer {
+    padding: 60px 20px 40px 20px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .footer-links {
+    order: -1; /* 모바일에서는 약관 링크가 위로 올라오게 배치 */
+  }
+}

@@ -1,0 +1,136 @@
+.faq {
+  padding: 120px 0;
+  background-color: var(--color-white);
+}
+
+.faq-container {
+  max-width: 900px; /* 캡처화면처럼 리스트가 가로로 너무 퍼지지 않게 폭 제한 */
+  margin: 0 auto;
+}
+
+/* 헤더 영역 */
+.faq-header-left {
+  text-align: left;
+  margin-bottom: 60px;
+}
+
+.faq-tag {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-primary); /* 이미지의 파란색 대신 브랜드 컬러(레드) 적용 */
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.faq-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--color-black);
+  margin-bottom: 15px;
+  letter-spacing: -1px;
+}
+
+.faq-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-gray-500);
+}
+
+/* 아코디언 리스트 */
+.faq-list {
+  border-top: 1px solid var(--color-gray-200); /* 리스트 시작 상단 밑줄 */
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--color-black);
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: var(--color-primary); /* 호버 시 붉은색 강조 */
+}
+
+.faq-icon {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--color-gray-500);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+  color: var(--color-primary);
+}
+
+/* 답변 애니메이션 영역 */
+.faq-answer-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* 스르륵 열리는 효과 */
+}
+
+.faq-item.active .faq-answer-wrapper {
+  max-height: 300px; /* 답변이 열릴 수 있도록 충분한 높이 확보 */
+}
+
+.faq-answer {
+  padding: 0 10px 30px 10px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-gray-600);
+  background-color: var(--color-white);
+}
+
+/* 하단 페이지네이션 */
+.faq-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 60px;
+}
+
+.page-number, .page-next {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-gray-400);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.page-number:hover, .page-next:hover {
+  color: var(--color-black);
+}
+
+.page-number.active {
+  color: var(--color-primary); /* 이미지의 파란색 대신 붉은색 적용 */
+}
+
+/* 모바일 화면 대응 */
+@media (max-width: 768px) {
+  .faq-title {
+    font-size: 2rem;
+  }
+  .faq-question {
+    font-size: 1.1rem;
+    padding: 20px 5px;
+  }
+  .faq-answer {
+    padding: 0 5px 20px 5px;
+    font-size: 0.95rem;
+  }
+}

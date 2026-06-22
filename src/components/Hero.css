@@ -1,0 +1,137 @@
+.hero {
+  padding-top: 160px; /* Header 높이 + 여백 */
+  padding-bottom: 80px;
+  text-align: left; /* 가운데 정렬에서 좌측 정렬로 변경 */
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: var(--color-primary); 
+  color: var(--color-white);
+  padding: 4px 6px; /* 위아래, 좌우 여백을 극단적으로 줄여 글씨를 박스에 꽉 채움 */
+  font-size: 0.95rem; 
+  font-weight: 900; /* 고딕 특유의 단단함을 살리기 위해 가장 두꺼운 굵기 */
+  letter-spacing: 0px; /* 자간을 없애 꽉 찬 느낌 강조 */
+  margin-bottom: 25px; 
+}
+
+.hero-title-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 0; /* 여백은 그룹으로 이동 */
+  color: var(--color-black);
+  letter-spacing: -1px;
+}
+
+.hero-title strong {
+  display: block; 
+  font-size: 4.5rem; 
+  font-weight: 800;
+  color: var(--color-primary); 
+  margin-top: 10px; 
+  letter-spacing: -2px;
+}
+
+.hero-cta-button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 18px 40px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  margin-top: 0;
+  margin-bottom: 15px; /* 타이틀 하단과 밸런스 맞춤 */
+  border-radius: 0;
+}
+
+.hero-cta-button:hover {
+  background-color: var(--color-black); /* 마우스 올렸을 때 블랙으로 시크하게 전환 */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-image-wrapper {
+  position: relative;
+  width: 100%; /* 풀사이즈 변경 */
+  margin: 0 auto;
+  overflow: hidden;
+  /* border-radius 제거하여 양옆을 꽉 차게 함 */
+}
+
+.hero-image {
+  width: 100%;
+  height: 600px; /* 높이를 살짝 더 키움 (500px -> 600px) */
+  display: block;
+  object-fit: cover; /* 이미지가 찌그러지지 않고 꽉 차게 잘리도록 설정 */
+  transition: transform 0.5s ease;
+}
+
+.hero-image-wrapper:hover .hero-image {
+  transform: scale(1.02); /* 살짝 커지는 애니메이션 효과 */
+}
+
+.hero-overlay-text {
+  position: absolute;
+  bottom: -5%;
+  left: 0;
+  width: 100%;
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 4px;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .hero-overlay-text {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 3px 5px;
+    margin-bottom: 20px;
+  }
+  .hero-title-group {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+  .hero-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  .hero-title strong {
+    font-size: 3rem;
+  }
+  .hero-cta-button {
+    font-size: 1rem;
+    padding: 15px 30px;
+  }
+  .hero-overlay-text {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    bottom: -2%;
+  }
+  .hero-image {
+    height: 350px; /* 모바일에서는 세로 높이 축소 */
+  }
+}
