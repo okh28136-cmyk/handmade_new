@@ -73,3 +73,21 @@ button {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+/* 텍스트 복사(선택) 방지 클래스 */
+.no-copy {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 폼 요소 등은 텍스트 선택(입력)이 가능해야 함 */
+.no-copy input, 
+.no-copy textarea, 
+.no-copy select {
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}

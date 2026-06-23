@@ -22,22 +22,40 @@ import ProtectedRoute from './admin/ProtectedRoute';
 import AdminGallery from './admin/AdminGallery';
 
 // 메인 사이트 페이지
-const MainSite = () => (
-  <>
-    <Header />
-    <main>
-      <Hero />
-      <Service />
-      <Features />
-      <Gallery />
-      <Pricing />
-      <Contact />
-      <FAQ />
-    </main>
-    <Footer />
-    <FloatingKakao />
-  </>
-);
+const MainSite = () => {
+  React.useEffect(() => {
+    // 텍스트 선택 방지 (CSS 연동)
+    document.body.classList.add('no-copy');
+    
+    // 우클릭 및 드래그 방지
+    const preventDefault = (e) => e.preventDefault();
+    document.addEventListener('contextmenu', preventDefault);
+    document.addEventListener('dragstart', preventDefault);
+    
+    return () => {
+      document.body.classList.remove('no-copy');
+      document.removeEventListener('contextmenu', preventDefault);
+      document.removeEventListener('dragstart', preventDefault);
+    };
+  }, []);
+
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Service />
+        <Features />
+        <Gallery />
+        <Pricing />
+        <Contact />
+        <FAQ />
+      </main>
+      <Footer />
+      <FloatingKakao />
+    </>
+  );
+};
 
 function App() {
   return (
