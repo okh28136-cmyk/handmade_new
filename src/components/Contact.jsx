@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import './Contact.css';
 
 // ====================================================
@@ -44,17 +46,33 @@ const Contact = () => {
     };
 
     try {
+      // 1) 이메일 전송 (EmailJS)
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,
         EMAILJS_PUBLIC_KEY
       );
+
+      // 2) Firestore에 문의 내용 저장
+      await addDoc(collection(db, 'inquiries'), {
+        from_company : templateParams.from_company,
+        from_name    : templateParams.from_name,
+        from_phone   : templateParams.from_phone,
+        from_email   : templateParams.from_email,
+        service_type : templateParams.service_type,
+        amount       : templateParams.amount,
+        message      : templateParams.message,
+        status       : 'new',
+        memos        : [],
+        createdAt    : serverTimestamp(),
+      });
+
       setStatus('success');
       formRef.current.reset();
       setFileName('파일을 첨부하시려면 클릭하세요.');
     } catch (err) {
-      console.error('EmailJS 전송 오류:', err);
+      console.error('전송 오류:', err);
       setStatus('error');
     }
   };

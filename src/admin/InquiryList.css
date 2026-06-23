@@ -1,0 +1,135 @@
+.list-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  padding: 7px 14px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 0;
+}
+
+.filter-tab:hover { border-color: #d90429; color: #d90429; }
+.filter-tab.active { background: #d90429; color: #fff; border-color: #d90429; }
+
+.tab-count {
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  padding: 1px 6px;
+  font-size: 0.78rem;
+}
+.filter-tab:not(.active) .tab-count {
+  background: #f0f0f0;
+  color: #888;
+}
+
+.search-input {
+  padding: 9px 14px;
+  border: 1px solid #ddd;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  width: 240px;
+  border-radius: 0;
+}
+
+.search-input:focus { border-color: #d90429; }
+
+/* 테이블 */
+.inquiry-table-wrap {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  overflow-x: auto;
+}
+
+.inquiry-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.inquiry-table thead th {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.inquiry-row {
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.inquiry-row:hover { background: #fafafa; }
+
+.inquiry-table td {
+  padding: 13px 14px;
+  color: #333;
+  vertical-align: middle;
+}
+
+.td-date { color: #888; font-size: 0.82rem; white-space: nowrap; }
+.td-company { font-weight: 700; color: #111; }
+
+.service-tag {
+  background: #f0f4ff;
+  color: #3949ab;
+  padding: 3px 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.detail-btn {
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #d90429;
+  color: #d90429;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.detail-btn:hover { background: #d90429; color: #fff; }
+
+.empty-row {
+  text-align: center;
+  padding: 50px !important;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.firebase-notice {
+  margin-top: 16px;
+  font-size: 0.82rem;
+  color: #e65100;
+  background: #fff3e0;
+  padding: 10px 14px;
+  border-left: 3px solid #ff9800;
+}

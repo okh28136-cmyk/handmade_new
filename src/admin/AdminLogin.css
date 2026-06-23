@@ -1,0 +1,134 @@
+/* 관리자 로그인 페이지 */
+.admin-login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 0;
+  padding: 50px 45px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border-top: 5px solid #d90429;
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.login-logo-badge {
+  width: 60px;
+  height: 60px;
+  background: #d90429;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+}
+
+.login-logo h1 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #111;
+  margin: 0 0 5px;
+  letter-spacing: -1px;
+}
+
+.login-logo p {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-input-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.login-input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 0;
+  font-size: 1.1rem;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  letter-spacing: 4px;
+}
+
+.login-input-group input:focus {
+  border-color: #d90429;
+}
+
+.login-error {
+  background: #fff3f3;
+  color: #c62828;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-left: 3px solid #d90429;
+}
+
+.login-btn {
+  background: #d90429;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: 'Pretendard', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+.login-btn:hover:not(:disabled) {
+  background: #111;
+}
+
+.login-btn:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+}
+
+.login-back {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.85rem;
+}
+
+.login-back a {
+  color: #888;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-back a:hover {
+  color: #d90429;
+}

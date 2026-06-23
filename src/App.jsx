@@ -1,4 +1,7 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+// 메인 사이트 컴포넌트
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Service from './components/Service';
@@ -10,22 +13,52 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingKakao from './components/FloatingKakao';
 
+// 관리자 페이지 컴포넌트
+import AdminLogin from './admin/AdminLogin';
+import InquiryList from './admin/InquiryList';
+import InquiryDetail from './admin/InquiryDetail';
+import ProtectedRoute from './admin/ProtectedRoute';
+
+// 메인 사이트 페이지
+const MainSite = () => (
+  <>
+    <Header />
+    <main>
+      <Hero />
+      <Service />
+      <Features />
+      <Gallery />
+      <Pricing />
+      <Contact />
+      <FAQ />
+    </main>
+    <Footer />
+    <FloatingKakao />
+  </>
+);
+
 function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Service />
-        <Features />
-        <Gallery />
-        <Pricing />
-        <Contact />
-        <FAQ />
-      </main>
-      <Footer />
-      <FloatingKakao />
-    </>
+    <BrowserRouter>
+      <Routes>
+        {/* 메인 사이트 */}
+        <Route path="/" element={<MainSite />} />
+
+        {/* 관리자 로그인 */}
+        <Route path="/admin" element={<AdminLogin />} />
+
+        {/* 관리자 보호 라우트 */}
+        <Route path="/admin/inquiries" element={
+          <ProtectedRoute><InquiryList /></ProtectedRoute>
+        } />
+        <Route path="/admin/inquiries/:id" element={
+          <ProtectedRoute><InquiryDetail /></ProtectedRoute>
+        } />
+
+        {/* 404 - 메인으로 리다이렉트 */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

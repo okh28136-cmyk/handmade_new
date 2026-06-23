@@ -1,0 +1,500 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #525659; /* PDF 뷰어 같은 기본 짙은 배경 */
+    font-family: 'Malgun Gothic', '맑은 고딕', 'Dotum', '돋움', sans-serif; /* 클래식한 기본 폰트 */
+    color: #000;
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 20px;
+}
+
+/* 상단 컨트롤 패널 */
+.control-panel {
+    max-width: 210mm;
+    margin: 0 auto 15px auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 브랜드 토글 라디오 버튼 영역 */
+.brand-toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: auto; /* 우측 버튼들과 멀리 띄움 */
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+}
+.brand-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.brand-radio input {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #999;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.primary-btn {
+    background-color: #333;
+    color: #fff;
+}
+
+/* 문서 영역 (A4 규격, 순수 흰 배경) */
+.document-page {
+    width: 210mm;
+    min-height: 296mm;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 15mm 20mm;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* 입력창 기본 리셋 */
+.input-field {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    outline: none;
+}
+.input-field:focus {
+    background-color: #e8f0fe;
+}
+
+/* 헤더 영역 */
+.doc-header {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.doc-title {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 20px;
+    margin-left: 20px;
+}
+
+/* 상단 정보 컨테이너 (좌:수신자 / 우:공급자) */
+.top-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-top: 2px solid #000; /* 이미지에 있는 가장 위쪽 굵은 선 */
+    padding-top: 15px;
+}
+
+/* 좌측 수신자 영역 */
+.left-info {
+    width: 40%;
+    padding-top: 5px;
+}
+.date-row { margin-bottom: 25px; }
+.date-input { border-bottom: 1px solid #000; text-align: center; }
+#date-year { width: 40px; }
+#date-month { width: 25px; }
+#date-day { width: 25px; }
+
+.receiver-row {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.receiver-input {
+    width: 150px;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+}
+
+.message-row {
+    text-align: center;
+    font-size: 12px;
+}
+
+/* 우측 공급자 영역 */
+.right-info {
+    width: 58%;
+}
+
+.supplier-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #ccc;
+    font-size: 11px;
+}
+
+.supplier-table th, .supplier-table td {
+    border: 1px solid #ccc; /* 얇은 내부 회색 선 */
+    padding: 6px 4px;
+    vertical-align: middle;
+    text-align: center;
+}
+/* 좌우 바깥쪽 선 제거 */
+.supplier-table tr th:first-child, .supplier-table tr td:first-child { border-left: none; }
+.supplier-table tr th:last-child, .supplier-table tr td:last-child { border-right: none; }
+
+.supplier-table th {
+    background-color: #fafafa;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.supplier-title-cell {
+    width: 25px;
+    font-weight: bold;
+}
+
+/* 합계 금액 영역 */
+.total-amount-area {
+    display: flex;
+    border-top: 1px solid #ccc;
+    border-bottom: 2px solid #000;
+    margin-bottom: 20px;
+}
+
+.total-label {
+    width: 150px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 5px;
+    padding: 8px 0;
+    background-color: #fafafa;
+}
+
+.total-amount-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.total-text-input { 
+    flex: 1; 
+    text-align: right; 
+    font-weight: bold; 
+    min-width: 150px;
+}
+.total-num-wrap { 
+    margin-left: 10px; 
+    margin-right: 20px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+.total-num-input { 
+    width: 130px; 
+    text-align: right; 
+    font-weight: bold; 
+}
+
+/* 품목 테이블 */
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    margin-bottom: 30px;
+    font-size: 11px;
+}
+
+.items-table th, .items-table td {
+    border: 1px solid #ccc;
+    padding: 6px 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+.items-table tr th:first-child, .items-table tr td:first-child { border-left: none; }
+.items-table tr th:last-child, .items-table tr td:last-child { border-right: none; }
+
+.items-table thead th {
+    background-color: #fafafa;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+.items-table tbody td:nth-child(4) .input-field,
+.items-table tbody td:nth-child(5) .input-field {
+    text-align: right;
+    padding-right: 5px;
+}
+
+/* 텍스트에어리어 전용 설정 (내용란 자동 줄바꿈 및 늘어남) */
+.desc-textarea {
+    resize: none; /* 사용자 임의 크기 조절 방지 */
+    overflow: hidden; /* 내부 스크롤바 감추기 */
+    vertical-align: middle;
+    display: block;
+    line-height: 1.4;
+    padding: 2px 4px;
+    box-sizing: border-box;
+}
+
+.footer-row .total-amount-cell {
+    background-color: #fafafa;
+}
+
+/* 배송비 안내 */
+.delivery-note {
+    color: #d32f2f;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.footer-row th {
+    background-color: #fafafa;
+    border-top: 1px solid #000;
+    text-align: center;
+    font-weight: bold;
+}
+.footer-row td {
+    border-top: 1px solid #000;
+}
+.footer-row .total-amount-cell {
+    background-color: #fafafa;
+}
+
+/* 합계 영역 라벨 보기 좋게 정렬 */
+.footer-row th.total-label {
+    text-align: right;
+    padding-right: 20px;
+    letter-spacing: 1px;
+    font-size: 10px;
+}
+
+/* 총 합계 금액 라인 강조 */
+.footer-row.total-row-main th, 
+.footer-row.total-row-main td {
+    border-top: 2px solid #333;
+    background-color: #f1f3f5;
+}
+.footer-row.total-row-main th.total-label {
+    color: #d32f2f;
+    letter-spacing: 3px;
+    font-size: 11px;
+}
+.footer-row .amount-input {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+/* 하단 조건 표 */
+.conditions-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 11px;
+}
+
+.conditions-table th, .conditions-table td {
+    border: 1px solid #ccc;
+    padding: 6px 4px;
+    text-align: center;
+}
+.conditions-table tr th:first-child, .conditions-table tr td:first-child { border-left: none; }
+.conditions-table tr th:last-child, .conditions-table tr td:last-child { border-right: none; }
+.conditions-table tr:last-child th, .conditions-table tr:last-child td { border-bottom: none; }
+
+.conditions-table th {
+    width: 150px;
+    background-color: #fafafa;
+    font-weight: normal;
+    letter-spacing: 3px;
+}
+
+/* 하단 약관 및 브랜드 정보 */
+.terms-section {
+    margin-bottom: 20px;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.bank-info {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.terms-list {
+    list-style-type: square;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.terms-list li {
+    margin-bottom: 2px;
+}
+
+.contact-message {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.brand-footer {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #000;
+    padding-top: 10px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.brand-item {
+    font-size: 11px;
+}
+.brand-name {
+    font-weight: bold;
+    font-size: 12px;
+    display: inline-block;
+    width: 80px;
+}
+.print-text {
+    color: #d32f2f;
+    font-size: 10px;
+    margin-left: 2px;
+}
+.url-text {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+/* 하단 정보 고정 영역 (항상 종이 맨 밑에 붙게) */
+.bottom-fixed-area {
+    margin-top: auto;
+}
+
+/* 최하단 정보 영역 */
+.bottom-footer-area {
+    display: flex;
+    align-items: center;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding: 8px 5px;
+    font-size: 11px;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+.footer-item label {
+    margin-right: 10px;
+    letter-spacing: 2px;
+}
+.footer-item.flex-grow {
+    flex: 1;
+    justify-content: flex-end;
+    margin-right: 0;
+}
+.checkbox-group {
+    display: flex;
+    gap: 10px;
+}
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+}
+.checkbox-group input {
+    margin-right: 3px;
+}
+
+/* 모달 (팝업) 스타일 */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background-color: #fff;
+    width: 400px;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header h2 {
+    font-size: 16px;
+    margin: 0;
+}
+.close-btn {
+    background: none; border: none;
+    font-size: 24px; cursor: pointer; color: #666;
+}
+.modal-body {
+    padding: 15px 20px;
+    overflow-y: auto;
+}
+.quote-list {
+    list-style: none; padding: 0; margin: 0;
+}
+.quote-item {
+    padding: 12px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+.quote-item:hover {
+    background-color: #f9f9f9;
+}
+.quote-title { font-weight: bold; font-size: 13px; }
+.quote-date { font-size: 11px; color: #888; }
+.delete-quote-btn {
+    background: none; border: none; color: #d32f2f; cursor: pointer; font-size: 12px;
+}
+
+/* 인쇄 시 스타일 */
+@media print {
+    .no-print { display: none !important; }
+    body { background-color: #fff; padding: 0; }
+    .document-page { box-shadow: none; margin: 0; padding: 10mm; width: 100%; height: auto; min-height: 0; border: none; }
+}

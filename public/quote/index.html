@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적서 - 수작업팩토리</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- html2pdf.js for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <!-- Firebase SDK (v8 compat for simplicity in plain HTML) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body>
+
+    <!-- 인쇄용 숨김 컨트롤 영역 -->
+    <div class="control-panel no-print">
+        <div class="brand-toggle-group">
+            <label class="brand-radio"><input type="radio" name="brandType" value="sujak" checked> 수작업팩토리용</label>
+            <label class="brand-radio"><input type="radio" name="brandType" value="iroum"> 이룸프린트용</label>
+        </div>
+        <button id="add-row-btn" class="action-btn">항목 1줄 추가</button>
+        <button id="remove-row-btn" class="action-btn">항목 1줄 삭제</button>
+        <button id="save-quote-btn" class="action-btn">견적서 저장</button>
+        <button id="load-quote-btn" class="action-btn">저장 목록 불러오기</button>
+        <button id="print-btn" class="action-btn primary-btn">견적서 인쇄 / PDF 저장</button>
+    </div>
+
+    <!-- 저장 목록 모달 (기본 숨김) -->
+    <div id="quote-modal" class="modal-overlay no-print" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>저장된 견적서 목록</h2>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul id="quote-list" class="quote-list">
+                    <!-- 스크립트에서 동적으로 채워짐 -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 실제 A4 문서 영역 -->
+    <div class="document-page" id="document-page">
+        
+        <div class="doc-header">
+            <h1 class="doc-title">견 적 서</h1>
+        </div>
+
+        <div class="top-info-container">
+            <!-- 좌측 정보 -->
+            <div class="left-info">
+                <div class="date-row">
+                    <input type="text" id="date-year" class="input-field date-input" maxlength="4"> 년 
+                    <input type="text" id="date-month" class="input-field date-input" maxlength="2"> 월 
+                    <input type="text" id="date-day" class="input-field date-input" maxlength="2"> 일
+                </div>
+                <div class="receiver-row">
+                    <input type="text" id="receiver-name" class="input-field receiver-input" placeholder="수신자 입력"> 귀하
+                </div>
+                <div class="message-row">
+                    아래와 같이 견적합니다.
+                </div>
+            </div>
+
+            <!-- 우측 공급자 정보 -->
+            <div class="right-info">
+                <table class="supplier-table">
+                    <tr>
+                        <th rowspan="5" class="supplier-title-cell">공<br><br>급<br><br>자</th>
+                        <th>등록번호</th>
+                        <td colspan="3"><input type="text" class="input-field" value="201-13-174558"></td>
+                    </tr>
+                    <tr>
+                        <th>상 호 명<br><span style="font-size:10px;">(법인명)</span></th>
+                        <td><input type="text" class="input-field" value="이름디자인"></td>
+                        <th>대 표 자</th>
+                        <td><input type="text" class="input-field" value="전양숙"></td>
+                    </tr>
+                    <tr>
+                        <th>주 소</th>
+                        <td colspan="3"><input type="text" class="input-field" value="서울 중구 필동로 9 (필동2가) 2층"></td>
+                    </tr>
+                    <tr>
+                        <th>업 태</th>
+                        <td><input type="text" class="input-field" value="제조,소매,서비스"></td>
+                        <th>종 목</th>
+                        <td><input type="text" class="input-field" value="기획물,인쇄,디자인"></td>
+                    </tr>
+                    <tr>
+                        <th>전화번호</th>
+                        <td><input type="text" class="input-field" value="02-2268-7512"></td>
+                        <th>팩 스</th>
+                        <td><input type="text" class="input-field" value="02-2268-7514"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 합계 금액 -->
+        <div class="total-amount-area">
+            <div class="total-label">합 계 금 액</div>
+            <div class="total-amount-box">
+                <input type="text" class="input-field total-text-input" id="total-korean-amount" readonly tabindex="-1">
+                <span class="total-num-wrap">( ₩ <input type="text" class="input-field total-num-input" id="total-num-amount" readonly tabindex="-1"> )</span>
+            </div>
+        </div>
+
+        <!-- 품목 테이블 -->
+        <table class="items-table" id="items-table">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">NO</th>
+                    <th style="width: 45%;">내 용</th>
+                    <th style="width: 10%;">수 량</th>
+                    <th style="width: 20%;">단 가</th>
+                    <th style="width: 20%;">금 액</th>
+                </tr>
+            </thead>
+            <tbody id="items-body">
+                <!-- script.js에서 동적으로 채워짐 -->
+            </tbody>
+                <tfoot>
+                    <tr class="footer-row">
+                        <th colspan="4" class="total-label">합계금액 (공급가액)</th>
+                        <td class="total-amount-cell">
+                            <input type="text" id="footer-subtotal" class="input-field amount-input" readonly>
+                        </td>
+                    </tr>
+                    <tr class="footer-row">
+                        <th colspan="4" class="total-label">부가세 (V A T)</th>
+                        <td class="total-amount-cell">
+                            <input type="text" id="footer-vat" class="input-field amount-input" readonly>
+                        </td>
+                    </tr>
+                    <tr class="footer-row total-row-main">
+                        <th colspan="4" class="total-label">총 합 계 금 액</th>
+                        <td class="total-amount-cell">
+                            <input type="text" id="footer-grand-total" class="input-field amount-input" style="font-weight: bold; color: #d32f2f; font-size: 12px;" readonly>
+                        </td>
+                    </tr>
+                </tfoot>
+        </table>
+
+        <!-- 배송비 안내 -->
+        <div class="delivery-note">
+            ※ 배송지와 배송방법 미정으로 배송비는 포함되어있지 않습니다.
+        </div>
+
+        <!-- 하단 정보 고정 영역 (margin-top: auto 처리) -->
+        <div class="bottom-fixed-area">
+            <!-- 하단 약관 및 브랜드 정보 -->
+            <div class="terms-section">
+                <p class="bank-info"><strong>신한은행 100-024-342782 (이름디자인)</strong></p>
+                <ul class="terms-list" id="dynamic-terms-list">
+                    <li>본 견적은 결제 완료 후 수작업 및 포장 공정이 진행됩니다.</li>
+                    <li>견적의 유효 기간은 발행일 기준 15일입니다.</li>
+                    <li>작업 완료된 결과물은 홈페이지·블로그 등 온라인 마케팅 포트폴리오로 활용될 수 있습니다.</li>
+                </ul>
+                <p class="contact-message"><strong>"문의사항 있으시면 언제든 연락 주시기 바랍니다."</strong></p>
+                
+                <div class="brand-footer">
+                    <div class="brand-text" id="dynamic-brand-text">
+                        <div class="brand-item">
+                            <span class="brand-name">수작업팩토리</span> 
+                            <span class="brand-desc">수작업포장에서 DM 발송까지 실무자가 믿고 맡길 수 있는 풀필먼트 파트너 / <span class="url-text">www.iroum.com</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 최하단 서명 및 정보 영역 -->
+            <div class="bottom-footer-area">
+                <div class="footer-item">
+                    <label>담 당 자</label>
+                    <input type="text" class="input-field" value="오길환 실장" style="width:90px;">
+                </div>
+                <div class="footer-item">
+                    <label>연 락 처</label>
+                    <input type="text" class="input-field" value="02-2268-7512 / 010-2420-7509" style="width:180px;">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
