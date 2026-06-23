@@ -91,11 +91,11 @@ const AdminGallery = () => {
             <input 
               type="file" 
               id="gallery-file-input" 
-              className="file-input" 
+              className="admin-file-input" 
               accept="image/*"
               onChange={handleFileChange} 
             />
-            <label htmlFor="gallery-file-input" className="file-label">
+            <label htmlFor="gallery-file-input" className="admin-file-label">
               {selectedFile ? selectedFile.name : '이미지 파일 선택'}
             </label>
             <button 

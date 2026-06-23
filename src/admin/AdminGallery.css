@@ -21,11 +21,11 @@
   align-items: center;
 }
 
-.file-input {
+.admin-file-input {
   display: none;
 }
 
-.file-label {
+.admin-file-label {
   background-color: #f1f3f5;
   border: 1px solid #ced4da;
   padding: 8px 16px;
@@ -34,7 +34,7 @@
   font-size: 14px;
   transition: all 0.2s;
 }
-.file-label:hover {
+.admin-file-label:hover {
   background-color: #e9ecef;
 }
 
