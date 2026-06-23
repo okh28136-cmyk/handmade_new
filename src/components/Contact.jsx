@@ -45,44 +45,43 @@ const Contact = () => {
       to_email2    : 'okh@iroum.co.kr',        // 두 번째 수신 이메일 (템플릿에 {{to_email2}} 추가)
     };
 
-    // ── Firestore 먼저 저장 (이메일 실패와 무관하게 항상 저장)
-    let firestoreOk = false;
+    // ── EmailJS 전송과 Firestore 저장을 동시에 실행하되, Firestore는 3초 타임아웃 적용
     try {
-      await addDoc(collection(db, 'inquiries'), {
-        from_company : templateParams.from_company,
-        from_name    : templateParams.from_name,
-        from_phone   : templateParams.from_phone,
-        from_email   : templateParams.from_email,
-        service_type : templateParams.service_type,
-        amount       : templateParams.amount,
-        message      : templateParams.message,
-        status       : 'new',
-        memos        : [],
-        createdAt    : serverTimestamp(),
-      });
-      firestoreOk = true;
-    } catch (fsErr) {
-      console.error('Firestore 저장 오류:', fsErr);
-    }
-
-    // ── EmailJS 전송 (실패해도 폼 접수는 완료로 처리)
-    try {
-      await emailjs.send(
+      const emailPromise = emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,
         EMAILJS_PUBLIC_KEY
       );
-    } catch (mailErr) {
-      console.error('EmailJS 전송 오류:', mailErr);
-      // 이메일 실패는 사용자에게 표시하지 않음 (Firestore 저장이 완료됐으므로)
-    }
 
-    if (firestoreOk) {
+      const firestorePromise = Promise.race([
+        addDoc(collection(db, 'inquiries'), {
+          from_company : templateParams.from_company,
+          from_name    : templateParams.from_name,
+          from_phone   : templateParams.from_phone,
+          from_email   : templateParams.from_email,
+          service_type : templateParams.service_type,
+          amount       : templateParams.amount,
+          message      : templateParams.message,
+          status       : 'new',
+          memos        : [],
+          createdAt    : serverTimestamp(),
+        }),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Firestore Timeout')), 3000))
+      ]).catch(err => {
+        console.error('Firestore 저장 오류 (무시됨):', err);
+      });
+
+      // 이메일 전송은 필수로 기다림
+      await emailPromise;
+      // Firestore는 백그라운드 저장 시도 (타임아웃으로 블로킹 방지)
+      await firestorePromise;
+
       setStatus('success');
       formRef.current.reset();
       setFileName('파일을 첨부하시려면 클릭하세요.');
-    } else {
+    } catch (mailErr) {
+      console.error('전송 오류:', mailErr);
       setStatus('error');
     }
   };
