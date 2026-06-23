@@ -123,6 +123,30 @@ const InquiryDetail = () => {
     }
   };
 
+  // 문의 전체 삭제
+  const handleDeleteInquiry = async () => {
+    if (!window.confirm('이 견적 문의를 완전히 삭제하시겠습니까? (삭제된 데이터는 복구할 수 없습니다)')) return;
+    
+    setSaving(true);
+    try {
+      // 1. Storage에 있는 첨부파일 모두 삭제
+      if (inquiry.attachments && inquiry.attachments.length > 0) {
+        for (const file of inquiry.attachments) {
+          const fileRef = ref(storage, file.path);
+          await deleteObject(fileRef).catch(err => console.warn('Storage 파일 삭제 무시됨:', err));
+        }
+      }
+      // 2. Firestore 문서 삭제
+      await deleteDoc(doc(db, 'inquiries', id));
+      alert('문의가 삭제되었습니다.');
+      navigate('/admin/inquiries');
+    } catch (err) {
+      console.error('문의 삭제 오류:', err);
+      alert('삭제 중 오류가 발생했습니다.');
+      setSaving(false);
+    }
+  };
+
   // 견적서 페이지 열기 (고객 정보 query string으로 전달)
   const openQuoteForm = () => {
     const params = new URLSearchParams({
@@ -153,6 +177,9 @@ const InquiryDetail = () => {
           </select>
           <button className="quote-btn" onClick={openQuoteForm}>
             📄 견적서 작성
+          </button>
+          <button className="delete-btn" style={{ marginLeft: '10px', backgroundColor: '#dc3545', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }} onClick={handleDeleteInquiry}>
+            🗑️ 삭제
           </button>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../firebase';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { db, storage } from '../firebase';
+import { collection, onSnapshot, orderBy, query, deleteDoc, doc } from 'firebase/firestore';
+import { ref, deleteObject } from 'firebase/storage';
 import AdminLayout from './AdminLayout';
 import './InquiryList.css';
 
@@ -49,6 +50,27 @@ const InquiryList = () => {
       || (i.from_name || '').toLowerCase().includes(q);
     return matchStatus && matchSearch;
   });
+
+  const handleDelete = async (e, inquiry) => {
+    e.stopPropagation(); // 행 클릭(상세보기 이동) 방지
+    if (!window.confirm(`'${inquiry.from_company || inquiry.from_name}'님의 문의를 완전히 삭제하시겠습니까?`)) return;
+
+    try {
+      // 1. 첨부파일 삭제 시도
+      if (inquiry.attachments && inquiry.attachments.length > 0) {
+        for (const file of inquiry.attachments) {
+          const fileRef = ref(storage, file.path);
+          await deleteObject(fileRef).catch(err => console.warn('Storage 삭제 무시됨:', err));
+        }
+      }
+      // 2. DB 삭제
+      await deleteDoc(doc(db, 'inquiries', inquiry.id));
+      alert('삭제되었습니다.');
+    } catch (err) {
+      console.error('삭제 오류:', err);
+      alert('삭제 중 오류가 발생했습니다.');
+    }
+  };
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1;
   const currentData = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
@@ -119,7 +141,10 @@ const InquiryList = () => {
                       <td>{inq.amount || '-'}</td>
                       <td><span className={`status-badge ${st.cls}`}>{st.label}</span></td>
                       <td onClick={(e) => e.stopPropagation()}>
-                        <button className="detail-btn" onClick={() => navigate(`/admin/inquiries/${inq.id}`)}>상세보기</button>
+                        <div style={{ display: 'flex', gap: '5px', justifyContent: 'center' }}>
+                          <button className="detail-btn" onClick={() => navigate(`/admin/inquiries/${inq.id}`)}>상세보기</button>
+                          <button className="detail-btn" style={{ backgroundColor: '#dc3545' }} onClick={(e) => handleDelete(e, inq)}>삭제</button>
+                        </div>
                       </td>
                     </tr>
                   );
