@@ -422,3 +422,87 @@
   box-shadow: none;
 }
 
+/* ── 접수 완료 성공 화면 ── */
+.form-success-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 30px;
+  background: #fff;
+  min-height: 400px;
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.success-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+.success-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #111;
+  margin: 0 0 12px;
+  letter-spacing: -1px;
+}
+
+.success-desc {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+
+.success-desc strong {
+  color: #d90429;
+}
+
+.success-summary {
+  background: #f5f5f5;
+  padding: 16px 24px;
+  margin-bottom: 28px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.success-summary p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.success-summary strong {
+  color: #111;
+  font-weight: 800;
+}
+
+.success-reset-btn {
+  padding: 12px 28px;
+  background: #111;
+  color: #fff;
+  border: none;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.success-reset-btn:hover {
+  background: #d90429;
+}
+
