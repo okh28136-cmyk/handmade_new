@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>수작업팩토리 - 프리미엄 포장 및 조립 전문 파트너</title>
+    <link>https://www.iroum.com/</link>
+    <description>단순 포장부터 라벨링, 복합 조립, 전국 물류 배송까지. 불량 제로를 지향하는 수작업 전문가와 상의하세요.</description>
+    <language>ko-KR</language>
+    <pubDate>Tue, 23 Jun 2026 12:00:00 +0900</pubDate>
+    <lastBuildDate>Tue, 23 Jun 2026 12:00:00 +0900</lastBuildDate>
+    <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+    <generator>Custom XML</generator>
+    <atom:link href="https://www.iroum.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>수작업팩토리 메인 홈페이지</title>
+      <link>https://www.iroum.com/</link>
+      <description>단순 포장부터 라벨링, 복합 조립, 전국 물류 배송까지 책임집니다.</description>
+      <pubDate>Tue, 23 Jun 2026 12:00:00 +0900</pubDate>
+      <guid isPermaLink="true">https://www.iroum.com/</guid>
+    </item>
+  </channel>
+</rss>
