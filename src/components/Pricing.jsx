@@ -10,8 +10,8 @@ const Pricing = () => {
       title: '담기',
       desc: '포장부터 세트 구성까지 기본 작업',
       items: [
-        { id: 1, name: '단순 OPP 포장', price: '60원' },
-        { id: 2, name: '박스 조립 및 포장', price: '200원' },
+        { id: 1, name: '단순 OPP 포장', price: '60원 ~' },
+        { id: 2, name: '박스 조립 및 포장', price: '200원 ~' },
         { id: 3, name: '세트 상품 구성', price: '상담후결정' },
       ]
     },
@@ -21,8 +21,8 @@ const Pricing = () => {
       title: '붙이기',
       desc: '라벨링 및 스티커 세밀 작업',
       items: [
-        { id: 4, name: '바코드 라벨링', price: '60원' },
-        { id: 5, name: '양면 테이프 부착', price: '60원' },
+        { id: 4, name: '바코드 라벨링', price: '60원 ~' },
+        { id: 5, name: '양면 테이프 부착', price: '60원 ~' },
         { id: 6, name: '봉인 스티커 작업', price: '별도 문의' },
       ]
     },
