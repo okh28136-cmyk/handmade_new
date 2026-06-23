@@ -181,36 +181,50 @@
 
 /* 모바일 화면 대응 */
 @media (max-width: 992px) {
+  .service {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+  .section-title {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+  .section-subtitle {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+  }
   .service-cards {
     flex-direction: column;
     border: none;
-    min-height: auto;
+    height: auto; /* 고정 높이 해제 */
   }
   .service-card {
-    border: 1px solid var(--color-gray-200);
-    margin-bottom: 20px;
-    min-height: 100px;
+    border: 1px solid var(--color-black);
+    margin-bottom: 15px;
+    min-height: 80px;
+    padding: 25px 20px;
   }
   
-  /* 모바일에서는 높이로 아코디언 작동하게 변경 */
+  /* 모바일 아코디언 높이 및 폰트 보정 */
   .service-card.expanded {
-    min-height: 280px;
+    min-height: 240px;
+    flex: none;
   }
   .service-card.folded {
-    min-height: 70px;
-    padding: 15px 20px;
+    min-height: 80px;
+    flex: none;
+    align-items: center;
   }
+  
   .card-text h3 {
-    font-size: 2.5rem !important; /* 모바일에서 텍스트 넘침 방지 */
-    margin-top: -10px;
-    margin-left: 0;
+    font-size: clamp(3rem, 10vw, 4.5rem);
+    margin-top: -15px;
+    margin-left: -10px;
+    margin-bottom: 15px;
+    letter-spacing: -1.5px;
   }
   .service-card.folded .card-text h3 {
-    font-size: 1.8rem !important;
-    margin-top: -5px;
-  }
-  .service-cta-container {
-    margin-top: 40px;
+    font-size: clamp(2rem, 8vw, 3rem);
+    margin-top: -10px;
+    margin-left: 0;
   }
   .service-cta-button {
     font-size: 1rem;

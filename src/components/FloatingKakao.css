@@ -43,17 +43,32 @@
 /* 모바일 화면 대응 */
 @media (max-width: 768px) {
   .floating-kakao {
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     right: 15px;
-    /* 모바일에서는 하단 우측으로 이동시키는 경우도 많지만, 요청하신 '우측 중앙'을 유지합니다 */
+    bottom: 20px; /* 우측 중앙에서 우측 하단으로 이동 (엄지손가락 접근성) */
+    top: auto;
+    transform: none;
+    animation: bounce-mobile 2s infinite; /* 모바일 전용 튀어오르는 효과 */
   }
   .kakao-icon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
   .kakao-text {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
+  }
+}
+
+@keyframes bounce-mobile {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
   }
 }
 

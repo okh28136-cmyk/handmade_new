@@ -102,36 +102,40 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: 120px;
-    padding-bottom: 60px;
+    padding-top: 100px;
+    padding-bottom: 50px;
   }
   .hero-badge {
     font-size: 0.8rem;
-    padding: 3px 5px;
-    margin-bottom: 20px;
+    padding: 4px 8px;
+    margin-bottom: 15px;
   }
   .hero-title-group {
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   .hero-title {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    margin-bottom: 15px;
   }
   .hero-title strong {
-    font-size: 3rem;
+    font-size: clamp(2.8rem, 10vw, 4rem);
+    margin-top: 5px;
+    letter-spacing: -1px;
   }
   .hero-cta-button {
-    font-size: 1rem;
-    padding: 15px 30px;
+    font-size: 1.05rem;
+    padding: 16px 20px;
+    width: 100%; /* 모바일에서 꽉 차게 변경 */
+    margin-bottom: 0;
   }
   .hero-overlay-text {
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 8vw, 3rem);
     letter-spacing: 2px;
-    bottom: -2%;
+    bottom: 5%;
   }
   .hero-image {
-    height: 350px; /* 모바일에서는 세로 높이 축소 */
+    height: 300px;
   }
 }

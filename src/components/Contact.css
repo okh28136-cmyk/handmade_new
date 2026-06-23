@@ -183,7 +183,7 @@
   background-color: var(--color-gray-100);
   border: 2px solid var(--color-gray-100); 
   border-radius: 0;
-  font-size: 1rem;
+  font-size: 16px; /* 모바일(iOS) 강제 확대 방지를 위해 최소 16px 유지 */
   font-weight: 500;
   font-family: inherit;
   transition: all 0.3s ease;
@@ -374,11 +374,26 @@
 
 @media (max-width: 768px) {
   .contact {
-    padding: 100px 0;
+    padding-top: 60px;
+    padding-bottom: 80px;
   }
+
   .form-row {
     flex-direction: column;
-    gap: 0;
+    gap: 0; /* 세로 모드에서는 margin-bottom으로 간격 조절 */
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px !important; /* iOS 줌 방지 강력 적용 */
+    padding: 12px 15px;
+  }
+
+  .contact-info-panel {
+    padding: 30px;
   }
   .contact-form-container {
     padding: 30px 20px;
