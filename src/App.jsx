@@ -19,6 +19,8 @@ import InquiryList from './admin/InquiryList';
 import InquiryDetail from './admin/InquiryDetail';
 import ProtectedRoute from './admin/ProtectedRoute';
 
+import AdminGallery from './admin/AdminGallery';
+
 // 메인 사이트 페이지
 const MainSite = () => (
   <>
@@ -53,6 +55,9 @@ function App() {
         } />
         <Route path="/admin/inquiries/:id" element={
           <ProtectedRoute><InquiryDetail /></ProtectedRoute>
+        } />
+        <Route path="/admin/gallery" element={
+          <ProtectedRoute><AdminGallery /></ProtectedRoute>
         } />
 
         {/* 404 - 메인으로 리다이렉트 */}

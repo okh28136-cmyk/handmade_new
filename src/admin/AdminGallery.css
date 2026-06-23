@@ -1,0 +1,118 @@
+.admin-gallery-page {
+  padding: 30px;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.gallery-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+}
+
+.upload-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  background-color: #f1f3f5;
+  border: 1px solid #ced4da;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.file-label:hover {
+  background-color: #e9ecef;
+}
+
+.upload-btn {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.upload-btn:hover:not(:disabled) {
+  background-color: #1557b0;
+}
+.upload-btn:disabled {
+  background-color: #a0c2f9;
+  cursor: not-allowed;
+}
+
+.admin-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.admin-gallery-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background: #fff;
+  aspect-ratio: 4 / 3;
+}
+
+.admin-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-gallery-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.admin-gallery-item:hover .admin-gallery-overlay {
+  opacity: 1;
+}
+
+.delete-img-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.delete-img-btn:hover {
+  transform: scale(1.05);
+}
+
+.empty-gallery {
+  text-align: center;
+  padding: 50px;
+  color: #888;
+  font-size: 16px;
+  grid-column: 1 / -1;
+  background: #f8f9fa;
+  border-radius: 8px;
+}

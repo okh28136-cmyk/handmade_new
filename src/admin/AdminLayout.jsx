@@ -27,6 +27,10 @@ const AdminLayout = ({ children }) => {
             <span className="nav-icon">📋</span>
             <span>견적 문의 관리</span>
           </NavLink>
+          <NavLink to="/admin/gallery" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
+            <span className="nav-icon">🖼️</span>
+            <span>갤러리 관리</span>
+          </NavLink>
           <a href="/" target="_blank" className="nav-item">
             <span className="nav-icon">🌐</span>
             <span>메인 사이트 보기</span>
