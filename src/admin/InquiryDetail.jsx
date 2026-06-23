@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { db } from '../firebase';
+import { db, storage } from '../firebase';
 import {
   doc, getDoc, updateDoc, arrayUnion, serverTimestamp, Timestamp
 } from 'firebase/firestore';
+import { ref, deleteObject } from 'firebase/storage';
 import AdminLayout from './AdminLayout';
 import './InquiryDetail.css';
 
@@ -94,6 +95,32 @@ const InquiryDetail = () => {
     setInquiry(prev => ({ ...prev, ...fields }));
     setEditMode(false);
     setSaving(false);
+  };
+
+  // 첨부파일 삭제
+  const handleDeleteAttachment = async (fileIndex) => {
+    if (!window.confirm('첨부파일을 완전히 삭제하시겠습니까? (이 작업은 되돌릴 수 없습니다)')) return;
+    setSaving(true);
+    try {
+      const targetFile = inquiry.attachments[fileIndex];
+      // 1. Storage에서 삭제
+      const fileRef = ref(storage, targetFile.path);
+      await deleteObject(fileRef).catch(err => {
+        // 이미 삭제되었거나 없으면 무시
+        console.warn('Storage 삭제 오류 (무시됨):', err);
+      });
+      
+      // 2. Firestore에서 제거
+      const updatedAttachments = inquiry.attachments.filter((_, idx) => idx !== fileIndex);
+      await updateDoc(doc(db, 'inquiries', id), { attachments: updatedAttachments });
+      setInquiry(prev => ({ ...prev, attachments: updatedAttachments }));
+      alert('삭제되었습니다.');
+    } catch (err) {
+      console.error('첨부파일 삭제 오류:', err);
+      alert('삭제 중 오류가 발생했습니다.');
+    } finally {
+      setSaving(false);
+    }
   };
 
   // 견적서 페이지 열기 (고객 정보 query string으로 전달)
@@ -190,6 +217,27 @@ const InquiryDetail = () => {
             ) : (
               <p className="message-text">{inquiry.message}</p>
             )}
+          </div>
+
+          {/* 첨부파일 영역 추가 */}
+          <div className="detail-card">
+            <div className="card-header"><h3>📎 첨부파일</h3></div>
+            <div className="attachment-list">
+              {(!inquiry.attachments || inquiry.attachments.length === 0) ? (
+                <p className="attachment-empty">첨부된 파일이 없습니다.</p>
+              ) : (
+                inquiry.attachments.map((file, idx) => (
+                  <div key={idx} className="attachment-item">
+                    <a href={file.url} target="_blank" rel="noopener noreferrer" className="attachment-link">
+                      📄 {file.name}
+                    </a>
+                    <button className="attachment-del-btn" onClick={() => handleDeleteAttachment(idx)} disabled={saving}>
+                      삭제
+                    </button>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
         </div>
 

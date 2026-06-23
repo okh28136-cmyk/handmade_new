@@ -18,6 +18,8 @@ const InquiryList = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const navigate = useNavigate();
 
   // Firestore 실시간 구독
@@ -48,6 +50,9 @@ const InquiryList = () => {
     return matchStatus && matchSearch;
   });
 
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1;
+  const currentData = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
   return (
     <AdminLayout>
       <div className="page-header">
@@ -62,7 +67,7 @@ const InquiryList = () => {
             <button
               key={val}
               className={`filter-tab ${filter === val ? 'active' : ''}`}
-              onClick={() => setFilter(val)}
+              onClick={() => { setFilter(val); setCurrentPage(1); }}
             >
               {label}
               <span className="tab-count">
@@ -76,7 +81,7 @@ const InquiryList = () => {
           className="search-input"
           placeholder="회사명 또는 담당자 검색..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
         />
       </div>
 
@@ -99,28 +104,22 @@ const InquiryList = () => {
               </tr>
             </thead>
             <tbody>
-              {filtered.length === 0 ? (
-                <tr>
-                  <td colSpan="8" className="empty-row">
-                    {inquiries.length === 0 ? '아직 접수된 문의가 없습니다.' : '검색 결과가 없습니다.'}
-                  </td>
-                </tr>
+              {currentData.length === 0 ? (
+                <tr><td colSpan="8" className="empty-row">{search ? '검색 결과가 없습니다.' : '아직 접수된 문의가 없습니다.'}</td></tr>
               ) : (
-                filtered.map(item => {
-                  const st = STATUS_MAP[item.status] || STATUS_MAP['new'];
+                currentData.map(inq => {
+                  const st = STATUS_MAP[inq.status] || STATUS_MAP['new'];
                   return (
-                    <tr key={item.id} className="inquiry-row" onClick={() => navigate(`/admin/inquiries/${item.id}`)}>
-                      <td className="td-date">{item.createdAt}</td>
-                      <td className="td-company">{item.from_company || '-'}</td>
-                      <td>{item.from_name}</td>
-                      <td>{item.from_phone}</td>
-                      <td><span className="service-tag">{item.service_type}</span></td>
-                      <td>{item.amount || '-'}</td>
+                    <tr key={inq.id} className="inquiry-row" onClick={() => navigate(`/admin/inquiries/${inq.id}`)}>
+                      <td className="td-date">{inq.createdAt}</td>
+                      <td className="td-company">{inq.from_company || '-'}</td>
+                      <td>{inq.from_name}</td>
+                      <td>{inq.from_phone}</td>
+                      <td><span className="service-tag">{inq.service_type}</span></td>
+                      <td>{inq.amount || '-'}</td>
                       <td><span className={`status-badge ${st.cls}`}>{st.label}</span></td>
-                      <td onClick={e => e.stopPropagation()}>
-                        <button className="detail-btn" onClick={() => navigate(`/admin/inquiries/${item.id}`)}>
-                          상세보기
-                        </button>
+                      <td onClick={(e) => e.stopPropagation()}>
+                        <button className="detail-btn" onClick={() => navigate(`/admin/inquiries/${inq.id}`)}>상세보기</button>
                       </td>
                     </tr>
                   );
@@ -130,6 +129,35 @@ const InquiryList = () => {
           </table>
         )}
       </div>
+
+      {/* 페이지네이션 영역 */}
+      {!loading && totalPages > 1 && (
+        <div className="pagination">
+          <button 
+            className="page-btn" 
+            disabled={currentPage === 1} 
+            onClick={() => setCurrentPage(p => p - 1)}
+          >
+            이전
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+            <button
+              key={page}
+              className={`page-btn ${currentPage === page ? 'active' : ''}`}
+              onClick={() => setCurrentPage(page)}
+            >
+              {page}
+            </button>
+          ))}
+          <button 
+            className="page-btn" 
+            disabled={currentPage === totalPages} 
+            onClick={() => setCurrentPage(p => p + 1)}
+          >
+            다음
+          </button>
+        </div>
+      )}
     </AdminLayout>
   );
 };

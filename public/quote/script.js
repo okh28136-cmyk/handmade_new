@@ -264,21 +264,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Firebase 데이터베이스 (Firestore) 연동 로직
     // ==========================================
     
-    // TODO: 사용자님! 아래 firebaseConfig 객체에 사용자님의 실제 Firebase 프로젝트 정보를 채워주세요.
     const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_PROJECT_ID.appspot.com",
-        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-        appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyAw2ZTmqjqlJoML16Hub9LbDEUP1u7qD5E",
+      authDomain: "handmadefactorynew.firebaseapp.com",
+      projectId: "handmadefactorynew",
+      storageBucket: "handmadefactorynew.firebasestorage.app",
+      messagingSenderId: "515632397449",
+      appId: "1:515632397449:web:ff89646c5b051664ee5a58",
+      measurementId: "G-1644YLRKK3"
     };
 
-    // Firebase 초기화 (설정값이 비어있으면 초기화 방지)
+    // Firebase 초기화
     let db = null;
-    if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+    try {
         firebase.initializeApp(firebaseConfig);
         db = firebase.firestore();
+    } catch (e) {
+        console.error("Firebase 초기화 에러:", e);
     }
 
     // 견적서 저장 버튼 클릭 이벤트

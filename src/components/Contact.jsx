@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { db } from '../firebase';
+import { db, storage } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import './Contact.css';
 
 // ====================================================
@@ -45,6 +46,23 @@ const Contact = () => {
       to_email2    : 'okh@iroum.co.kr',        // 두 번째 수신 이메일 (템플릿에 {{to_email2}} 추가)
     };
 
+    // ── 첨부파일 업로드 로직
+    let attachments = [];
+    const fileInput = formRef.current.querySelector('input[type="file"]');
+    if (fileInput && fileInput.files.length > 0) {
+      for (let i = 0; i < fileInput.files.length; i++) {
+        const file = fileInput.files[i];
+        const fileRef = ref(storage, `inquiries/${Date.now()}_${file.name}`);
+        try {
+          const snapshot = await uploadBytes(fileRef, file);
+          const url = await getDownloadURL(snapshot.ref);
+          attachments.push({ name: file.name, url: url, path: fileRef.fullPath });
+        } catch (uploadErr) {
+          console.error('파일 업로드 오류:', uploadErr);
+        }
+      }
+    }
+
     // ── EmailJS 전송과 Firestore 저장을 동시에 실행하되, Firestore는 3초 타임아웃 적용
     try {
       const emailPromise = emailjs.send(
@@ -63,6 +81,7 @@ const Contact = () => {
           service_type : templateParams.service_type,
           amount       : templateParams.amount,
           message      : templateParams.message,
+          attachments  : attachments, // 첨부파일 정보 추가
           status       : 'new',
           memos        : [],
           createdAt    : serverTimestamp(),
