@@ -1,18 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Hero.css';
 
 const Hero = () => {
-  const [currentImg, setCurrentImg] = useState(0);
-  const images = ['/hero-bg-1.jpg', '/hero-bg-2.jpeg'];
-
-  useEffect(() => {
-    // 5초 간격으로 이미지 인덱스 변경
-    const timer = setInterval(() => {
-      setCurrentImg((prev) => (prev === 0 ? 1 : 0));
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section className="hero">
       <div className="container">
@@ -34,17 +23,9 @@ const Hero = () => {
       </div>
       <div className="hero-image-wrapper">
         <div 
-          className="hero-slider" 
-          style={{ transform: `translateX(-${currentImg * 100}%)` }}
-        >
-          {images.map((src, index) => (
-            <div 
-              key={index}
-              className="hero-bg-layer"
-              style={{ backgroundImage: `url(${src})` }}
-            />
-          ))}
-        </div>
+          className="hero-bg-layer"
+          style={{ backgroundImage: `url(/hero-bg-2.jpeg)` }}
+        />
         {/* 가독성을 높이기 위한 어두운 오버레이 */}
         <div className="hero-overlay"></div>
         <div className="hero-overlay-text font-playfair">
