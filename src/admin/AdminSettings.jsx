@@ -137,24 +137,24 @@ const AdminSettings = () => {
 
         {/* 구글 애널리틱스 설정 패널 */}
         <div className="settings-panel">
-          <h3>📊 구글 애널리틱스 (방문자 통계) 연동</h3>
+          <h3>📊 방문자 통계 연동 (GA4 / GTM)</h3>
           <p className="panel-desc">
-            구글 계정(okh28136@gmail.com 등)으로 애널리틱스 속성을 생성하신 후 발급받은 <strong>추적 ID(G-XXXXXXXXXX)</strong>를 입력해 주세요.<br/>
+            구글 애널리틱스(GA4)의 <strong>추적 ID(G-XXXXXXXXXX)</strong> 또는 구글 태그 관리자(GTM)의 <strong>컨테이너 ID(GTM-XXXXXXX)</strong>를 입력해 주세요.<br/>
             추적 ID를 입력하고 저장하는 즉시 실시간 통계 수집이 시작됩니다.
           </p>
 
           <div className="form-group">
-            <label>구글 애널리틱스 추적 ID (Measurement ID)</label>
+            <label>추적 ID (G- 또는 GTM- 시작)</label>
             <input 
               type="text" 
               value={trackingId} 
               onChange={(e) => setTrackingId(e.target.value)} 
-              placeholder="예: G-1A2B3C4D5E" 
+              placeholder="예: G-1A2B3C4D5E 또는 GTM-MRLMLTG2" 
             />
           </div>
 
           <button className="btn-save" onClick={handleSaveAnalytics}>
-            애널리틱스 설정 저장하기
+            통계 설정 저장하기
           </button>
         </div>
 

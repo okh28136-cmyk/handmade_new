@@ -76,23 +76,38 @@ function App() {
           if (existing1) document.head.removeChild(existing1);
           if (existing2) document.head.removeChild(existing2);
 
-          // 새로운 구글 애널리틱스 스크립트 생성 및 주입
-          const script1 = document.createElement('script');
-          script1.async = true;
-          script1.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
-          script1.id = 'ga-script-1';
+          // 새로운 스크립트 생성 및 주입
+          if (trackingId.toUpperCase().startsWith('GTM-')) {
+            // Google Tag Manager 스크립트
+            const script1 = document.createElement('script');
+            script1.id = 'ga-script-1';
+            script1.innerHTML = `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${trackingId}');
+            `;
+            document.head.appendChild(script1);
+          } else {
+            // 기본 Google Analytics (gtag.js) 스크립트
+            const script1 = document.createElement('script');
+            script1.async = true;
+            script1.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
+            script1.id = 'ga-script-1';
 
-          const script2 = document.createElement('script');
-          script2.id = 'ga-script-2';
-          script2.innerHTML = `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${trackingId}');
-          `;
+            const script2 = document.createElement('script');
+            script2.id = 'ga-script-2';
+            script2.innerHTML = `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${trackingId}');
+            `;
 
-          document.head.appendChild(script1);
-          document.head.appendChild(script2);
+            document.head.appendChild(script1);
+            document.head.appendChild(script2);
+          }
         }
       }
     });
