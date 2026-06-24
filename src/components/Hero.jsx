@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Hero.css';
 
 const Hero = () => {
+  const [currentImg, setCurrentImg] = useState(0);
+  const images = ['/hero-bg-1.jpg', '/hero-bg-2.jpeg'];
+
+  useEffect(() => {
+    // 5초 간격으로 이미지 인덱스 변경
+    const timer = setInterval(() => {
+      setCurrentImg((prev) => (prev === 0 ? 1 : 0));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="hero">
       <div className="container">
@@ -22,8 +33,15 @@ const Hero = () => {
         </div>
       </div>
       <div className="hero-image-wrapper">
-        {/* public 폴더에 옮겨질 1920-800.jpg 사용 */}
-        <img src="/hero-bg.jpg" alt="수작업팩토리 작업 현장" className="hero-image" />
+        {images.map((src, index) => (
+          <div 
+            key={index}
+            className={`hero-bg-layer ${currentImg === index ? 'active' : ''}`}
+            style={{ backgroundImage: `url(${src})` }}
+          />
+        ))}
+        {/* 가독성을 높이기 위한 어두운 오버레이 */}
+        <div className="hero-overlay"></div>
         <div className="hero-overlay-text font-playfair">
           HANDMADE FACTORY
         </div>
