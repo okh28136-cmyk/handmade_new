@@ -33,13 +33,18 @@ const Hero = () => {
         </div>
       </div>
       <div className="hero-image-wrapper">
-        {images.map((src, index) => (
-          <div 
-            key={index}
-            className={`hero-bg-layer ${currentImg === index ? 'active' : ''}`}
-            style={{ backgroundImage: `url(${src})` }}
-          />
-        ))}
+        <div 
+          className="hero-slider" 
+          style={{ transform: `translateX(-${currentImg * 100}%)` }}
+        >
+          {images.map((src, index) => (
+            <div 
+              key={index}
+              className="hero-bg-layer"
+              style={{ backgroundImage: `url(${src})` }}
+            />
+          ))}
+        </div>
         {/* 가독성을 높이기 위한 어두운 오버레이 */}
         <div className="hero-overlay"></div>
         <div className="hero-overlay-text font-playfair">
