@@ -1,86 +1,127 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import './FAQ.css';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const [faqData, setFaqData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 5;
 
-  // 추후 Firebase Firestore에서 불러올 데이터 구조를 미리 잡아둔 상태(State)
-  // 관리자(Admin) 로그인 시 해당 항목들을 직접 추가, 수정, 삭제할 수 있도록 연동할 예정입니다.
-  const [faqData, setFaqData] = useState([
-    {
-      question: '자재 입고와 완제품 출고는 어떻게 이루어지나요?',
-      answer: '자재 입고 시 꼼꼼한 수량 및 상태 검수를 진행하며, 작업 완료 후 지정된 배송처 또는 물류센터로 안전하게 출고해 드립니다.'
-    },
-    {
-      question: '인쇄물 제작부터 포장까지 한 번에 맡길 수 있나요?',
-      answer: '네, 가능합니다. 협력업체를 통해 인쇄물 제작부터 최종 포장 및 발송까지 원스톱 서비스를 제공하고 있습니다.'
-    },
-    {
-      question: '제품 검수(QC)도 꼼꼼하게 해주나요?',
-      answer: '전문 검수 인력이 투입되어 불량품을 사전에 걸러내고, 고객사의 가이드라인에 맞춘 엄격한 품질 관리를 진행합니다.'
-    },
-    {
-      question: '소량 작업이나 샘플 작업도 가능한가요?',
-      answer: '최소 수량 제한 없이 소량 작업 및 테스트 샘플 작업도 정성껏 진행해 드립니다. 단, 수량에 따라 단가가 변동될 수 있습니다.'
-    },
-    {
-      question: '세금계산서 발행이 가능한가요?',
-      answer: '네, 정식 사업자로서 모든 작업 비용에 대해 100% 세금계산서 및 현금영수증 발행이 가능합니다.'
-    }
-  ]);
+  useEffect(() => {
+    // Firestore에서 faq 컬렉션을 order(순서) 오름차순으로 실시간 구독
+    const q = query(collection(db, 'faqs'), orderBy('order', 'asc'));
+    const unsub = onSnapshot(q, (snapshot) => {
+      const data = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setFaqData(data);
+    }, (err) => {
+      console.error('FAQ 불러오기 오류:', err);
+    });
+
+    return () => unsub();
+  }, []);
 
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
+  };
+
+  // 페이지네이션 계산
+  const totalPages = Math.max(1, Math.ceil(faqData.length / ITEMS_PER_PAGE));
+  
+  // 현재 페이지의 데이터만 슬라이싱
+  const currentData = faqData.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE, 
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      setOpenIndex(null); // 페이지 전환 시 열린 아코디언 닫기
+    }
   };
 
   return (
     <section className="faq" id="faq">
       <div className="container faq-container">
         
-        {/* 상단 헤더 영역 (좌측 정렬) */}
+        {/* 상단 헤더 영역 */}
         <div className="faq-header-left">
           <span className="faq-tag">FAQ</span>
           <h2 className="faq-title">자주 묻는 질문</h2>
           <p className="faq-subtitle">수작업팩토리에 대해 가장 많이 물어보시는 질문들을 모았습니다.</p>
         </div>
 
-        {/* 추후 관리자용 제어 버튼이 들어갈 자리 (Firebase Auth 관리자 로그인 시에만 노출) */}
-        {/* 
-        <div className="admin-controls" style={{ textAlign: 'right', marginBottom: '20px' }}>
-          <button style={{ padding: '10px 20px', backgroundColor: 'var(--color-primary)', color: '#fff', border: 'none', cursor: 'pointer' }}>FAQ 등록/수정 (관리자 전용)</button>
-        </div> 
-        */}
-
         {/* 아코디언 리스트 영역 */}
         <div className="faq-list">
-          {faqData.map((item, index) => (
-            <div 
-              key={index} 
-              className={`faq-item ${openIndex === index ? 'active' : ''}`}
-            >
-              <button 
-                className="faq-question" 
-                onClick={() => toggleAccordion(index)}
+          {currentData.length === 0 ? (
+            <div style={{ padding: '40px', textAlign: 'center', color: '#888' }}>
+              등록된 자주 묻는 질문이 없습니다.
+            </div>
+          ) : (
+            currentData.map((item, index) => (
+              <div 
+                key={item.id} 
+                className={`faq-item ${openIndex === index ? 'active' : ''}`}
               >
-                <span>{item.question}</span>
-                <span className="faq-icon">{openIndex === index ? '-' : '+'}</span>
-              </button>
-              
-              <div className="faq-answer-wrapper">
-                <div className="faq-answer">
-                  {item.answer}
+                <button 
+                  className="faq-question" 
+                  onClick={() => toggleAccordion(index)}
+                >
+                  <span>{item.question}</span>
+                  <span className="faq-icon">{openIndex === index ? '-' : '+'}</span>
+                </button>
+                
+                <div className="faq-answer-wrapper">
+                  <div className="faq-answer">
+                    {/* 줄바꿈을 <br />로 렌더링하기 위해 split 처리 */}
+                    {item.answer.split('\n').map((line, i) => (
+                      <React.Fragment key={i}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         {/* 하단 페이지네이션 영역 */}
-        <div className="faq-pagination">
-          <span className="page-number active">1</span>
-          <span className="page-number">2</span>
-          <span className="page-next">&gt;</span>
-        </div>
+        {totalPages > 1 && (
+          <div className="faq-pagination">
+            <span 
+              className={`page-prev ${currentPage === 1 ? 'disabled' : ''}`}
+              onClick={() => handlePageChange(currentPage - 1)}
+              style={{ cursor: currentPage === 1 ? 'default' : 'pointer', padding: '0 10px' }}
+            >
+              &lt;
+            </span>
+            
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+              <span 
+                key={page}
+                className={`page-number ${currentPage === page ? 'active' : ''}`}
+                onClick={() => handlePageChange(page)}
+              >
+                {page}
+              </span>
+            ))}
+
+            <span 
+              className={`page-next ${currentPage === totalPages ? 'disabled' : ''}`}
+              onClick={() => handlePageChange(currentPage + 1)}
+              style={{ cursor: currentPage === totalPages ? 'default' : 'pointer', padding: '0 10px' }}
+            >
+              &gt;
+            </span>
+          </div>
+        )}
 
       </div>
     </section>

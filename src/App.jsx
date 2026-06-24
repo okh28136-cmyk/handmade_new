@@ -20,6 +20,7 @@ import InquiryDetail from './admin/InquiryDetail';
 import ProtectedRoute from './admin/ProtectedRoute';
 
 import AdminGallery from './admin/AdminGallery';
+import AdminFAQ from './admin/AdminFAQ';
 
 // 메인 사이트 페이지
 const MainSite = () => {
@@ -76,6 +77,9 @@ function App() {
         } />
         <Route path="/admin/gallery" element={
           <ProtectedRoute><AdminGallery /></ProtectedRoute>
+        } />
+        <Route path="/admin/faq" element={
+          <ProtectedRoute><AdminFAQ /></ProtectedRoute>
         } />
 
         {/* 404 - 메인으로 리다이렉트 */}
