@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { db } from './firebase';
+import { doc, onSnapshot } from 'firebase/firestore';
 
 // 메인 사이트 컴포넌트
 import Header from './components/Header';
@@ -12,6 +14,7 @@ import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingKakao from './components/FloatingKakao';
+import Popup from './components/Popup';
 
 // 관리자 페이지 컴포넌트
 import AdminLogin from './admin/AdminLogin';
@@ -21,6 +24,7 @@ import ProtectedRoute from './admin/ProtectedRoute';
 
 import AdminGallery from './admin/AdminGallery';
 import AdminFAQ from './admin/AdminFAQ';
+import AdminSettings from './admin/AdminSettings';
 
 // 메인 사이트 페이지
 const MainSite = () => {
@@ -54,11 +58,48 @@ const MainSite = () => {
       </main>
       <Footer />
       <FloatingKakao />
+      <Popup />
     </>
   );
 };
 
 function App() {
+  React.useEffect(() => {
+    // GA4 연동 로직 (Firestore 실시간 구독)
+    const unsub = onSnapshot(doc(db, 'settings', 'analytics'), (docSnap) => {
+      if (docSnap.exists()) {
+        const trackingId = docSnap.data().trackingId;
+        if (trackingId && trackingId.trim() !== '') {
+          // 기존 스크립트가 있다면 제거 (업데이트 대비)
+          const existing1 = document.getElementById('ga-script-1');
+          const existing2 = document.getElementById('ga-script-2');
+          if (existing1) document.head.removeChild(existing1);
+          if (existing2) document.head.removeChild(existing2);
+
+          // 새로운 구글 애널리틱스 스크립트 생성 및 주입
+          const script1 = document.createElement('script');
+          script1.async = true;
+          script1.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
+          script1.id = 'ga-script-1';
+
+          const script2 = document.createElement('script');
+          script2.id = 'ga-script-2';
+          script2.innerHTML = `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${trackingId}');
+          `;
+
+          document.head.appendChild(script1);
+          document.head.appendChild(script2);
+        }
+      }
+    });
+
+    return () => unsub();
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -80,6 +121,9 @@ function App() {
         } />
         <Route path="/admin/faq" element={
           <ProtectedRoute><AdminFAQ /></ProtectedRoute>
+        } />
+        <Route path="/admin/settings" element={
+          <ProtectedRoute><AdminSettings /></ProtectedRoute>
         } />
 
         {/* 404 - 메인으로 리다이렉트 */}
