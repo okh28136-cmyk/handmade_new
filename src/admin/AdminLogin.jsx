@@ -18,7 +18,7 @@ const AdminLogin = () => {
     setTimeout(() => {
       if (password === ADMIN_PASSWORD) {
         sessionStorage.setItem('admin_auth', 'true');
-        navigate('/admin/inquiries');
+        navigate('/admin/dashboard');
       } else {
         setError('비밀번호가 올바르지 않습니다.');
         setPassword('');

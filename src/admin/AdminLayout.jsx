@@ -23,6 +23,10 @@ const AdminLayout = ({ children }) => {
         </div>
 
         <nav className="sidebar-nav">
+          <NavLink to="/admin/dashboard" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
+            <span className="nav-icon">📊</span>
+            <span>통계 대시보드</span>
+          </NavLink>
           <NavLink to="/admin/inquiries" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
             <span className="nav-icon">📋</span>
             <span>견적 문의 관리</span>

@@ -25,6 +25,7 @@ import ProtectedRoute from './admin/ProtectedRoute';
 import AdminGallery from './admin/AdminGallery';
 import AdminFAQ from './admin/AdminFAQ';
 import AdminSettings from './admin/AdminSettings';
+import AdminDashboard from './admin/AdminDashboard';
 
 // 메인 사이트 페이지
 const MainSite = () => {
@@ -125,6 +126,9 @@ function App() {
         <Route path="/admin" element={<AdminLogin />} />
 
         {/* 관리자 보호 라우트 */}
+        <Route path="/admin/dashboard" element={
+          <ProtectedRoute><AdminDashboard /></ProtectedRoute>
+        } />
         <Route path="/admin/inquiries" element={
           <ProtectedRoute><InquiryList /></ProtectedRoute>
         } />

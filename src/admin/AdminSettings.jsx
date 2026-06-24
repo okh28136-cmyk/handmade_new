@@ -12,6 +12,7 @@ const AdminSettings = () => {
   
   // 애널리틱스 상태
   const [trackingId, setTrackingId] = useState('');
+  const [lookerStudioUrl, setLookerStudioUrl] = useState('');
 
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +32,9 @@ const AdminSettings = () => {
         // 애널리틱스 설정 불러오기
         const analyticsDoc = await getDoc(doc(db, 'settings', 'analytics'));
         if (analyticsDoc.exists()) {
-          setTrackingId(analyticsDoc.data().trackingId || '');
+          const aData = analyticsDoc.data();
+          setTrackingId(aData.trackingId || '');
+          setLookerStudioUrl(aData.lookerStudioUrl || '');
         }
       } catch (err) {
         console.error('설정 로드 에러:', err);
@@ -59,9 +62,10 @@ const AdminSettings = () => {
   const handleSaveAnalytics = async () => {
     try {
       await setDoc(doc(db, 'settings', 'analytics'), {
-        trackingId: trackingId.trim()
+        trackingId: trackingId.trim(),
+        lookerStudioUrl: lookerStudioUrl.trim()
       });
-      alert('구글 애널리틱스 설정이 저장되었습니다.');
+      alert('방문자 통계 설정이 저장되었습니다.');
     } catch (err) {
       console.error('애널리틱스 저장 에러:', err);
       alert('저장 중 오류가 발생했습니다.');
@@ -150,6 +154,19 @@ const AdminSettings = () => {
               value={trackingId} 
               onChange={(e) => setTrackingId(e.target.value)} 
               placeholder="예: G-1A2B3C4D5E 또는 GTM-MRLMLTG2" 
+            />
+          </div>
+
+          <div className="form-group" style={{ marginTop: '30px' }}>
+            <label>루커 스튜디오(Looker Studio) 임베드 링크 (선택)</label>
+            <p className="panel-desc" style={{ borderBottom: 'none', paddingBottom: '0', marginBottom: '10px' }}>
+              루커 스튜디오에서 [포함(Embed)] 보고서 공유 옵션을 통해 발급받은 링크(URL)를 넣어주시면, 관리자 대시보드 화면에 통계가 뜹니다.
+            </p>
+            <input 
+              type="text" 
+              value={lookerStudioUrl} 
+              onChange={(e) => setLookerStudioUrl(e.target.value)} 
+              placeholder="예: https://lookerstudio.google.com/embed/reporting/..." 
             />
           </div>
 
