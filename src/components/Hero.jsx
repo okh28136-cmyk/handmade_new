@@ -9,8 +9,8 @@ const Hero = () => {
           <span className="hero-badge">PREMIUM PACKAGING PARTNER</span>
           <div className="hero-title-group">
             <h1 className="hero-title">
-              수작업팩토리와 함께<br/>
-              <strong>성공을 포장하세요.</strong>
+              손이 많이 가고 복잡한 수작업<br/>
+              <strong>저희가 제일 잘 합니다.</strong>
             </h1>
             <button 
               className="hero-cta-button"
