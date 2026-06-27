@@ -5,6 +5,7 @@ import emailjs from '@emailjs/browser';
 import { db, storage } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import './Calculator.css';
 import './Contact.css';
 
 const EMAILJS_SERVICE_ID  = 'service_1tncfue';
@@ -61,6 +62,14 @@ const Calculator = () => {
     setActiveModal(null);
   };
 
+  const handleNextStep = () => {
+    if (!isProjectValid) {
+      alert('기본 설정을 모두 입력해주세요.');
+      return;
+    }
+    setStep(2);
+  };
+
   const labelMap = {
     simple: '1종 (단순 합포장)', normal: '2~3종 (일반 키팅)', complex: '4종 이상 (복잡 키팅)',
     precision: '정밀 부착', folding: '이중/삼중 꺾임 상자', hard: '고급 싸바리 세팅',
@@ -70,7 +79,8 @@ const Calculator = () => {
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
-      setFileName(e.target.files.length === 1 ? e.target.files[0].name : `선택된 파일 ${e.target.files.length}개`);
+      const fileNames = Array.from(e.target.files).map(f => f.name).join(', ');
+      setFileName(fileNames);
     } else {
       setFileName('파일을 첨부하시려면 클릭하세요.');
     }
@@ -80,7 +90,19 @@ const Calculator = () => {
     e.preventDefault();
     setSubmitStatus('sending');
 
-    const formData = new FormData(formRef.current);
+    const formData = new FormData(e.target);
+    const files = formData.getAll('attachment');
+    let attachments = [];
+
+    if (files.length > 0 && files[0].name !== '') {
+      for (const file of files) {
+        const fileRef = ref(storage, `inquiries/${Date.now()}_${file.name}`);
+        await uploadBytes(fileRef, file);
+        const url = await getDownloadURL(fileRef);
+        attachments.push({ name: file.name, url });
+      }
+    }
+
     const templateParams = {
       from_company : formData.get('company')  || '(미입력)',
       from_name    : formData.get('name'),
@@ -91,23 +113,10 @@ const Calculator = () => {
       message      : formData.get('message'),
       to_email     : 'jyy1422@iroum.co.kr',
       to_email2    : 'okh@iroum.co.kr',
+      cart_details : quoteResult.enrichedCart.map(item => `- ${item.label} (${item.base}): ${item.calculatedPrice}원`).join('\n'),
+      total_price  : `${quoteResult.totalPrice.toLocaleString()}원`,
+      attachment_url: attachments.length > 0 ? attachments.map(a => a.url).join(', ') : '첨부파일 없음'
     };
-
-    let attachments = [];
-    const fileInput = formRef.current.querySelector('input[type="file"]');
-    if (fileInput && fileInput.files.length > 0) {
-      for (let i = 0; i < fileInput.files.length; i++) {
-        const file = fileInput.files[i];
-        const fileRef = ref(storage, `inquiries/${Date.now()}_${file.name}`);
-        try {
-          const snapshot = await uploadBytes(fileRef, file);
-          const url = await getDownloadURL(snapshot.ref);
-          attachments.push({ name: file.name, url: url, path: fileRef.fullPath });
-        } catch (uploadErr) {
-          console.error('파일 업로드 오류:', uploadErr);
-        }
-      }
-    }
 
     try {
       const emailPromise = emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
@@ -147,7 +156,7 @@ const Calculator = () => {
   const isProjectValid = project.quantity !== '' && project.quantity > 0 && project.weight !== '' && project.hasBOM !== '';
 
   return (
-    <section id="contact" style={{ padding: '6rem 0', background: '#f8fafc' }}>
+    <section id="contact" className="calculator-container" style={{ padding: '6rem 0', background: 'var(--bg-color)', color: 'var(--text-main)' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
         
         {/* 헤더 부분 */}
