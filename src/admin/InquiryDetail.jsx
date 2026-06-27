@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { db, storage } from '../firebase';
 import {
-  doc, getDoc, updateDoc, arrayUnion, serverTimestamp, Timestamp
+  doc, getDoc, updateDoc, deleteDoc, arrayUnion, serverTimestamp, Timestamp
 } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
 import AdminLayout from './AdminLayout';
