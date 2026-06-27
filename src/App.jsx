@@ -12,6 +12,7 @@ import Gallery from './components/Gallery';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
+import QuoteTestPage from './components/QuoteTestPage';
 import Footer from './components/Footer';
 import FloatingKakao from './components/FloatingKakao';
 import Popup from './components/Popup';
@@ -21,6 +22,7 @@ import AdminLogin from './admin/AdminLogin';
 import InquiryList from './admin/InquiryList';
 import InquiryDetail from './admin/InquiryDetail';
 import ProtectedRoute from './admin/ProtectedRoute';
+import { QuoteProvider } from './context/QuoteContext';
 
 import AdminGallery from './admin/AdminGallery';
 import AdminFAQ from './admin/AdminFAQ';
@@ -117,10 +119,14 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
+    <QuoteProvider>
+      <BrowserRouter>
+        <Routes>
         {/* 메인 사이트 */}
         <Route path="/" element={<MainSite />} />
+
+        {/* 비공개 견적 테스트 페이지 */}
+        <Route path="/quote-test" element={<QuoteTestPage />} />
 
         {/* 관리자 로그인 */}
         <Route path="/admin" element={<AdminLogin />} />
@@ -148,7 +154,8 @@ function App() {
         {/* 404 - 메인으로 리다이렉트 */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </QuoteProvider>
   );
 }
 

@@ -15,7 +15,7 @@ const AdminGallery = () => {
     fetchImages();
   }, []);
 
-  const fetchImages = async () => {
+  async function fetchImages() {
     try {
       const q = query(collection(db, 'gallery_images'), orderBy('createdAt', 'desc'));
       const snapshot = await getDocs(q);
@@ -26,7 +26,7 @@ const AdminGallery = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
