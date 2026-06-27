@@ -56,6 +56,7 @@ const Calculator = () => {
   const [attachBase, setAttachBase] = useState('');
   const [attachArea, setAttachArea] = useState('');
   const [attachSize, setAttachSize] = useState('');
+  const [attachMaterial, setAttachMaterial] = useState('');
 
   const [assembleBase, setAssembleBase] = useState('');
   const [assembleInner, setAssembleInner] = useState('');
@@ -66,7 +67,7 @@ const Calculator = () => {
   const openModal = (type) => {
     // 모달 열 때 상태 초기화 (매번 새롭게 선택하도록)
     if (type === 'kitting') { setKittingBase(''); setKittingPre(''); setKittingMain(''); setKittingDirection(''); }
-    if (type === 'attach') { setAttachBase(''); setAttachArea(''); setAttachSize(''); }
+    if (type === 'attach') { setAttachBase(''); setAttachArea(''); setAttachSize(''); setAttachMaterial(''); }
     if (type === 'assemble') { setAssembleBase(''); setAssembleInner(''); setAssembleFinish(''); }
     if (type === 'outPacking') { setOutPackingBase(''); }
     setActiveModal(type);
@@ -77,7 +78,7 @@ const Calculator = () => {
     setActiveModal(null);
   };
   const handleAddAttach = () => {
-    addToCart({ type: 'attach', base: attachBase, multipliers: { attachArea, attachSize }, label: '스티커/라벨 부착' });
+    addToCart({ type: 'attach', base: attachBase, multipliers: { attachArea, attachSize, attachMaterial }, label: '스티커/라벨 부착' });
     setActiveModal(null);
   };
   const handleAddAssemble = () => {
@@ -164,7 +165,7 @@ const Calculator = () => {
 
   // 각 모달별 필수 선택 완료 여부 체크
   const isKittingValid = kittingBase !== '' && kittingPre !== '' && kittingMain !== '' && kittingDirection !== '';
-  const isAttachValid = attachBase !== '' && attachArea !== '' && attachSize !== '';
+  const isAttachValid = attachBase !== '' && attachArea !== '' && attachSize !== '' && attachMaterial !== '';
   const isAssembleValid = assembleBase !== '' && assembleInner !== '' && assembleFinish !== '';
 
   // 기본 프로젝트 설정 완료 여부 체크
@@ -581,13 +582,20 @@ const Calculator = () => {
                     <option value={1.6}>연질 및 불규칙 굴곡 (튜브형 화장품, 푹신한 파우치 등 고정하기 까다로운 표면)</option>
                   </select>
                 </div>
-                <div style={{ marginBottom: '2.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q3. 붙이는 스티커의 '재질'이나 '크기'에 특이사항이 있나요?</label>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q3. 스티커의 '크기'는 어느 정도인가요?</label>
                   <select value={attachSize} onChange={(e) => setAttachSize(parseFloat(e.target.value))} className="form-input">
                     <option value="" disabled>항목을 선택해주세요</option>
-                    <option value={1.0}>소형~중형 (길이가 약 15cm 이하인 스티커)</option>
-                    <option value={1.3}>대형 사이즈 (길이가 15cm를 초과하거나, 가로세로 부착 면적이 약 100㎠ 이상인 스티커) 밀대로 기포와 울음을 꼼꼼히 빼내며 붙여야 합니다.</option>
-                    <option value={1.2}>투명(지문주의), 얇은 은박, 파괴 씰 등 조심스럽게 다뤄야 하는 특수 재질입니다.</option>
+                    <option value={1.0}>소형~중형 (길이가 약 15cm 이하인 일반 스티커)</option>
+                    <option value={1.3}>대형 사이즈 (길이 15cm 초과 또는 넓은 면적 / 밀대 작업 필수)</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '2.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q4. 스티커의 '재질'에 특이사항이 있나요?</label>
+                  <select value={attachMaterial} onChange={(e) => setAttachMaterial(parseFloat(e.target.value))} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>일반 종이/유포지 스티커 (다루기 쉬움)</option>
+                    <option value={1.2}>투명(지문주의), 얇은 은박, 파괴 씰 등 까다로운 특수 재질</option>
                   </select>
                 </div>
                 
