@@ -169,7 +169,7 @@ const Calculator = () => {
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }} className="animate-slide-up">
+        <div className="calc-main-wrapper animate-slide-up">
       
       {/* Left Panel: Services Menu & Project Settings */}
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: step === 1 ? 'center' : 'stretch' }}>
@@ -407,7 +407,7 @@ const Calculator = () => {
 
       {/* Right Panel: Quote Cart (Sticky) - Only visible in Step 2 or 3 */}
       {(step === 2 || step === 3) && (
-        <div style={{ width: '380px', position: 'sticky', top: '2rem' }} className="animate-fade-in">
+        <div className="calc-sidebar-wrapper animate-fade-in">
           <div style={{ background: 'var(--surface)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden', border: '1px solid var(--border)' }}>
           
           <div style={{ padding: '1.5rem', background: 'var(--text-main)', color: '#fff' }}>
