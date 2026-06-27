@@ -1,6 +1,21 @@
 import { PRICING_CONFIG } from './config/pricing.js';
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
-export default function handler(req, res) {
+const firebaseConfig = {
+  apiKey: "AIzaSyAw2ZTmqjqlJoML16Hub9LbDEUP1u7qD5E",
+  authDomain: "handmadefactorynew.firebaseapp.com",
+  projectId: "handmadefactorynew",
+  storageBucket: "handmadefactorynew.firebasestorage.app",
+  messagingSenderId: "515632397449",
+  appId: "1:515632397449:web:ff89646c5b051664ee5a58",
+  measurementId: "G-1644YLRKK3"
+};
+
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const db = getFirestore(app);
+
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
@@ -12,7 +27,18 @@ export default function handler(req, res) {
   }
 
   const { quantity, weight } = project;
-  const pricing = PRICING_CONFIG;
+  
+  // Firestore에서 설정값 불러오기
+  let pricing = PRICING_CONFIG;
+  try {
+    const pricingDoc = await getDoc(doc(db, 'settings', 'pricing'));
+    if (pricingDoc.exists()) {
+      pricing = pricingDoc.data();
+    }
+  } catch (error) {
+    console.error('Pricing data fetch error:', error);
+  }
+
   const hourlyRate = pricing.hourlyRate;
 
   const quantityNum = parseInt(quantity) || 0;

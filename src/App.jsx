@@ -29,6 +29,8 @@ import AdminFAQ from './admin/AdminFAQ';
 import AdminSettings from './admin/AdminSettings';
 import AdminDashboard from './admin/AdminDashboard';
 
+import AdminPricing from './admin/AdminPricing';
+
 // 메인 사이트 페이지
 const MainSite = () => {
   React.useEffect(() => {
@@ -149,6 +151,9 @@ function App() {
         } />
         <Route path="/admin/settings" element={
           <ProtectedRoute><AdminSettings /></ProtectedRoute>
+        } />
+        <Route path="/admin/pricing" element={
+          <ProtectedRoute><AdminPricing /></ProtectedRoute>
         } />
 
         {/* 404 - 메인으로 리다이렉트 */}
