@@ -88,7 +88,8 @@ const InquiryList = () => {
       '서비스분야': item.req_type || '-',
       '희망납기일': item.req_date || '-',
       '예상물량': item.req_amount || '-',
-      '문의내용': item.req_content || '-'
+      '문의내용': item.req_content || '-',
+      '관리자메모': item.memos && item.memos.length > 0 ? item.memos.map(m => `[${m.time}] ${m.text}`).join('\n') : '-'
     }));
 
     const worksheet = XLSX.utils.json_to_sheet(excelData);
@@ -96,7 +97,7 @@ const InquiryList = () => {
     const wscols = [
       {wch: 16}, {wch: 10}, {wch: 20}, {wch: 15}, 
       {wch: 15}, {wch: 25}, {wch: 15}, {wch: 12}, 
-      {wch: 15}, {wch: 50}
+      {wch: 15}, {wch: 50}, {wch: 40}
     ];
     worksheet['!cols'] = wscols;
 
