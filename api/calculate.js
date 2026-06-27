@@ -45,7 +45,7 @@ export default async function handler(req, res) {
   
   // 만약 DB에서 setupCostTiers가 넘어온다면 구버전 호환, 없다면 setupCost 사용
   let C_setup = 0;
-  if (quantityNum > 0) {
+  if (quantityNum > 0 && cart.length > 0) {
     if (pricing.setupCost !== undefined) {
       C_setup = pricing.setupCost;
     } else if (pricing.setupCostTiers) {
