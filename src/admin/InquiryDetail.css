@@ -192,3 +192,109 @@
   .detail-grid { grid-template-columns: 1fr; }
   .memo-card { position: static; }
 }
+
+/* 자동견적 산출 내역 스타일 */
+.quote-total-price {
+  font-size: 0.95rem;
+  color: #111;
+}
+.quote-total-price strong {
+  font-size: 1.1rem;
+  color: #d90429;
+}
+.quote-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.quote-project-settings {
+  display: flex;
+  gap: 1rem;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+.setting-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: center;
+}
+.setting-item span {
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+.setting-item strong {
+  font-size: 0.95rem;
+  color: #111;
+}
+.quote-cart-list {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.cart-list-header {
+  background: #f1f3f5;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #444;
+  border-bottom: 1px solid #eee;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+.cart-item:last-child {
+  border-bottom: none;
+}
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.cart-item-label {
+  font-weight: 600;
+  color: #222;
+  font-size: 0.9rem;
+}
+.cart-item-base {
+  font-size: 0.75rem;
+  color: #888;
+}
+.cart-item-price {
+  font-weight: 700;
+  color: #d90429;
+  font-size: 0.9rem;
+}
+.quote-summary {
+  background: #fff5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ffe3e3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #555;
+}
+.summary-row.highlight {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #ffc9c9;
+  color: #111;
+  font-size: 0.95rem;
+}
+.summary-row.highlight strong {
+  color: #d90429;
+  font-size: 1.1rem;
+}

@@ -246,6 +246,48 @@ const InquiryDetail = () => {
             )}
           </div>
 
+          {/* 자동견적 산출 내역 (있는 경우에만 렌더링) */}
+          {inquiry.quote_details && inquiry.project_settings && (
+            <div className="detail-card">
+              <div className="card-header">
+                <h3>📊 자동견적 산출 내역</h3>
+                <span className="quote-total-price">
+                  총 견적액: <strong>{inquiry.quote_details.totalPrice.toLocaleString()}원</strong>
+                </span>
+              </div>
+              <div className="quote-details-container">
+                <div className="quote-project-settings">
+                  <div className="setting-item"><span>예상 수량</span><strong>{inquiry.project_settings.quantity} 세트</strong></div>
+                  <div className="setting-item"><span>세트당 무게</span><strong>{inquiry.project_settings.weight} kg</strong></div>
+                  <div className="setting-item"><span>부자재(BOM)</span><strong>{inquiry.project_settings.hasBOM === 'yes' ? '있음' : '없음'}</strong></div>
+                </div>
+                
+                {inquiry.quote_details.enrichedCart && inquiry.quote_details.enrichedCart.length > 0 && (
+                  <div className="quote-cart-list">
+                    <div className="cart-list-header">선택된 공정 리스트</div>
+                    {inquiry.quote_details.enrichedCart.map((item, idx) => (
+                      <div key={idx} className="cart-item">
+                        <div className="cart-item-info">
+                          <span className="cart-item-label">{item.label}</span>
+                          <span className="cart-item-base">{item.base}</span>
+                        </div>
+                        <div className="cart-item-price">
+                          +{Math.round(item.calculatedPrice).toLocaleString()}원
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                <div className="quote-summary">
+                  <div className="summary-row"><span>순수 수작업 단가합</span><span>{inquiry.quote_details.workCost.toLocaleString()} 원</span></div>
+                  <div className="summary-row"><span>기본 세팅/준비비</span><span>{inquiry.quote_details.setupCost.toLocaleString()} 원</span></div>
+                  <div className="summary-row highlight"><span>최종 세트당 단가</span><strong>{inquiry.quote_details.unitPrice.toLocaleString()} 원</strong></div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* 첨부파일 영역 추가 */}
           <div className="detail-card">
             <div className="card-header"><h3>📎 첨부파일</h3></div>
