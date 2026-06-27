@@ -54,11 +54,9 @@ const AdminPricing = () => {
     });
   };
 
-  const handleSetupCostChange = (key, value) => {
+  const handleSetupCostChange = (value) => {
     setPricing((prev) => {
-      const updated = { ...prev };
-      updated.setupCostTiers[key].cost = Number(value);
-      return updated;
+      return { ...prev, setupCost: Number(value) };
     });
   };
 
@@ -153,11 +151,11 @@ const AdminPricing = () => {
               </div>
             </div>
             <div className="form-group" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <label>소량 작업 세팅비 (999개 이하)</label>
+              <label>작업세팅비 (모든 수량 공통)</label>
               <input 
                 type="number" 
-                value={pricing.setupCostTiers[0].cost} 
-                onChange={(e) => handleSetupCostChange(0, e.target.value)} 
+                value={pricing.setupCost !== undefined ? pricing.setupCost : (pricing.setupCostTiers ? pricing.setupCostTiers[0].cost : 30000)} 
+                onChange={(e) => handleSetupCostChange(e.target.value)} 
               />
             </div>
           </div>

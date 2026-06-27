@@ -5,10 +5,7 @@ export const PRICING_CONFIG = {
     overhead: 2000,
     margin: 2970
   },
-  setupCostTiers: [
-    { min: 1, max: 999, cost: 30000 },
-    { min: 1000, max: Infinity, cost: 0 }
-  ],
+  setupCost: 30000,
   uph: {
     itemCount: { 
       simple: 300,  

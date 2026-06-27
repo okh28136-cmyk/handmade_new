@@ -42,8 +42,19 @@ export default async function handler(req, res) {
   const hourlyRate = pricing.hourlyRate;
 
   const quantityNum = parseInt(quantity) || 0;
-  const tier = pricing.setupCostTiers.find(t => quantityNum >= t.min && quantityNum <= t.max);
-  const C_setup = tier ? tier.cost : (quantityNum > 0 ? 50000 : 0);
+  
+  // 만약 DB에서 setupCostTiers가 넘어온다면 구버전 호환, 없다면 setupCost 사용
+  let C_setup = 0;
+  if (quantityNum > 0) {
+    if (pricing.setupCost !== undefined) {
+      C_setup = pricing.setupCost;
+    } else if (pricing.setupCostTiers) {
+      const tier = pricing.setupCostTiers.find(t => quantityNum >= t.min && quantityNum <= t.max);
+      C_setup = tier ? tier.cost : 0;
+    } else {
+      C_setup = 30000;
+    }
+  }
 
   let totalWorkCost = 0;
   let totalPackingCost = 0;
