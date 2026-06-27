@@ -249,8 +249,7 @@ const Calculator = () => {
           <section className="animate-slide-up">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
               <div>
-                <h2 style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.25rem' }}>Step 2. 필요 공정 선택하기 (모듈형 대시보드)</h2>
-                <span style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>고객이 화면에서 본인에게 필요한 작업 블록을 클릭하여 세부 내용을 설정합니다. 각 모듈 하단에 해당 공정에 대한 직관적인 설명을 추가했습니다.</span>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.25rem' }}>Step 2. 필요 공정 선택하기</h2>
               </div>
               <button 
                 onClick={() => setStep(1)} 
@@ -270,7 +269,7 @@ const Calculator = () => {
                   <div style={{ background: 'var(--bg-color)', color: 'var(--text-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600' }}><Plus size={14} /> 선택</div>
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.25rem' }}>1. [담다] 상세 설정 (Kitting & Packing)</h3>
+                  <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.25rem' }}>담다</h3>
                   <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>단순히 물건을 넣는 것을 넘어, 여러 상품을 정해진 순서와 방향에 맞게 분류하고 완충재와 함께 포장재 안에 안전하게 투입하는 공정입니다.</p>
                 </div>
               </button>
@@ -281,7 +280,7 @@ const Calculator = () => {
                   <div style={{ background: 'var(--bg-color)', color: 'var(--text-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600' }}><Plus size={14} /> 선택</div>
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.25rem' }}>2. [붙이다] 상세 설정 (Attaching & Sealing)</h3>
+                  <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.25rem' }}>붙이다</h3>
                   <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>라벨, 스티커, 봉인 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여 제품을 밀봉하거나 외관을 꾸미는 공정입니다.</p>
                 </div>
               </button>
@@ -292,7 +291,7 @@ const Calculator = () => {
                   <div style={{ background: 'var(--bg-color)', color: 'var(--text-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600' }}><Plus size={14} /> 선택</div>
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.25rem' }}>3. [만들다] 상세 설정 (Assembling & Finishing)</h3>
+                  <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.25rem' }}>만들다</h3>
                   <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>평면 상태의 종이 박스나 칸막이를 입체로 성형하고, 띠지나 리본 등으로 최종 외관의 디테일을 완성하는 조립 공정입니다.</p>
                 </div>
               </button>
