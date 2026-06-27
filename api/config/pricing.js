@@ -1,5 +1,10 @@
 export const PRICING_CONFIG = {
   hourlyRate: 15000, // 타겟 시급 (최저시급 + 간접비/마진)
+  hourlyBreakdown: {
+    minimumWage: 10030,
+    overhead: 2000,
+    margin: 2970
+  },
   setupCostTiers: [
     { min: 1, max: 999, cost: 30000 },
     { min: 1000, max: Infinity, cost: 0 }
