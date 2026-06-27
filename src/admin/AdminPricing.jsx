@@ -106,9 +106,17 @@ const AdminPricing = () => {
         {/* 목표 시급 상세 설정 패널 */}
         <div className="pricing-panel">
           <h3>🕒 기준 시급 및 기본 세팅비</h3>
-          <p className="panel-desc">
+          <p className="panel-desc" style={{ marginBottom: '16px' }}>
             모든 단가 계산의 베이스가 되는 시급입니다. 각 구성요소를 수정하면 <strong>합계 시급</strong>이 자동 계산됩니다.
           </p>
+          <div style={{ background: '#eff6ff', padding: '16px', borderRadius: '8px', border: '1px solid #bfdbfe', marginBottom: '24px', fontSize: '0.9rem', color: '#1e3a8a', lineHeight: '1.6' }}>
+            <strong>💡 목표 시급 산정 가이드 (추천: 18,000원 ~ 20,000원)</strong>
+            <ul style={{ margin: '8px 0 0 20px', padding: 0 }}>
+              <li><strong>최저임금:</strong> 주휴수당, 4대보험, 휴게 로스를 포함하여 법정 최저시급보다 약 20~25% 높게 잡아야 적자가 발생하지 않습니다. (추천: 12,500원)</li>
+              <li><strong>간접비:</strong> 공장 임대료, 전기세, 소모품 등 공장 유지를 위한 필수 비용입니다. (추천: 순수 인건비의 20~30%인 3,000원)</li>
+              <li><strong>마진:</strong> 기업의 순수익이자 파손/불량 리스크 방어용 금액입니다. (추천: 총 원가의 15~25%인 3,500원)</li>
+            </ul>
+          </div>
           
           <div className="form-group-row" style={{ marginBottom: '16px' }}>
             <div className="form-group">
