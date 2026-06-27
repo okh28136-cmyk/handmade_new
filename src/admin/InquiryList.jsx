@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { db, storage } from '../firebase';
 import { collection, onSnapshot, orderBy, query, deleteDoc, doc } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
+import * as XLSX from 'xlsx';
 import AdminLayout from './AdminLayout';
 import './InquiryList.css';
 
@@ -72,6 +73,38 @@ const InquiryList = () => {
     }
   };
 
+  const handleExcelDownload = () => {
+    if (filtered.length === 0) {
+      alert('다운로드할 데이터가 없습니다.');
+      return;
+    }
+    const excelData = filtered.map(item => ({
+      '접수일시': item.createdAt,
+      '상태': STATUS_MAP[item.status]?.label || '미분류',
+      '회사명': item.from_company || '-',
+      '담당자': item.from_name || '-',
+      '연락처': item.from_phone || '-',
+      '이메일': item.from_email || '-',
+      '서비스분야': item.req_type || '-',
+      '희망납기일': item.req_date || '-',
+      '예상물량': item.req_amount || '-',
+      '문의내용': item.req_content || '-'
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(excelData);
+    // 열 너비 자동 맞춤 설정 (단순 구현)
+    const wscols = [
+      {wch: 16}, {wch: 10}, {wch: 20}, {wch: 15}, 
+      {wch: 15}, {wch: 25}, {wch: 15}, {wch: 12}, 
+      {wch: 15}, {wch: 50}
+    ];
+    worksheet['!cols'] = wscols;
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, '견적문의');
+    XLSX.writeFile(workbook, `견적문의목록_${new Date().toISOString().slice(0,10)}.xlsx`);
+  };
+
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1;
   const currentData = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
@@ -98,13 +131,18 @@ const InquiryList = () => {
             </button>
           ))}
         </div>
-        <input
-          type="text"
-          className="search-input"
-          placeholder="회사명 또는 담당자 검색..."
-          value={search}
-          onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
-        />
+        <div className="toolbar-actions" style={{ display: 'flex', gap: '10px' }}>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="회사명 또는 담당자 검색..."
+            value={search}
+            onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
+          />
+          <button className="excel-btn" onClick={handleExcelDownload} style={{ padding: '0 15px', backgroundColor: '#217346', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>
+            📊 엑셀 다운로드
+          </button>
+        </div>
       </div>
 
       {/* 목록 테이블 */}
