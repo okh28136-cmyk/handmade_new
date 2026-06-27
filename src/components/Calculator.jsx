@@ -58,18 +58,7 @@ const Calculator = () => {
     addToCart({ type: 'assemble', base: assembleBase, multipliers: { innerPad: assembleInner, finishing: assembleFinish }, label: '상자 조립/만들기' });
     setActiveModal(null);
   };
-  const handleAddOutPacking = () => {
-    addToCart({ type: 'outPacking', base: outPackingBase, label: '최종 출고 포장' });
-    setActiveModal(null);
-  };
 
-  const handleNextStep = () => {
-    if (!isProjectValid) {
-      alert('기본 설정을 모두 입력해주세요.');
-      return;
-    }
-    setStep(2);
-  };
 
   const labelMap = {
     simple: '1종 (단순 합포장)', normal: '2종 (일반 키팅)', complex: '3종 이상 (다양한 구성품)',
@@ -151,7 +140,6 @@ const Calculator = () => {
   const isKittingValid = kittingBase !== '' && kittingPre !== '' && kittingMain !== '' && kittingDirection !== '';
   const isAttachValid = attachBase !== '' && attachArea !== '' && attachSize !== '';
   const isAssembleValid = assembleBase !== '' && assembleInner !== '' && assembleFinish !== '';
-  const isOutPackingValid = outPackingBase !== '';
 
   // 기본 프로젝트 설정 완료 여부 체크
   const isProjectValid = project.quantity !== '' && project.quantity > 0 && project.weight !== '' && project.hasBOM !== '';
@@ -435,7 +423,7 @@ const Calculator = () => {
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                {quoteResult.enrichedCart.map((item, index) => (
+                {quoteResult.enrichedCart.map((item) => (
                   <div key={item.id} style={{ padding: '1rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} className="animate-fade-in">
                     <div>
                       <div style={{ fontWeight: '700', color: 'var(--text-main)', fontSize: '0.95rem' }}>{item.label}</div>

@@ -23,7 +23,7 @@ export default function handler(req, res) {
   let totalPackingCost = 0;
   
   const enrichedCart = cart.map(item => {
-    let cost = 0;
+    let cost;
     if (item.type === 'outPacking') {
       const uph = pricing.uph.outPacking[item.base];
       cost = uph ? (hourlyRate / uph) : 0;
