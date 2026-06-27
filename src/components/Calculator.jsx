@@ -12,6 +12,32 @@ const EMAILJS_SERVICE_ID  = 'service_1tncfue';
 const EMAILJS_TEMPLATE_ID = 'template_jjsvsad';
 const EMAILJS_PUBLIC_KEY  = 'xAmHtsU9Nfdgoee-t';
 
+const useRollingNumber = (endValue, duration = 800) => {
+  const [value, setValue] = useState(0);
+  
+  React.useEffect(() => {
+    let startTimestamp = null;
+    const startValue = value;
+    
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      
+      setValue(Math.floor(startValue + (endValue - startValue) * easeProgress));
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [endValue, duration]);
+  
+  return value;
+};
+
 const Calculator = () => {
   const { state, quoteResult, setProject, addToCart, removeFromCart, isLoading } = useQuote();
   const { project } = state;
@@ -144,6 +170,8 @@ const Calculator = () => {
   // 기본 프로젝트 설정 완료 여부 체크
   const isProjectValid = project.quantity !== '' && project.quantity > 0 && project.weight !== '' && project.hasBOM !== '';
 
+  const animatedTotalPrice = useRollingNumber(quoteResult.totalPrice);
+
   return (
     <section id="contact" className="calculator-container" style={{ padding: '6rem 0', background: 'var(--bg-color)', color: 'var(--text-main)' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
@@ -164,7 +192,7 @@ const Calculator = () => {
         
         {/* Step 1: Project Settings Section */}
         {step === 1 && (
-          <section style={{ width: '100%', maxWidth: '800px', background: 'var(--surface)', padding: '3rem', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', border: '1px solid var(--border)' }} className="animate-fade-in">
+          <section style={{ width: '100%', maxWidth: '800px', padding: '3rem 0' }} className="animate-fade-in">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
               <Settings size={24} color="var(--primary)" />
               <h2 style={{ fontSize: '1.25rem', fontWeight: '700' }}>Step 1. 맞춤 견적을 위해 기본 정보를 알려주세요</h2>
@@ -422,19 +450,19 @@ const Calculator = () => {
                 <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>좌측 메뉴에서 필요한 항목을 선택해 주세요.</p>
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {quoteResult.enrichedCart.map((item) => (
-                  <div key={item.id} style={{ padding: '1rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} className="animate-fade-in">
+                  <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
-                      <div style={{ fontWeight: '700', color: 'var(--text-main)', fontSize: '0.95rem' }}>{item.label}</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>{getLabel(item.base)}</div>
+                      <div style={{ fontWeight: '700', color: 'var(--text-main)' }}>{item.label}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{getLabel(item.base)}</div>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <div style={{ fontWeight: '700', color: 'var(--primary)', fontSize: '0.95rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+                      <div style={{ fontWeight: '700', color: 'var(--primary)' }}>
                         +{Math.round(item.calculatedPrice).toLocaleString()}원
                       </div>
-                      <button onClick={() => removeFromCart(item.id)} style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', padding: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '4px' }}>
-                        <X size={16} />
+                      <button onClick={() => removeFromCart(item.id)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <X size={18} />
                       </button>
                     </div>
                   </div>
@@ -443,31 +471,12 @@ const Calculator = () => {
             )}
           </div>
 
-          <div style={{ padding: '1.5rem', background: 'var(--surface)', borderTop: '1px solid var(--border)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.75rem', fontSize: '0.875rem' }}>
-              <span style={{ color: 'var(--text-muted)' }}>순수 수작업 단가합</span>
-              <strong style={{ color: 'var(--text-main)' }}>{quoteResult.workCost.toLocaleString()} 원</strong>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.75rem', fontSize: '0.875rem' }}>
-              <span style={{ color: 'var(--text-muted)' }}>기본 라인 세팅비</span>
-              <strong style={{ color: 'var(--text-main)' }}>{quoteResult.setupCost.toLocaleString()} 원</strong>
-            </div>
-            {/* 출고/포장비 UI 임시 숨김 처리
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.25rem', fontSize: '0.875rem' }}>
-              <span style={{ color: 'var(--text-muted)' }}>출고/포장비 (별도)</span>
-              <strong style={{ color: 'var(--text-main)' }}>{quoteResult.packingCost.toLocaleString()} 원</strong>
-            </div>
-            */}
-            
-            <div style={{ height: '1px', background: 'var(--border)', margin: '1rem 0' }}></div>
-            
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '0.5rem' }}>
-              <span style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--text-main)' }}>총 예상 비용</span>
+          <div style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '2px solid #f1f5f9' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+              <span style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-muted)' }}>총 예상 비용</span>
               <div style={{ textAlign: 'right' }}>
-                <strong style={{ fontSize: '1.875rem', color: 'var(--primary)', lineHeight: '1', letterSpacing: '-0.02em' }}>
-                  {quoteResult.totalPrice.toLocaleString()}
-                </strong>
-                <span style={{ fontSize: '1rem', color: 'var(--primary)', marginLeft: '0.25rem', fontWeight: '600' }}>원</span>
+                <span style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--primary)', letterSpacing: '-1px' }}>{animatedTotalPrice.toLocaleString()}</span>
+                <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', marginLeft: '0.25rem' }}>원</span>
               </div>
             </div>
             
