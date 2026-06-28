@@ -545,17 +545,17 @@ const Calculator = ({ onStepChange }) => {
 
       {/* Modals for Adding Items */}
       {activeModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }} className="animate-fade-in">
-          <div style={{ background: 'var(--surface)', padding: '2.5rem 2rem', borderRadius: 'var(--radius-xl)', width: '100%', maxWidth: '560px', boxShadow: 'var(--shadow-xl)', border: '1px solid rgba(255,255,255,0.1)' }} className="animate-modal-pop">
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }} className="animate-fade-in">
+          <div style={{ background: '#ffffff', color: '#111111', padding: '2.5rem 2rem', borderRadius: 'var(--radius-xl)', width: '100%', maxWidth: '560px', boxShadow: 'var(--shadow-xl)', border: 'none' }} className="animate-modal-pop">
             
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#111111' }}>
                 {activeModal === 'kitting' && '📦 상품 담기 상세 설정'}
                 {activeModal === 'attach' && '🏷️ 스티커 부착 상세 설정'}
                 {activeModal === 'assemble' && '🎁 상자 조립 상세 설정'}
                 {activeModal === 'outPacking' && '🚚 출고/포장 상세 설정'}
               </h3>
-              <button onClick={() => setActiveModal(null)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}><X size={24} /></button>
+              <button onClick={() => setActiveModal(null)} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer' }}><X size={24} /></button>
             </div>
             
             {activeModal === 'kitting' && (
