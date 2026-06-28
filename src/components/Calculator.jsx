@@ -286,7 +286,7 @@ const Calculator = ({ onStepChange }) => {
               
               <button className="service-card horizontal" onClick={() => openModal('kitting')}>
                 <div className="card-left">
-                  <div className="card-icon-box" style={{ background: '#eff6ff', color: '#3b82f6' }}>
+                  <div className="card-icon-box" style={{ background: 'rgba(217, 4, 41, 0.05)', color: 'var(--primary)' }}>
                     <Package size={28} strokeWidth={1.5} />
                   </div>
                   <div className="card-text-content">
@@ -301,7 +301,7 @@ const Calculator = ({ onStepChange }) => {
 
               <button className="service-card horizontal" onClick={() => openModal('attach')}>
                 <div className="card-left">
-                  <div className="card-icon-box" style={{ background: '#f0fdf4', color: '#22c55e' }}>
+                  <div className="card-icon-box" style={{ background: 'rgba(217, 4, 41, 0.05)', color: 'var(--primary)' }}>
                     <Tag size={28} strokeWidth={1.5} />
                   </div>
                   <div className="card-text-content">
@@ -316,7 +316,7 @@ const Calculator = ({ onStepChange }) => {
 
               <button className="service-card horizontal" onClick={() => openModal('assemble')}>
                 <div className="card-left">
-                  <div className="card-icon-box" style={{ background: '#faf5ff', color: '#a855f7' }}>
+                  <div className="card-icon-box" style={{ background: 'rgba(217, 4, 41, 0.05)', color: 'var(--primary)' }}>
                     <Box size={28} strokeWidth={1.5} />
                   </div>
                   <div className="card-text-content">
@@ -360,20 +360,20 @@ const Calculator = ({ onStepChange }) => {
             <div style={{ padding: '2rem' }}>
               {submitStatus === 'success' ? (
                 <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-                  <CheckCircle size={64} color="#10b981" style={{ margin: '0 auto 1.5rem auto' }} />
+                  <CheckCircle size={64} color="var(--primary)" style={{ margin: '0 auto 1.5rem auto' }} />
                   <h3 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '1rem' }}>견적 문의가 성공적으로 접수되었습니다!</h3>
                   <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>
                     자동 견적 내역과 남겨주신 정보가 담당자에게 전달되었습니다.<br/>
                     평균 영업일 기준 1일 이내에 연락드리겠습니다.
                   </p>
-                  <button onClick={() => { setStep(1); setSubmitStatus('idle'); }} style={{ marginTop: '2rem', padding: '0.95rem 2rem', background: 'var(--text-main)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '600' }}>
+                  <button onClick={() => { setStep(1); setSubmitStatus('idle'); }} style={{ marginTop: '2rem', padding: '0.95rem 2rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '600' }}>
                     처음으로 돌아가기
                   </button>
                 </div>
               ) : (
                 <form className="contact-form" ref={formRef} onSubmit={handleFormSubmit} style={{ margin: 0 }}>
                   {submitStatus === 'error' && (
-                    <div style={{ padding: '1rem', background: '#fef2f2', color: '#ef4444', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem', fontWeight: '600' }}>
+                    <div style={{ padding: '1rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem', fontWeight: '600' }}>
                       ❌ 접수 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.
                     </div>
                   )}
@@ -443,16 +443,16 @@ const Calculator = ({ onStepChange }) => {
         <div className="calc-sidebar-wrapper animate-fade-in">
           <div style={{ background: 'var(--surface)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden', border: '1px solid var(--border)' }}>
           
-          <div style={{ padding: '1.5rem', background: 'var(--text-main)', color: '#fff' }}>
-            <h2 style={{ fontSize: '1.25rem', margin: 0, fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--border)' }}>
+            <h2 style={{ fontSize: '1.25rem', margin: 0, fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-main)' }}>
               견적 산출 내역
             </h2>
-            <p style={{ fontSize: '0.95rem', color: '#94a3b8', marginTop: '0.25rem' }}>선택하신 공정이 합산됩니다.</p>
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>선택하신 공정이 합산됩니다.</p>
           </div>
           
-          <div style={{ padding: '1.5rem', maxHeight: '40vh', overflowY: 'auto', background: '#fafafa', position: 'relative' }}>
+          <div style={{ padding: '1.5rem', maxHeight: '40vh', overflowY: 'auto', background: 'transparent', position: 'relative' }}>
             {isLoading && (
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255,255,255,0.7)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(2px)' }}>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(2px)' }}>
                 <div style={{ padding: '0.95rem 1.5rem', background: 'var(--surface)', borderRadius: 'var(--radius-full)', boxShadow: 'var(--shadow-md)', fontWeight: '700', color: 'var(--primary)', fontSize: '0.95rem' }} className="animate-pulse">
                   견적 산출 중...
                 </div>
@@ -485,7 +485,7 @@ const Calculator = ({ onStepChange }) => {
                       <div style={{ fontWeight: '700', color: 'var(--text-main)' }}>{item.label}</div>
                       <div style={{ fontSize: '1rem', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>{getLabel(item.base)}</div>
                       {item.multipliers && (
-                        <div style={{ fontSize: '0.95rem', color: '#64748b', marginTop: '0.25rem', lineHeight: '1.4' }}>
+                        <div style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.25rem', lineHeight: '1.4' }}>
                           {Object.entries(item.multipliers).map(([mKey, mVal]) => {
                             const text = getMultiplierText(item.type, mKey, mVal);
                             return text ? <span key={mKey} style={{ display: 'block' }}>• {text}</span> : null;
@@ -505,7 +505,7 @@ const Calculator = ({ onStepChange }) => {
             )}
           </div>
 
-          <div style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '2px solid #f1f5f9' }}>
+          <div style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
               <span style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>총 예상 비용</span>
               <div style={{ textAlign: 'right' }}>
@@ -513,7 +513,7 @@ const Calculator = ({ onStepChange }) => {
                 <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', marginLeft: '0.25rem' }}>원</span>
               </div>
             </div>
-            <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderLeft: '4px solid var(--primary)', padding: '1rem', borderRadius: 'var(--radius-md)', marginTop: '1.5rem' }}>
+            <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderLeft: '4px solid var(--primary)', padding: '1rem', borderRadius: 'var(--radius-md)', marginTop: '1.5rem' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                 <AlertCircle size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <div>
@@ -527,14 +527,14 @@ const Calculator = ({ onStepChange }) => {
             </div>
             
             {project.hasBOM && (
-              <div style={{ display: 'flex', gap: '0.5rem', background: '#fffbeb', color: '#b45309', padding: '0.95rem', borderRadius: 'var(--radius-md)', marginTop: '1rem', fontSize: '0.8125rem' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', background: 'rgba(217, 4, 41, 0.1)', color: 'var(--primary)', padding: '0.95rem', borderRadius: 'var(--radius-md)', marginTop: '1rem', fontSize: '0.8125rem' }}>
                 <Info size={16} style={{ flexShrink: 0, marginTop: '2px' }} />
                 <p>부자재 제작 비용은 실비 정산으로 위 견적에는 포함되지 않았습니다.</p>
               </div>
             )}
             
             {step === 2 && (
-              <button onClick={() => setStep(3)} style={{ width: '100%', padding: '1rem', background: 'var(--text-main)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', fontWeight: '700', fontSize: '1rem', marginTop: '1.5rem', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', transition: 'background 0.2s' }} onMouseOver={(e) => e.target.style.background = '#334155'} onMouseOut={(e) => e.target.style.background = 'var(--text-main)'}>
+              <button onClick={() => setStep(3)} style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', fontWeight: '700', fontSize: '1rem', marginTop: '1.5rem', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', transition: 'background 0.2s' }} onMouseOver={(e) => e.target.style.background = 'var(--primary-hover)'} onMouseOut={(e) => e.target.style.background = 'var(--primary)'}>
                 이 견적으로 상담 문의하기 <ArrowRight size={18} />
               </button>
             )}
@@ -545,7 +545,7 @@ const Calculator = ({ onStepChange }) => {
 
       {/* Modals for Adding Items */}
       {activeModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }} className="animate-fade-in">
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }} className="animate-fade-in">
           <div style={{ background: 'var(--surface)', padding: '2.5rem 2rem', borderRadius: 'var(--radius-xl)', width: '100%', maxWidth: '560px', boxShadow: 'var(--shadow-xl)', border: '1px solid rgba(255,255,255,0.1)' }} className="animate-modal-pop">
             
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>

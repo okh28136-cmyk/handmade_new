@@ -1,16 +1,16 @@
 .calculator-container {
   --primary: var(--color-primary); 
   --primary-hover: var(--color-primary-hover);
-  --primary-light: rgba(217, 4, 41, 0.05);
-  --bg-color: #ffffff; 
-  --surface: #ffffff;
-  --text-main: #111111; 
-  --text-muted: #475569; /* Darkened from #777777 for better contrast */
-  --border: rgba(0, 0, 0, 0.05); 
+  --primary-light: rgba(217, 4, 41, 0.1);
+  --bg-color: transparent; 
+  --surface: #1c1c1c;
+  --text-main: #ffffff; 
+  --text-muted: #a1a1aa; 
+  --border: rgba(255, 255, 255, 0.1); 
   --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.05);
-  --shadow-xl: none;
+  --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 30px 60px rgba(0, 0, 0, 0.6);
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
@@ -61,23 +61,23 @@
   width: 100%;
   padding: 1rem 1.25rem;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  background-color: #f8fafc;
+  border: 1px solid var(--border);
+  background-color: rgba(255, 255, 255, 0.03);
   font-size: 1rem;
   font-weight: 500;
   color: var(--text-main);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
 }
 .calculator-container .form-input:focus {
   border-color: var(--primary);
-  background-color: #ffffff;
-  box-shadow: 0 0 0 4px rgba(217, 4, 41, 0.1), inset 0 1px 2px rgba(0,0,0,0.02);
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 4px rgba(217, 4, 41, 0.2), inset 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .calculator-container .service-card {
-  background: #F8F9FA;
-  border: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 2rem;
   text-align: left;
@@ -85,7 +85,9 @@
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .calculator-container .service-card:hover {
-  background: var(--primary-light);
+  background: var(--surface);
+  border-color: var(--primary);
+  box-shadow: 0 12px 30px -5px rgba(217, 4, 41, 0.2);
   transform: translateY(-4px);
 }
 .calculator-container .service-card .icon-wrapper {
@@ -95,9 +97,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
-  color: var(--text-main);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
 }
 .calculator-container .service-card:hover .icon-wrapper {
