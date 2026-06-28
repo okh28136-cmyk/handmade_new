@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useQuote } from '../context/QuoteContext';
-import { Package, Tag, Box, Truck, Plus, X, ArrowRight, Settings, Info, CheckCircle } from 'lucide-react';
+import { Package, Tag, Box, Truck, Plus, X, ArrowRight, Settings, Info, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { db, storage } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -496,10 +496,18 @@ const Calculator = () => {
                 <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', marginLeft: '0.25rem' }}>원</span>
               </div>
             </div>
-            <p style={{ fontSize: '1rem', color: '#94a3b8', textAlign: 'right', marginTop: '0.5rem', lineHeight: '1.4' }}>
-              * 본 견적은 자동 산출된 대략적인 예상 금액이며,<br/>
-              실제 제품 및 작업 난이도 확인 후 최종 단가가 변동될 수 있습니다.
-            </p>
+            <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderLeft: '4px solid var(--primary)', padding: '1rem', borderRadius: 'var(--radius-md)', marginTop: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                <AlertCircle size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <div>
+                  <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: 'var(--text-main)', marginBottom: '0.25rem', margin: 0 }}>안내 사항</h4>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: '0.25rem 0 0 0', wordBreak: 'keep-all' }}>
+                    본 견적은 시스템에 의해 <strong style={{ color: '#ef4444' }}>자동 산출된 대략적인 예상 금액</strong>입니다.<br/>
+                    실제 제품의 규격 및 작업 난이도를 확인한 후 <strong>최종 견적 단가가 변동</strong>될 수 있습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
             
             {project.hasBOM && (
               <div style={{ display: 'flex', gap: '0.5rem', background: '#fffbeb', color: '#b45309', padding: '0.95rem', borderRadius: 'var(--radius-md)', marginTop: '1rem', fontSize: '0.8125rem' }}>
