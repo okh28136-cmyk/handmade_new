@@ -193,9 +193,8 @@ const Calculator = ({ onStepChange }) => {
         {/* Step 1: Project Settings Section */}
         {step === 1 && (
           <section style={{ width: '100%', maxWidth: '800px', padding: '3rem 0' }} className="animate-fade-in">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.95rem', marginBottom: '0.5rem' }}>
-              <Settings size={24} color="var(--primary)" />
-              <h2 style={{ fontSize: '1.25rem', fontWeight: '700' }}>Step 1. 맞춤 견적을 위해 기본 정보를 알려주세요</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.95rem', marginBottom: '1.5rem' }}>
+              <h2 style={{ fontSize: '1.75rem', fontWeight: '900', margin: 0, color: '#000', letterSpacing: '-1px' }}>Step 1. 맞춤 견적을 위해 기본 정보를 알려주세요</h2>
             </div>
             <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '1.5rem', marginLeft: '2.25rem' }}>작업의 전체 규모와 물리적 하중을 파악하여 기본 고정비와 피로도 가중치를 결정합니다.</p>
             
@@ -277,7 +276,7 @@ const Calculator = ({ onStepChange }) => {
           <section className="animate-slide-up">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
               <div>
-                <h2 style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.25rem' }}>Step 2. 필요 공정 선택하기</h2>
+                <h2 style={{ fontSize: '1.75rem', fontWeight: '900', margin: 0, color: '#000', letterSpacing: '-1px' }}>Step 2. 필요 공정 선택하기</h2>
               </div>
               <button 
                 onClick={() => setStep(1)} 
@@ -296,8 +295,8 @@ const Calculator = ({ onStepChange }) => {
                   <h3 style={{ fontSize: '3.5rem', fontWeight: '900', letterSpacing: '-2px', margin: '0', color: '#000', lineHeight: '1' }}>담기</h3>
                   <Plus size={48} strokeWidth={1} color="#000" />
                 </div>
-                <p style={{ fontSize: '1.2rem', color: '#111', lineHeight: '1.6', margin: '0 0 2rem 0', wordBreak: 'keep-all', fontWeight: '500' }}>
-                  제품의 특성에 맞춘 개별 포장부터,<br/>구성품을 정교하게 조합하는<br/>키팅 작업까지
+                <p style={{ fontSize: '1.15rem', color: '#111', lineHeight: '1.6', margin: '0 0 2rem 0', wordBreak: 'keep-all', fontWeight: '500' }}>
+                  제품의 특성에 맞춘 개별 포장부터, 구성품을 정교하게 조합하는 키팅 작업까지
                 </p>
                 <span style={{ color: 'var(--primary)', fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.5px', marginTop: 'auto' }}>
                   옵션을 선택해주세요
@@ -309,8 +308,8 @@ const Calculator = ({ onStepChange }) => {
                   <h3 style={{ fontSize: '3.5rem', fontWeight: '900', letterSpacing: '-2px', margin: '0', color: '#000', lineHeight: '1' }}>붙이기</h3>
                   <Plus size={48} strokeWidth={1} color="#000" />
                 </div>
-                <p style={{ fontSize: '1.2rem', color: '#111', lineHeight: '1.6', margin: '0 0 2rem 0', wordBreak: 'keep-all', fontWeight: '500' }}>
-                  라벨, 씰 등을 지정된 위치에<br/>기포나 오차 없이 정밀하게 부착하여<br/>외관을 꾸미는 작업까지
+                <p style={{ fontSize: '1.15rem', color: '#111', lineHeight: '1.6', margin: '0 0 2rem 0', wordBreak: 'keep-all', fontWeight: '500' }}>
+                  라벨, 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여 외관을 꾸미는 작업까지
                 </p>
                 <span style={{ color: 'var(--primary)', fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.5px', marginTop: 'auto' }}>
                   옵션을 선택해주세요
@@ -322,8 +321,8 @@ const Calculator = ({ onStepChange }) => {
                   <h3 style={{ fontSize: '3.5rem', fontWeight: '900', letterSpacing: '-2px', margin: '0', color: '#000', lineHeight: '1' }}>만들기</h3>
                   <Plus size={48} strokeWidth={1} color="#000" />
                 </div>
-                <p style={{ fontSize: '1.2rem', color: '#111', lineHeight: '1.6', margin: '0 0 2rem 0', wordBreak: 'keep-all', fontWeight: '500' }}>
-                  평면 종이 박스를 입체로 성형하고,<br/>리본 등으로 최종 외관의 디테일을<br/>완성하는 조립 공정까지
+                <p style={{ fontSize: '1.15rem', color: '#111', lineHeight: '1.6', margin: '0 0 2rem 0', wordBreak: 'keep-all', fontWeight: '500' }}>
+                  평면 종이 박스를 입체로 성형하고, 리본 등으로 최종 외관의 디테일을 완성하는 조립 공정까지
                 </p>
                 <span style={{ color: 'var(--primary)', fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.5px', marginTop: 'auto' }}>
                   옵션을 선택해주세요
@@ -418,7 +417,7 @@ const Calculator = ({ onStepChange }) => {
                     </div>
                   </div>
 
-                  <div className="privacy-policy">
+                  <div className="privacy-policy" style={{ marginTop: '2rem' }}>
                     <label className="custom-checkbox privacy-checkbox">
                       <input type="checkbox" required />
                       <span className="checkmark"></span>
@@ -430,7 +429,7 @@ const Calculator = ({ onStepChange }) => {
                   </div>
 
                   <button type="submit" className="submit-btn" disabled={submitStatus === 'sending'} style={{ width: '100%', marginTop: '1rem', padding: '1rem', fontSize: '1.125rem' }}>
-                    {submitStatus === 'sending' ? '전송 중...' : '견적 및 상담 요청하기 →'}
+                    {submitStatus === 'sending' ? '전송 중...' : '견적 문의하기 →'}
                   </button>
                 </form>
               )}
@@ -532,7 +531,7 @@ const Calculator = ({ onStepChange }) => {
             
             {step === 2 && (
               <button onClick={() => setStep(3)} style={{ width: '100%', padding: '1rem', background: 'var(--text-main)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', fontWeight: '700', fontSize: '1rem', marginTop: '1.5rem', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', transition: 'background 0.2s' }} onMouseOver={(e) => e.target.style.background = '#334155'} onMouseOut={(e) => e.target.style.background = 'var(--text-main)'}>
-                이 견적으로 상담 문의하기 <ArrowRight size={18} />
+                견적 문의하기 <ArrowRight size={18} />
               </button>
             )}
           </div>
