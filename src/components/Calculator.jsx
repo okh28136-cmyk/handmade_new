@@ -291,26 +291,29 @@ const Calculator = ({ onStepChange }) => {
             
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
               
-              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem 1rem', textAlign: 'center' }} onClick={() => openModal('kitting')}>
+              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem 1.5rem', textAlign: 'center' }} onClick={() => openModal('kitting')}>
                 <h3 style={{ fontSize: '2rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: 'var(--primary)' }}>담기</h3>
-                <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#111', marginBottom: '1.5rem' }}>(Kitting & Packing)</span>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1rem', background: '#fff' }}>
+                <span style={{ fontSize: '1.05rem', fontWeight: '700', color: '#111', marginBottom: '1rem' }}>(Kitting & Packing)</span>
+                <p style={{ fontSize: '0.95rem', color: '#666', lineHeight: '1.6', margin: '0 0 1.5rem 0', wordBreak: 'keep-all' }}>제품의 특성에 맞춘 개별 포장부터, 구성품을 정교하게 조합하는 키팅 작업까지 수행합니다.</p>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1rem', background: '#fff', marginTop: 'auto' }}>
                   <Plus size={18} strokeWidth={3} /> 세부 옵션 선택
                 </span>
               </button>
 
-              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem 1rem', textAlign: 'center' }} onClick={() => openModal('attach')}>
+              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem 1.5rem', textAlign: 'center' }} onClick={() => openModal('attach')}>
                 <h3 style={{ fontSize: '2rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: '#111' }}>붙이기</h3>
-                <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#111', marginBottom: '1.5rem' }}>(Labeling & Sealing)</span>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1rem', background: '#fff' }}>
+                <span style={{ fontSize: '1.05rem', fontWeight: '700', color: '#111', marginBottom: '1rem' }}>(Labeling & Sealing)</span>
+                <p style={{ fontSize: '0.95rem', color: '#666', lineHeight: '1.6', margin: '0 0 1.5rem 0', wordBreak: 'keep-all' }}>라벨, 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여 외관을 꾸미는 공정입니다.</p>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1rem', background: '#fff', marginTop: 'auto' }}>
                   <Plus size={18} strokeWidth={3} /> 세부 옵션 선택
                 </span>
               </button>
 
-              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem 1rem', textAlign: 'center' }} onClick={() => openModal('assemble')}>
+              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem 1.5rem', textAlign: 'center' }} onClick={() => openModal('assemble')}>
                 <h3 style={{ fontSize: '2rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: '#111' }}>만들기</h3>
-                <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#111', marginBottom: '1.5rem' }}>(Assembly & Shaping)</span>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1rem', background: '#fff' }}>
+                <span style={{ fontSize: '1.05rem', fontWeight: '700', color: '#111', marginBottom: '1rem' }}>(Assembly & Shaping)</span>
+                <p style={{ fontSize: '0.95rem', color: '#666', lineHeight: '1.6', margin: '0 0 1.5rem 0', wordBreak: 'keep-all' }}>평면 종이 박스를 입체로 성형하고, 리본 등으로 최종 외관의 디테일을 완성하는 조립 공정입니다.</p>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1rem', background: '#fff', marginTop: 'auto' }}>
                   <Plus size={18} strokeWidth={3} /> 세부 옵션 선택
                 </span>
               </button>
