@@ -5,7 +5,7 @@
   --bg-color: #ffffff; 
   --surface: #ffffff;
   --text-main: #111111; 
-  --text-muted: #777777; 
+  --text-muted: #475569; /* Darkened from #777777 for better contrast */
   --border: rgba(0, 0, 0, 0.05); 
   --shadow-sm: none;
   --shadow-md: none;
