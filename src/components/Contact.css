@@ -1,7 +1,7 @@
 .contact {
   padding: 150px 0;
-  background-color: var(--color-white);
-  color: var(--color-black);
+  background-color: var(--color-black);
+  color: var(--color-white);
 }
 
 .contact-wrapper {
@@ -33,7 +33,7 @@
 .contact-title {
   font-size: 3.5rem;
   font-weight: 900;
-  color: var(--color-black);
+  color: var(--color-white);
   line-height: 1.2;
   margin-bottom: 30px;
   letter-spacing: -2px;
@@ -42,7 +42,7 @@
 
 .contact-desc {
   font-size: 1.1rem;
-  color: var(--color-gray-600);
+  color: var(--color-gray-400);
   line-height: 1.6;
 }
 
@@ -52,7 +52,7 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 2.5rem;
   padding-top: 3.5rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .detail-item {
@@ -82,20 +82,20 @@
 .detail-label {
   font-size: 0.95rem;
   font-weight: 800;
-  color: var(--color-gray-500);
+  color: var(--color-gray-400);
   letter-spacing: 1px;
 }
 
 .detail-value-bold {
   font-size: 1.25rem;
   font-weight: 900;
-  color: var(--color-black);
+  color: var(--color-white);
 }
 
 .detail-value-small {
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--color-black);
+  color: var(--color-white);
 }
 
 .detail-sub {
