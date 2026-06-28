@@ -291,7 +291,7 @@ const Calculator = ({ onStepChange }) => {
                   </div>
                   <div className="card-text-content">
                     <h3>담기 <span>(Kitting & Packing)</span></h3>
-                    <p>단순히 물건을 넣는 것을 넘어, 여러 상품을 정해진 순서와 방향에 맞게 분류하고 완충재와 함께 포장재 안에 안전하게 투입하는 공정입니다.</p>
+                    <p>단순히 물건을 넣는 것을 넘어, 여러 상품을 정해진 순서와 방향에 맞게<br/>분류하고 완충재와 함께 포장재 안에 안전하게 투입하는 공정입니다.</p>
                   </div>
                 </div>
                 <div className="card-right">
@@ -306,7 +306,7 @@ const Calculator = ({ onStepChange }) => {
                   </div>
                   <div className="card-text-content">
                     <h3>붙이기 <span>(Labeling & Sealing)</span></h3>
-                    <p>라벨, 스티커, 봉인 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여 제품을 밀봉하거나 외관을 꾸미는 공정입니다.</p>
+                    <p>라벨, 스티커, 봉인 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여<br/>제품을 밀봉하거나 외관을 꾸미는 공정입니다.</p>
                   </div>
                 </div>
                 <div className="card-right">
@@ -321,7 +321,7 @@ const Calculator = ({ onStepChange }) => {
                   </div>
                   <div className="card-text-content">
                     <h3>만들기 <span>(Assembly & Shaping)</span></h3>
-                    <p>평면 상태의 종이 박스나 칸막이를 입체로 성형하고, 띠지나 리본 등으로 최종 외관의 디테일을 완성하는 조립 공정입니다.</p>
+                    <p>평면 상태의 종이 박스나 칸막이를 입체로 성형하고, 띠지나 리본 등으로<br/>최종 외관의 디테일을 완성하는 조립 공정입니다.</p>
                   </div>
                 </div>
                 <div className="card-right">
@@ -494,9 +494,7 @@ const Calculator = ({ onStepChange }) => {
                       )}
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                      <div style={{ fontWeight: '700', color: 'var(--primary)' }}>
-                        +{Math.round(item.calculatedPrice).toLocaleString()}원
-                      </div>
+                      {/* 개별 공정 비용 숨김 처리 (소비자가 합계만 보도록 유도) */}
                       <button onClick={() => removeFromCart(item.id)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <X size={18} />
                       </button>
