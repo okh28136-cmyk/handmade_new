@@ -302,11 +302,12 @@
 
 /* 개인정보 동의 체크박스 */
 .privacy-policy {
+  margin-top: 24px;
   margin-bottom: 24px;
   padding: 16px;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid var(--color-black);
+  border-radius: 0;
 }
 
 .custom-checkbox {
