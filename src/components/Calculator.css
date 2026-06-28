@@ -18,10 +18,14 @@
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
   color: var(--text-main);
   background-color: var(--bg-color);
+  line-height: 1.5;
+  text-align: left;
 }
 
 .calculator-container * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* Animations */
@@ -150,13 +154,23 @@
 }
 
 @media (max-width: 600px) {
-  .contact-title {
-    font-size: 2rem !important;
-  }
   .calculator-container {
     padding: 3rem 0 !important;
   }
   .calculator-container .service-card {
     padding: 1.5rem;
+  }
+  /* Mobile modal adjustments */
+  .animate-modal-pop {
+    padding: 1.5rem !important;
+    margin: 1rem !important;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .calculator-container h2 {
+    font-size: 1.5rem !important;
+  }
+  .calculator-container h3 {
+    font-size: 1.125rem !important;
   }
 }

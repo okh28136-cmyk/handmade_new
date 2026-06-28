@@ -245,15 +245,20 @@ const Calculator = () => {
             </div>
 
             <button 
-              onClick={() => setStep(2)}
-              disabled={!isProjectValid}
+              onClick={() => {
+                if (!isProjectValid) {
+                  alert('예상 수량, 세트당 무게, 부자재 여부를 모두 입력해 주세요.');
+                  return;
+                }
+                setStep(2);
+              }}
               style={{
                 width: '100%', marginTop: '2rem', padding: '1rem',
-                background: isProjectValid ? 'var(--primary)' : '#e2e8f0',
-                color: isProjectValid ? '#fff' : '#94a3b8',
+                background: 'var(--primary)',
+                color: '#fff',
                 border: 'none', borderRadius: 'var(--radius-md)',
                 fontWeight: '700', fontSize: '1rem',
-                cursor: isProjectValid ? 'pointer' : 'not-allowed',
+                cursor: 'pointer',
                 transition: 'all 0.2s', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem'
               }}
             >
@@ -561,9 +566,14 @@ const Calculator = () => {
                 </div>
                 
                 <button 
-                  onClick={handleAddKitting} 
-                  disabled={!isKittingValid}
-                  style={{ width: '100%', padding: '1rem', background: isKittingValid ? 'var(--primary)' : '#e2e8f0', color: isKittingValid ? '#fff' : '#94a3b8', border: 'none', borderRadius: 'var(--radius-md)', cursor: isKittingValid ? 'pointer' : 'not-allowed', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
+                  onClick={() => {
+                    if (!isKittingValid) {
+                      alert('모든 질문 항목을 선택해 주세요.');
+                      return;
+                    }
+                    handleAddKitting();
+                  }}
+                  style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
                 >
                   견적에 추가하기
                 </button>
@@ -609,9 +619,14 @@ const Calculator = () => {
                 </div>
                 
                 <button 
-                  onClick={handleAddAttach} 
-                  disabled={!isAttachValid}
-                  style={{ width: '100%', padding: '1rem', background: isAttachValid ? 'var(--primary)' : '#e2e8f0', color: isAttachValid ? '#fff' : '#94a3b8', border: 'none', borderRadius: 'var(--radius-md)', cursor: isAttachValid ? 'pointer' : 'not-allowed', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
+                  onClick={() => {
+                    if (!isAttachValid) {
+                      alert('모든 질문 항목을 선택해 주세요.');
+                      return;
+                    }
+                    handleAddAttach();
+                  }}
+                  style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
                 >
                   견적에 추가하기
                 </button>
@@ -648,9 +663,14 @@ const Calculator = () => {
                 </div>
                 
                 <button 
-                  onClick={handleAddAssemble} 
-                  disabled={!isAssembleValid}
-                  style={{ width: '100%', padding: '1rem', background: isAssembleValid ? 'var(--primary)' : '#e2e8f0', color: isAssembleValid ? '#fff' : '#94a3b8', border: 'none', borderRadius: 'var(--radius-md)', cursor: isAssembleValid ? 'pointer' : 'not-allowed', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
+                  onClick={() => {
+                    if (!isAssembleValid) {
+                      alert('모든 질문 항목을 선택해 주세요.');
+                      return;
+                    }
+                    handleAddAssemble();
+                  }}
+                  style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
                 >
                   견적에 추가하기
                 </button>
