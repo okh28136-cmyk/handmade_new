@@ -255,14 +255,14 @@ const Calculator = ({ onStepChange }) => {
                   style={{
                     width: '100%', padding: '1.25rem 1rem',
                     background: 'var(--primary)', color: '#fff',
-                    border: 'none', borderRadius: 'var(--radius-lg)',
+                    border: 'none', borderRadius: 0,
                     fontWeight: '800', fontSize: '1.125rem', letterSpacing: '-0.5px',
-                    cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                    cursor: 'pointer', transition: 'all 0.2s',
                     display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0.75rem',
-                    boxShadow: '0 10px 25px -5px rgba(217,4,41,0.3)'
+                    boxShadow: 'none'
                   }}
-                  onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(217,4,41,0.4)'; e.currentTarget.style.background = 'var(--primary-hover)'; }}
-                  onMouseOut={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(217,4,41,0.3)'; e.currentTarget.style.background = 'var(--primary)'; }}
+                  onMouseOver={(e) => { e.currentTarget.style.background = 'var(--primary-hover)'; }}
+                  onMouseOut={(e) => { e.currentTarget.style.background = 'var(--primary)'; }}
                 >
                   <ArrowRight size={28} strokeWidth={2.5} />
                   <span style={{ lineHeight: '1.3', textAlign: 'center' }}>다음 단계로</span>
@@ -348,7 +348,7 @@ const Calculator = ({ onStepChange }) => {
 
         {/* Step 3: Contact Form Section */}
         {step === 3 && (
-          <section className="animate-fade-in" style={{ width: '100%', background: 'var(--surface)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', border: '1px solid var(--border)', overflow: 'hidden' }}>
+          <section className="animate-fade-in" style={{ width: '100%', background: 'var(--surface)', borderRadius: 0, boxShadow: 'none', border: '1px solid var(--border)', overflow: 'hidden' }}>
             <div style={{ padding: '2rem', background: 'var(--primary)', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
                 <h2 style={{ fontSize: '1.5rem', fontWeight: '700', margin: 0 }}>Step 3. 이 견적으로 상담 문의하기</h2>
@@ -448,7 +448,7 @@ const Calculator = ({ onStepChange }) => {
       {/* Right Panel: Quote Cart (Sticky) - Only visible in Step 2 or 3 */}
       {(step === 2 || step === 3) && (
         <div className="calc-sidebar-wrapper animate-fade-in">
-          <div style={{ background: 'var(--surface)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden', border: '1px solid var(--border)' }}>
+          <div style={{ background: '#ffffff', borderRadius: 0, boxShadow: 'none', overflow: 'hidden', border: '1px solid var(--color-black)' }}>
           
           <div style={{ padding: '1.5rem', background: 'var(--text-main)', color: '#fff' }}>
             <h2 style={{ fontSize: '1.25rem', margin: 0, fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -460,7 +460,7 @@ const Calculator = ({ onStepChange }) => {
           <div style={{ padding: '1.5rem', maxHeight: '40vh', overflowY: 'auto', background: '#fafafa', position: 'relative' }}>
             {isLoading && (
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255,255,255,0.7)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(2px)' }}>
-                <div style={{ padding: '0.95rem 1.5rem', background: 'var(--surface)', borderRadius: 'var(--radius-full)', boxShadow: 'var(--shadow-md)', fontWeight: '700', color: 'var(--primary)', fontSize: '0.95rem' }} className="animate-pulse">
+                <div style={{ padding: '0.95rem 1.5rem', background: '#ffffff', borderRadius: 0, boxShadow: 'none', border: '1px solid var(--color-black)', fontWeight: '700', color: 'var(--primary)', fontSize: '0.95rem' }} className="animate-pulse">
                   견적 산출 중...
                 </div>
               </div>
@@ -553,7 +553,7 @@ const Calculator = ({ onStepChange }) => {
       {/* Modals for Adding Items */}
       {activeModal && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }} className="animate-fade-in">
-          <div style={{ background: 'var(--surface)', padding: '2.5rem 2rem', borderRadius: 'var(--radius-xl)', width: '100%', maxWidth: '560px', boxShadow: 'var(--shadow-xl)', border: '1px solid rgba(255,255,255,0.1)' }} className="animate-modal-pop">
+          <div style={{ background: '#ffffff', padding: '2.5rem 2rem', borderRadius: 0, width: '100%', maxWidth: '560px', boxShadow: 'none', border: '1px solid var(--color-black)' }} className="animate-modal-pop">
             
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
               <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)' }}>
