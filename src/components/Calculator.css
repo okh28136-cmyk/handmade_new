@@ -186,6 +186,40 @@
     min-height: auto !important;
     padding: 1.5rem !important;
   }
+  
+  /* Mobile Accordion UI */
+  .desktop-modal {
+    display: none !important;
+  }
+  .mobile-accordion {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 0;
+  }
+  .mobile-accordion.open {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+}
+
+/* Desktop Modal UI */
+@media (min-width: 769px) {
+  .mobile-accordion {
+    display: none !important;
+  }
+  .desktop-modal {
+    display: flex !important;
+  }
+}
+
+.accordion-inner-form {
+  width: 100%;
+  cursor: default;
 }
 
 @media (max-width: 1024px) {

@@ -179,6 +179,163 @@ const Calculator = ({ onStepChange }) => {
   // 기본 프로젝트 설정 완료 여부 체크
   const isProjectValid = project.quantity !== '' && project.quantity > 0 && project.weight !== '' && project.hasBOM !== '';
 
+
+  const KittingForm = (
+    <div className="accordion-inner-form" onClick={(e) => e.stopPropagation()}>
+
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q1. 입고된 상품을 담기 전, '사전 해체'가 필요한가요?</label>
+                  <select value={kittingPre} onChange={(e) => setKittingPre(parseFloat(e.target.value))} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>아니요, 바로 담을 수 있게 입고됩니다.</option>
+                    <option value={1.2}>네, 묶음 비닐/원물 박스 등을 뜯고 소분하는 과정이 필요합니다.</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q2. 상품을 담을 '메인 포장재'는 어떤 종류인가요?</label>
+                  <select value={kittingMain} onChange={(e) => setKittingMain(parseFloat(e.target.value))} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>일반 상자류 (단상자, 싸바리박스 등 입구가 열려 있어 바로 투입 가능한 형태)</option>
+                    <option value={1.3}>비닐/파우치류 (OPP 봉투, 지퍼백, 천 파우치 등 입구를 손으로 벌려서 넣어야 하는 형태)</option>
+                    <option value={1.2}>종이 봉투류 (서류 봉투, 크라프트 봉투 등)</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q3. 하나의 '포장 단위(1세트)' 안에 들어가는 구성품은 총 몇 종류인가요?</label>
+                  <select value={kittingBase} onChange={(e) => setKittingBase(e.target.value)} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value="simple">1종 (단순 합포장)</option>
+                    <option value="normal">2종 (일반 키팅)</option>
+                    <option value="complex">3종 이상 (포토카드, OPP 커버, 슬리브, 포토북, 앨범, 스티커, 키링 등 다양한 구성품 )</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '2.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q4. 상품을 담을 때 '방향'을 신경 써야 하나요?</label>
+                  <select value={kittingDirection} onChange={(e) => setKittingDirection(parseFloat(e.target.value))} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>일반 투입 (빈 공간에 순서대로 편하게 투입)</option>
+                    <option value={1.2}>방향/위치 지정 (로고 정면 노출, 바코드 방향 일치 등)</option>
+                    <option value={1.4}>밀착/압박 안착 (스펀지나 종이 틀에 꾹 눌러 타이트하게 끼워 맞춤)</option>
+                  </select>
+                </div>
+                
+                <button 
+                  onClick={() => {
+                    if (!isKittingValid) {
+                      alert('모든 질문 항목을 선택해 주세요.');
+                      return;
+                    }
+                    handleAddKitting();
+                  }}
+                  style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
+                >
+                  견적에 추가하기
+                </button>
+              
+    </div>
+  );
+
+  const AttachForm = (
+    <div className="accordion-inner-form" onClick={(e) => e.stopPropagation()}>
+
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q1. 어느 정도의 부착 '정밀도'가 필요한가요?</label>
+                  <select value={attachBase} onChange={(e) => setAttachBase(e.target.value)} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value="normal">일반 부착 (눈대중으로 중앙/지정 면에 자연스럽게 맞춤)</option>
+                    <option value="precision">정밀 부착 (1~2mm 오차 이내로 부착)</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q2. 스티커가 붙는 상품의 '표면'은 어떤 형태인가요?</label>
+                  <select value={attachArea} onChange={(e) => setAttachArea(parseFloat(e.target.value))} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>평면 (단상자 겉면, 쇼핑백 등 반듯한 면)</option>
+                    <option value={1.2}>둥근 면 - 부분 부착 (유리병, 용기 앞/뒷면 등에 포인트 부착)</option>
+                    <option value={1.5}>둥근 면 - 전체 랩핑 (용기 둘레를 감싸며 시작과 끝 단차를 완벽히 맞춰야 함)</option>
+                    <option value={1.4}>꺾이는 모서리 (상자의 모서리를 넘어가며 꺾어서 붙이는 봉인 씰 형태)</option>
+                    <option value={1.6}>연질 및 불규칙 굴곡 (튜브형 화장품, 푹신한 파우치 등 고정하기 까다로운 표면)</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q3. 스티커의 '크기'는 어느 정도인가요?</label>
+                  <select value={attachSize} onChange={(e) => setAttachSize(parseFloat(e.target.value))} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>소형~중형 (길이가 약 15cm 이하인 일반 스티커)</option>
+                    <option value={1.3}>대형 사이즈 (길이 15cm 초과 또는 넓은 면적 / 밀대 작업 필수)</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '2.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q4. 스티커의 '재질'에 특이사항이 있나요?</label>
+                  <select value={attachMaterial} onChange={(e) => setAttachMaterial(parseFloat(e.target.value))} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>일반 종이/유포지 스티커 (다루기 쉬움)</option>
+                    <option value={1.2}>투명(지문주의), 얇은 은박, 파괴 씰 등 까다로운 특수 재질</option>
+                  </select>
+                </div>
+                
+                <button 
+                  onClick={() => {
+                    if (!isAttachValid) {
+                      alert('모든 질문 항목을 선택해 주세요.');
+                      return;
+                    }
+                    handleAddAttach();
+                  }}
+                  style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
+                >
+                  견적에 추가하기
+                </button>
+              
+    </div>
+  );
+
+  const AssembleForm = (
+    <div className="accordion-inner-form" onClick={(e) => e.stopPropagation()}>
+
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q1. 조립해야 할 '메인 상자'는 어떤 종류인가요?</label>
+                  <select value={assembleBase} onChange={(e) => setAssembleBase(e.target.value)} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value="normal">일반 단상자 (맞뚜껑, 십자조립, 원터치 등 얇은 종이로 쉽게 접히는 형태)</option>
+                    <option value="folding">조립형 골판지 상자 (G골, E골 등 두께감이 있어 힘을 주어 꺾어 접어야 하는 형태)</option>
+                    <option value="hard">싸바리 박스 (두꺼운 하드보드지로 만들어진 상/하짝 분리형 또는 자석 덮개형 고급 상자)</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q2. 상자 본체 외에 '내부 구조물' 성형이나 '접착' 작업이 있나요?</label>
+                  <select value={assembleInner} onChange={(e) => setAssembleInner(parseFloat(e.target.value))} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>종이만 접어서 끼우면 끝납니다.</option>
+                    <option value={1.3}>십자 칸막이나 계단식 패드 등 내부 구조물도 별도로 접어서 결합해야 합니다.</option>
+                    <option value={1.5}>양면테이프 이형지를 떼거나 글루건(도트 실리콘)을 쏴서 부착하는 공정이 있습니다.</option>
+                  </select>
+                </div>
+                <div style={{ marginBottom: '2.5rem' }}>
+                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q3. 상자 조립 후 외부에 추가되는 '프리미엄 마감' 장식이 있나요?</label>
+                  <select value={assembleFinish} onChange={(e) => setAssembleFinish(parseFloat(e.target.value))} className="form-input">
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>없음 (상자를 닫고 완료)</option>
+                    <option value={1.5}>띠지, 리본 묶기 등</option>
+                  </select>
+                </div>
+                
+                <button 
+                  onClick={() => {
+                    if (!isAssembleValid) {
+                      alert('모든 질문 항목을 선택해 주세요.');
+                      return;
+                    }
+                    handleAddAssemble();
+                  }}
+                  style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
+                >
+                  견적에 추가하기
+                </button>
+              
+    </div>
+  );
+
   return (
     <div className="calculator-container" style={{ width: '100%', background: 'var(--bg-color)', color: 'var(--text-main)' }}>
       <div style={{ width: '100%', margin: '0 auto', padding: '0' }}>
@@ -290,7 +447,7 @@ const Calculator = ({ onStepChange }) => {
             
             <div className="process-cards-grid">
               
-              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => openModal('kitting')}>
+              <div className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => setActiveModal(activeModal === "kitting" ? null : "kitting")}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '2rem' }}>
                   <h3 style={{ fontSize: '3.5rem', fontWeight: '900', letterSpacing: '-2px', margin: '0', color: '#000', lineHeight: '1' }}>담기</h3>
                   <Plus size={48} strokeWidth={1} color="#000" />
@@ -301,9 +458,9 @@ const Calculator = ({ onStepChange }) => {
                 <span style={{ color: 'var(--primary)', fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.5px', marginTop: 'auto' }}>
                   옵션을 선택해주세요
                 </span>
-              </button>
+              <div className={`mobile-accordion ${activeModal === "kitting" ? "open" : ""}`}>{activeModal === "kitting" && KittingForm}</div></div>
 
-              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => openModal('attach')}>
+              <div className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => setActiveModal(activeModal === "attach" ? null : "attach")}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '2rem' }}>
                   <h3 style={{ fontSize: '3.5rem', fontWeight: '900', letterSpacing: '-2px', margin: '0', color: '#000', lineHeight: '1' }}>붙이기</h3>
                   <Plus size={48} strokeWidth={1} color="#000" />
@@ -314,9 +471,9 @@ const Calculator = ({ onStepChange }) => {
                 <span style={{ color: 'var(--primary)', fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.5px', marginTop: 'auto' }}>
                   옵션을 선택해주세요
                 </span>
-              </button>
+              <div className={`mobile-accordion ${activeModal === "attach" ? "open" : ""}`}>{activeModal === "attach" && AttachForm}</div></div>
 
-              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => openModal('assemble')}>
+              <div className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => setActiveModal(activeModal === "assemble" ? null : "assemble")}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '2rem' }}>
                   <h3 style={{ fontSize: '3.5rem', fontWeight: '900', letterSpacing: '-2px', margin: '0', color: '#000', lineHeight: '1' }}>만들기</h3>
                   <Plus size={48} strokeWidth={1} color="#000" />
@@ -327,7 +484,7 @@ const Calculator = ({ onStepChange }) => {
                 <span style={{ color: 'var(--primary)', fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.5px', marginTop: 'auto' }}>
                   옵션을 선택해주세요
                 </span>
-              </button>
+              <div className={`mobile-accordion ${activeModal === "assemble" ? "open" : ""}`}>{activeModal === "assemble" && AssembleForm}</div></div>
 
               {/* [출고/물류 포장] 항목 임시 숨김 처리 (서비스 불가)
               <button className="service-card" onClick={() => openModal('outPacking')}>
@@ -541,7 +698,7 @@ const Calculator = ({ onStepChange }) => {
 
       {/* Modals for Adding Items */}
       {activeModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }} className="animate-fade-in">
+        <div className="desktop-modal" style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '1rem' }} className="animate-fade-in">
           <div style={{ background: '#ffffff', padding: '2.5rem 2rem', borderRadius: 0, width: '100%', maxWidth: '560px', boxShadow: 'none', border: '1px solid var(--color-black)' }} className="animate-modal-pop">
             
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
@@ -554,155 +711,11 @@ const Calculator = ({ onStepChange }) => {
               <button onClick={() => setActiveModal(null)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}><X size={24} /></button>
             </div>
             
-            {activeModal === 'kitting' && (
-              <>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q1. 입고된 상품을 담기 전, '사전 해체'가 필요한가요?</label>
-                  <select value={kittingPre} onChange={(e) => setKittingPre(parseFloat(e.target.value))} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value={1.0}>아니요, 바로 담을 수 있게 입고됩니다.</option>
-                    <option value={1.2}>네, 묶음 비닐/원물 박스 등을 뜯고 소분하는 과정이 필요합니다.</option>
-                  </select>
-                </div>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q2. 상품을 담을 '메인 포장재'는 어떤 종류인가요?</label>
-                  <select value={kittingMain} onChange={(e) => setKittingMain(parseFloat(e.target.value))} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value={1.0}>일반 상자류 (단상자, 싸바리박스 등 입구가 열려 있어 바로 투입 가능한 형태)</option>
-                    <option value={1.3}>비닐/파우치류 (OPP 봉투, 지퍼백, 천 파우치 등 입구를 손으로 벌려서 넣어야 하는 형태)</option>
-                    <option value={1.2}>종이 봉투류 (서류 봉투, 크라프트 봉투 등)</option>
-                  </select>
-                </div>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q3. 하나의 '포장 단위(1세트)' 안에 들어가는 구성품은 총 몇 종류인가요?</label>
-                  <select value={kittingBase} onChange={(e) => setKittingBase(e.target.value)} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value="simple">1종 (단순 합포장)</option>
-                    <option value="normal">2종 (일반 키팅)</option>
-                    <option value="complex">3종 이상 (포토카드, OPP 커버, 슬리브, 포토북, 앨범, 스티커, 키링 등 다양한 구성품 )</option>
-                  </select>
-                </div>
-                <div style={{ marginBottom: '2.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q4. 상품을 담을 때 '방향'을 신경 써야 하나요?</label>
-                  <select value={kittingDirection} onChange={(e) => setKittingDirection(parseFloat(e.target.value))} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value={1.0}>일반 투입 (빈 공간에 순서대로 편하게 투입)</option>
-                    <option value={1.2}>방향/위치 지정 (로고 정면 노출, 바코드 방향 일치 등)</option>
-                    <option value={1.4}>밀착/압박 안착 (스펀지나 종이 틀에 꾹 눌러 타이트하게 끼워 맞춤)</option>
-                  </select>
-                </div>
-                
-                <button 
-                  onClick={() => {
-                    if (!isKittingValid) {
-                      alert('모든 질문 항목을 선택해 주세요.');
-                      return;
-                    }
-                    handleAddKitting();
-                  }}
-                  style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
-                >
-                  견적에 추가하기
-                </button>
-              </>
-            )}
+            {activeModal === 'kitting' && KittingForm}
 
-            {activeModal === 'attach' && (
-              <>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q1. 어느 정도의 부착 '정밀도'가 필요한가요?</label>
-                  <select value={attachBase} onChange={(e) => setAttachBase(e.target.value)} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value="normal">일반 부착 (눈대중으로 중앙/지정 면에 자연스럽게 맞춤)</option>
-                    <option value="precision">정밀 부착 (1~2mm 오차 이내로 부착)</option>
-                  </select>
-                </div>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q2. 스티커가 붙는 상품의 '표면'은 어떤 형태인가요?</label>
-                  <select value={attachArea} onChange={(e) => setAttachArea(parseFloat(e.target.value))} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value={1.0}>평면 (단상자 겉면, 쇼핑백 등 반듯한 면)</option>
-                    <option value={1.2}>둥근 면 - 부분 부착 (유리병, 용기 앞/뒷면 등에 포인트 부착)</option>
-                    <option value={1.5}>둥근 면 - 전체 랩핑 (용기 둘레를 감싸며 시작과 끝 단차를 완벽히 맞춰야 함)</option>
-                    <option value={1.4}>꺾이는 모서리 (상자의 모서리를 넘어가며 꺾어서 붙이는 봉인 씰 형태)</option>
-                    <option value={1.6}>연질 및 불규칙 굴곡 (튜브형 화장품, 푹신한 파우치 등 고정하기 까다로운 표면)</option>
-                  </select>
-                </div>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q3. 스티커의 '크기'는 어느 정도인가요?</label>
-                  <select value={attachSize} onChange={(e) => setAttachSize(parseFloat(e.target.value))} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value={1.0}>소형~중형 (길이가 약 15cm 이하인 일반 스티커)</option>
-                    <option value={1.3}>대형 사이즈 (길이 15cm 초과 또는 넓은 면적 / 밀대 작업 필수)</option>
-                  </select>
-                </div>
-                <div style={{ marginBottom: '2.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q4. 스티커의 '재질'에 특이사항이 있나요?</label>
-                  <select value={attachMaterial} onChange={(e) => setAttachMaterial(parseFloat(e.target.value))} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value={1.0}>일반 종이/유포지 스티커 (다루기 쉬움)</option>
-                    <option value={1.2}>투명(지문주의), 얇은 은박, 파괴 씰 등 까다로운 특수 재질</option>
-                  </select>
-                </div>
-                
-                <button 
-                  onClick={() => {
-                    if (!isAttachValid) {
-                      alert('모든 질문 항목을 선택해 주세요.');
-                      return;
-                    }
-                    handleAddAttach();
-                  }}
-                  style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
-                >
-                  견적에 추가하기
-                </button>
-              </>
-            )}
+            {activeModal === 'attach' && AttachForm}
 
-            {activeModal === 'assemble' && (
-              <>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q1. 조립해야 할 '메인 상자'는 어떤 종류인가요?</label>
-                  <select value={assembleBase} onChange={(e) => setAssembleBase(e.target.value)} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value="normal">일반 단상자 (맞뚜껑, 십자조립, 원터치 등 얇은 종이로 쉽게 접히는 형태)</option>
-                    <option value="folding">조립형 골판지 상자 (G골, E골 등 두께감이 있어 힘을 주어 꺾어 접어야 하는 형태)</option>
-                    <option value="hard">싸바리 박스 (두꺼운 하드보드지로 만들어진 상/하짝 분리형 또는 자석 덮개형 고급 상자)</option>
-                  </select>
-                </div>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q2. 상자 본체 외에 '내부 구조물' 성형이나 '접착' 작업이 있나요?</label>
-                  <select value={assembleInner} onChange={(e) => setAssembleInner(parseFloat(e.target.value))} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value={1.0}>종이만 접어서 끼우면 끝납니다.</option>
-                    <option value={1.3}>십자 칸막이나 계단식 패드 등 내부 구조물도 별도로 접어서 결합해야 합니다.</option>
-                    <option value={1.5}>양면테이프 이형지를 떼거나 글루건(도트 실리콘)을 쏴서 부착하는 공정이 있습니다.</option>
-                  </select>
-                </div>
-                <div style={{ marginBottom: '2.5rem' }}>
-                  <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.25rem', fontSize: '0.95rem' }}>Q3. 상자 조립 후 외부에 추가되는 '프리미엄 마감' 장식이 있나요?</label>
-                  <select value={assembleFinish} onChange={(e) => setAssembleFinish(parseFloat(e.target.value))} className="form-input">
-                    <option value="" disabled>항목을 선택해주세요</option>
-                    <option value={1.0}>없음 (상자를 닫고 완료)</option>
-                    <option value={1.5}>띠지, 리본 묶기 등</option>
-                  </select>
-                </div>
-                
-                <button 
-                  onClick={() => {
-                    if (!isAssembleValid) {
-                      alert('모든 질문 항목을 선택해 주세요.');
-                      return;
-                    }
-                    handleAddAssemble();
-                  }}
-                  style={{ width: '100%', padding: '1rem', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '700', fontSize: '1rem', transition: 'all 0.2s' }}
-                >
-                  견적에 추가하기
-                </button>
-              </>
-            )}
+            {activeModal === 'assemble' && AssembleForm}
 
             {/* outPacking 모달 숨김 처리 */}
           </div>
