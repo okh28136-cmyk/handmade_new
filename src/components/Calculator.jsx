@@ -293,46 +293,43 @@ const Calculator = ({ onStepChange }) => {
               
               <button className="service-card horizontal" onClick={() => openModal('kitting')}>
                 <div className="card-left">
-                  <div className="card-icon-box" style={{ background: '#eff6ff', color: '#3b82f6' }}>
-                    <Package size={28} strokeWidth={1.5} />
-                  </div>
                   <div className="card-text-content">
-                    <h3>담기 <span>(Kitting & Packing)</span></h3>
-                    <p>단순히 물건을 넣는 것을 넘어, 여러 상품을 정해진 순서와 방향에 맞게<br/>분류하고 완충재와 함께 포장재 안에 안전하게 투입하는 공정입니다.</p>
+                    <h3 style={{ fontSize: '2.5rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: 'var(--primary)' }}>담기 <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#111' }}>(Kitting & Packing)</span></h3>
+                    <p style={{ fontSize: '1.05rem', color: '#555', margin: 0, lineHeight: '1.6' }}>제품의 특성에 맞춘 꼼꼼한 개별 포장부터, 다양한 구성품을 하나의<br/>세트로 정교하게 조합하는 키팅 작업까지 완벽하게 수행합니다.<br/>복잡한 수작업도 빠르고 정확하게 해결해 드립니다.</p>
                   </div>
                 </div>
-                <div className="card-right">
-                  <span className="select-badge"><Plus size={16} /> 세부 옵션 선택</span>
+                <div className="card-right" style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1.1rem', background: '#fff' }}>
+                    <Plus size={20} strokeWidth={3} /> 세부 옵션 선택
+                  </span>
                 </div>
               </button>
 
               <button className="service-card horizontal" onClick={() => openModal('attach')}>
                 <div className="card-left">
-                  <div className="card-icon-box" style={{ background: '#f0fdf4', color: '#22c55e' }}>
-                    <Tag size={28} strokeWidth={1.5} />
-                  </div>
                   <div className="card-text-content">
-                    <h3>붙이기 <span>(Labeling & Sealing)</span></h3>
-                    <p>라벨, 스티커, 봉인 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여<br/>제품을 밀봉하거나 외관을 꾸미는 공정입니다.</p>
+                    <h3 style={{ fontSize: '2.5rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: '#111' }}>붙이기 <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#111' }}>(Labeling & Sealing)</span></h3>
+                    <p style={{ fontSize: '1.05rem', color: '#555', margin: 0, lineHeight: '1.6' }}>라벨, 스티커, 봉인 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여<br/>제품을 밀봉하거나 외관을 꾸미는 공정입니다.</p>
                   </div>
                 </div>
-                <div className="card-right">
-                  <span className="select-badge"><Plus size={16} /> 세부 옵션 선택</span>
+                <div className="card-right" style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1.1rem', background: '#fff' }}>
+                    <Plus size={20} strokeWidth={3} /> 세부 옵션 선택
+                  </span>
                 </div>
               </button>
 
               <button className="service-card horizontal" onClick={() => openModal('assemble')}>
                 <div className="card-left">
-                  <div className="card-icon-box" style={{ background: '#faf5ff', color: '#a855f7' }}>
-                    <Box size={28} strokeWidth={1.5} />
-                  </div>
                   <div className="card-text-content">
-                    <h3>만들기 <span>(Assembly & Shaping)</span></h3>
-                    <p>평면 상태의 종이 박스나 칸막이를 입체로 성형하고, 띠지나 리본 등으로<br/>최종 외관의 디테일을 완성하는 조립 공정입니다.</p>
+                    <h3 style={{ fontSize: '2.5rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: '#111' }}>만들기 <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#111' }}>(Assembly & Shaping)</span></h3>
+                    <p style={{ fontSize: '1.05rem', color: '#555', margin: 0, lineHeight: '1.6' }}>평면 상태의 종이 박스나 칸막이를 입체로 성형하고, 띠지나 리본 등으로<br/>최종 외관의 디테일을 완성하는 조립 공정입니다.</p>
                   </div>
                 </div>
-                <div className="card-right">
-                  <span className="select-badge"><Plus size={16} /> 세부 옵션 선택</span>
+                <div className="card-right" style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1.1rem', background: '#fff' }}>
+                    <Plus size={20} strokeWidth={3} /> 세부 옵션 선택
+                  </span>
                 </div>
               </button>
 
@@ -450,60 +447,56 @@ const Calculator = ({ onStepChange }) => {
         <div className="calc-sidebar-wrapper animate-fade-in">
           <div style={{ background: '#ffffff', borderRadius: 0, boxShadow: 'none', overflow: 'hidden', border: '1px solid var(--color-black)' }}>
           
-          <div style={{ padding: '1.5rem', background: 'var(--text-main)', color: '#fff' }}>
-            <h2 style={{ fontSize: '1.25rem', margin: 0, fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div style={{ padding: '1.5rem', background: 'var(--color-black)', color: '#fff', borderBottom: '1px solid var(--color-black)' }}>
+            <h2 style={{ fontSize: '1.25rem', margin: 0, fontWeight: '900', letterSpacing: '-0.5px' }}>
               견적 산출 내역
             </h2>
-            <p style={{ fontSize: '0.95rem', color: '#94a3b8', marginTop: '0.25rem' }}>선택하신 공정이 합산됩니다.</p>
+            <p style={{ fontSize: '0.95rem', color: '#ccc', marginTop: '0.25rem', margin: 0 }}>선택하신 공정이 합산됩니다.</p>
           </div>
           
-          <div style={{ padding: '1.5rem', maxHeight: '40vh', overflowY: 'auto', background: '#fafafa', position: 'relative' }}>
+          <div style={{ padding: '2rem 1.5rem', background: '#ffffff', position: 'relative' }}>
             {isLoading && (
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255,255,255,0.7)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(2px)' }}>
-                <div style={{ padding: '0.95rem 1.5rem', background: '#ffffff', borderRadius: 0, boxShadow: 'none', border: '1px solid var(--color-black)', fontWeight: '700', color: 'var(--primary)', fontSize: '0.95rem' }} className="animate-pulse">
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255,255,255,0.9)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ padding: '0.95rem 1.5rem', background: '#000', color: '#fff', fontWeight: '900', fontSize: '1rem' }} className="animate-pulse">
                   견적 산출 중...
                 </div>
               </div>
             )}
             
             {/* 기본 옵션 정보 (Step 1) 표기 */}
-            <div style={{ marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '1px dashed var(--border)' }}>
-              <h3 style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '0.5rem' }}>기본 정보 (Step 1)</h3>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                <li>• 예상 수량: <strong style={{color: 'var(--text-main)'}}>{project.quantity ? project.quantity.toLocaleString() + ' 세트' : '-'}</strong></li>
-                <li>• 제품 무게: <strong style={{color: 'var(--text-main)'}}>{project.weight === 1.0 ? '가벼움' : project.weight === 1.2 ? '보통' : project.weight === 1.5 ? '무거움' : '-'}</strong></li>
-                <li>• 부자재: <strong style={{color: 'var(--text-main)'}}>{project.hasBOM === true ? '동시 제작 의뢰' : project.hasBOM === false ? '고객 전량 입고' : '-'}</strong></li>
+            <div style={{ marginBottom: '2rem', paddingBottom: '1.5rem', borderBottom: '2px solid #000' }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: '900', color: '#000', marginBottom: '1rem' }}>기본 정보 (Step 1)</h3>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '1rem', color: '#333', lineHeight: '1.8' }}>
+                <li><strong>예상 수량 :</strong> {project.quantity ? project.quantity.toLocaleString() + ' 세트' : '-'}</li>
+                <li><strong>제품 무게 :</strong> {project.weight === 1.0 ? '가벼움' : project.weight === 1.2 ? '보통' : project.weight === 1.5 ? '무거움' : '-'}</li>
+                <li><strong>부자재 :</strong> {project.hasBOM === true ? '동시 제작 의뢰' : project.hasBOM === false ? '고객 전량 입고' : '-'}</li>
               </ul>
             </div>
 
             {quoteResult.enrichedCart.length === 0 ? (
-              <div style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '3rem 0' }}>
-                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', opacity: 0.5 }}>
-                  <Package size={48} />
-                </div>
-                <p style={{ fontWeight: '600' }}>아직 추가된 공정이 없습니다.</p>
-                <p style={{ fontSize: '0.95rem', marginTop: '0.5rem' }}>좌측 메뉴에서 필요한 항목을 선택해 주세요.</p>
+              <div style={{ textAlign: 'center', color: '#777', padding: '3rem 0' }}>
+                <p style={{ fontWeight: '800', fontSize: '1.1rem', color: '#000', margin: '0 0 0.5rem 0' }}>추가된 공정이 없습니다.</p>
+                <p style={{ fontSize: '0.95rem', margin: 0 }}>좌측 메뉴에서 항목을 선택해 주세요.</p>
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {quoteResult.enrichedCart.map((item) => (
-                  <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '1rem', marginBottom: '1rem', borderBottom: '1px solid #eee' }}>
                     <div>
-                      <div style={{ fontWeight: '700', color: 'var(--text-main)' }}>{item.label}</div>
-                      <div style={{ fontSize: '1rem', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>{getLabel(item.base)}</div>
+                      <div style={{ fontWeight: '900', color: '#000', fontSize: '1.1rem', marginBottom: '0.25rem' }}>{item.label}</div>
+                      <div style={{ fontSize: '0.95rem', color: '#333', wordBreak: 'keep-all' }}>{getLabel(item.base)}</div>
                       {item.multipliers && (
-                        <div style={{ fontSize: '0.95rem', color: '#64748b', marginTop: '0.25rem', lineHeight: '1.4' }}>
+                        <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', lineHeight: '1.5' }}>
                           {Object.entries(item.multipliers).map(([mKey, mVal]) => {
                             const text = getMultiplierText(item.type, mKey, mVal);
-                            return text ? <span key={mKey} style={{ display: 'block' }}>• {text}</span> : null;
+                            return text ? <span key={mKey} style={{ display: 'block' }}>- {text}</span> : null;
                           })}
                         </div>
                       )}
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                      {/* 개별 공정 비용 숨김 처리 (소비자가 합계만 보도록 유도) */}
-                      <button onClick={() => removeFromCart(item.id)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <X size={18} />
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <button onClick={() => removeFromCart(item.id)} style={{ background: 'none', border: 'none', color: '#999', cursor: 'pointer', padding: '0.25rem' }}>
+                        <X size={20} strokeWidth={2.5} />
                       </button>
                     </div>
                   </div>
@@ -512,15 +505,15 @@ const Calculator = ({ onStepChange }) => {
             )}
           </div>
 
-          <div style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '2px solid #f1f5f9' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-              <span style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>총 예상 비용</span>
+          <div style={{ padding: '2rem 1.5rem', borderTop: '2px solid #000', background: '#fff' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.5rem' }}>
+              <span style={{ fontSize: '1.125rem', fontWeight: '900', color: '#000', wordBreak: 'keep-all' }}>총 예상 비용</span>
               <div style={{ textAlign: 'right' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--primary)', letterSpacing: '-1px' }}>{quoteResult.totalPrice.toLocaleString()}</span>
-                <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', marginLeft: '0.25rem' }}>원</span>
+                <span style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--primary)', letterSpacing: '-1.5px' }}>{quoteResult.totalPrice.toLocaleString()}</span>
+                <span style={{ fontSize: '1.25rem', fontWeight: '900', color: '#000', marginLeft: '0.25rem' }}>원</span>
               </div>
             </div>
-            <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderLeft: '4px solid var(--primary)', padding: '1rem', borderRadius: 'var(--radius-md)', marginTop: '1.5rem' }}>
+            <div style={{ border: '2px solid var(--primary)', padding: '1.25rem', background: '#fff' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                 <AlertCircle size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <div>
