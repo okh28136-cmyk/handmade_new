@@ -138,6 +138,10 @@
   align-items: stretch;
 }
 
+.calc-main-wrapper.step3-reverse {
+  flex-direction: column-reverse !important;
+}
+
 .calc-sidebar-wrapper {
   width: 100%;
   position: static;
