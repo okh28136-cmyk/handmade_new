@@ -82,10 +82,7 @@
   padding: 2rem;
   text-align: left;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .calculator-container .service-card:hover {
   background: var(--primary-light);
@@ -194,5 +191,23 @@
   }
   .calculator-container h3 {
     font-size: 1.125rem !important;
+  }
+  
+  .calculator-container .service-card.horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    gap: 1.25rem;
+  }
+  .card-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .card-right {
+    width: 100%;
+  }
+  .select-badge {
+    width: 100%;
   }
 }
