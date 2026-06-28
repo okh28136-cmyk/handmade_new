@@ -175,17 +175,8 @@ const Calculator = () => {
   const isProjectValid = project.quantity !== '' && project.quantity > 0 && project.weight !== '' && project.hasBOM !== '';
 
   return (
-    <section id="contact" className="calculator-container" style={{ padding: '6rem 0', background: 'var(--bg-color)', color: 'var(--text-main)' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
-        
-        {/* 헤더 부분 */}
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <span className="contact-tag font-playfair" style={{ display: 'inline-block', color: 'var(--primary)', fontWeight: '700', letterSpacing: '2px', marginBottom: '1rem', fontSize: '0.875rem' }}>AUTO QUOTE SYSTEM</span>
-          <h2 className="contact-title font-playfair" style={{ fontSize: '3rem', fontWeight: '900', color: 'var(--text-main)', lineHeight: '1.2', margin: 0 }}>자동 견적 산출</h2>
-          <p style={{ marginTop: '1rem', color: 'var(--text-muted)', fontSize: '1.125rem' }}>
-            기다릴 필요 없이, 즉석에서 수작업 견적을 확인하고 바로 문의하세요.
-          </p>
-        </div>
+    <div className="calculator-container" style={{ width: '100%', background: 'var(--bg-color)', color: 'var(--text-main)' }}>
+      <div style={{ width: '100%', margin: '0 auto', padding: '0' }}>
 
         <div className="calc-main-wrapper animate-slide-up">
       
@@ -688,7 +679,7 @@ const Calculator = () => {
 
       </div>
       </div>
-    </section>
+    </div>
   );
 };
 

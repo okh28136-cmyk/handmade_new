@@ -121,15 +121,15 @@
 /* 모바일 및 반응형 레이아웃 */
 .calc-main-wrapper {
   display: flex;
-  gap: 4rem;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: stretch;
 }
 
 .calc-sidebar-wrapper {
-  width: 420px;
-  position: sticky;
-  top: 2rem;
-  flex-shrink: 0;
+  width: 100%;
+  position: static;
+  margin-top: 1rem;
 }
 
 @media (max-width: 1024px) {
