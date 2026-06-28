@@ -346,16 +346,16 @@ const Calculator = ({ onStepChange }) => {
         {/* Step 3: Contact Form Section */}
         {step === 3 && (
           <section className="animate-fade-in" style={{ width: '100%', background: 'var(--surface)', borderRadius: 0, boxShadow: 'none', border: '1px solid var(--border)', overflow: 'hidden' }}>
-            <div style={{ padding: '2rem', background: 'var(--primary)', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ padding: '2rem', background: '#fff', borderBottom: '2px solid #000', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: '700', margin: 0 }}>Step 3. 이 견적으로 상담 문의하기</h2>
-                <p style={{ margin: '0.5rem 0 0 0', opacity: 0.9 }}>산출된 견적 정보를 포함하여 담당자에게 상세 상담을 요청합니다.</p>
+                <h2 style={{ fontSize: '1.75rem', fontWeight: '900', margin: 0, color: '#000', letterSpacing: '-1px' }}>Step 3. 이 견적으로 상담 문의하기</h2>
+                <p style={{ margin: '0.5rem 0 0 0', color: '#555', fontSize: '1.05rem', fontWeight: '600' }}>산출된 견적 정보를 포함하여 담당자에게 상세 상담을 요청합니다.</p>
               </div>
               <button 
                 onClick={() => setStep(2)} 
-                style={{ background: 'rgba(255,255,255,0.2)', border: 'none', padding: '0.5rem 1rem', borderRadius: 'var(--radius-md)', color: '#fff', cursor: 'pointer', fontWeight: '600', transition: 'all 0.2s' }}
-                onMouseOver={(e) => e.target.style.background = 'rgba(255,255,255,0.3)'}
-                onMouseOut={(e) => e.target.style.background = 'rgba(255,255,255,0.2)'}
+                style={{ background: '#fff', border: '2px solid #000', padding: '0.5rem 1rem', borderRadius: 0, color: '#000', cursor: 'pointer', fontWeight: '800', transition: 'all 0.2s', fontSize: '1rem' }}
+                onMouseOver={(e) => { e.target.style.background = '#000'; e.target.style.color = '#fff'; }}
+                onMouseOut={(e) => { e.target.style.background = '#fff'; e.target.style.color = '#000'; }}
               >
                 ← 이전 단계
               </button>
