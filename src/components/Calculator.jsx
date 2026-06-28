@@ -12,32 +12,6 @@ const EMAILJS_SERVICE_ID  = 'service_1tncfue';
 const EMAILJS_TEMPLATE_ID = 'template_jjsvsad';
 const EMAILJS_PUBLIC_KEY  = 'xAmHtsU9Nfdgoee-t';
 
-const useRollingNumber = (endValue, duration = 800) => {
-  const [value, setValue] = useState(0);
-  
-  React.useEffect(() => {
-    let startTimestamp = null;
-    const startValue = value;
-    
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      
-      setValue(Math.floor(startValue + (endValue - startValue) * easeProgress));
-      
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-    
-    window.requestAnimationFrame(step);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [endValue, duration]);
-  
-  return value;
-};
-
 const Calculator = () => {
   const { state, quoteResult, setProject, addToCart, removeFromCart, isLoading } = useQuote();
   const { project } = state;
@@ -199,8 +173,6 @@ const Calculator = () => {
 
   // 기본 프로젝트 설정 완료 여부 체크
   const isProjectValid = project.quantity !== '' && project.quantity > 0 && project.weight !== '' && project.hasBOM !== '';
-
-  const animatedTotalPrice = useRollingNumber(quoteResult.totalPrice);
 
   return (
     <section id="contact" className="calculator-container" style={{ padding: '6rem 0', background: 'var(--bg-color)', color: 'var(--text-main)' }}>
@@ -513,7 +485,7 @@ const Calculator = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
               <span style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-muted)' }}>총 예상 비용</span>
               <div style={{ textAlign: 'right' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--primary)', letterSpacing: '-1px' }}>{animatedTotalPrice.toLocaleString()}</span>
+                <span style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--primary)', letterSpacing: '-1px' }}>{quoteResult.totalPrice.toLocaleString()}</span>
                 <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', marginLeft: '0.25rem' }}>원</span>
               </div>
             </div>
