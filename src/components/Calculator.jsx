@@ -243,7 +243,7 @@ const Calculator = ({ onStepChange }) => {
                 </div>
               </div>
 
-              <div style={{ flex: '0 0 280px', display: 'flex' }}>
+              <div style={{ flex: '0 0 220px', display: 'flex', alignItems: 'flex-end' }}>
                 <button 
                   onClick={() => {
                     if (!isProjectValid) {
@@ -253,19 +253,19 @@ const Calculator = ({ onStepChange }) => {
                     setStep(2);
                   }}
                   style={{
-                    width: '100%', height: '100%', minHeight: '120px', padding: '2rem 1.5rem',
+                    width: '100%', padding: '1.25rem 1rem',
                     background: 'var(--primary)', color: '#fff',
                     border: 'none', borderRadius: 'var(--radius-lg)',
-                    fontWeight: '800', fontSize: '1.25rem', letterSpacing: '-0.5px',
+                    fontWeight: '800', fontSize: '1.125rem', letterSpacing: '-0.5px',
                     cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                    display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '1rem',
+                    display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0.75rem',
                     boxShadow: '0 10px 25px -5px rgba(217,4,41,0.3)'
                   }}
                   onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(217,4,41,0.4)'; e.currentTarget.style.background = 'var(--primary-hover)'; }}
                   onMouseOut={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(217,4,41,0.3)'; e.currentTarget.style.background = 'var(--primary)'; }}
                 >
-                  <ArrowRight size={36} strokeWidth={2.5} />
-                  <span style={{ lineHeight: '1.3', textAlign: 'center' }}>다음 단계로<br/>공정 선택하기</span>
+                  <ArrowRight size={28} strokeWidth={2.5} />
+                  <span style={{ lineHeight: '1.3', textAlign: 'center' }}>다음 단계로</span>
                 </button>
               </div>
             </div>
