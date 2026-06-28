@@ -61,18 +61,18 @@
 
 .detail-card {
   background: #fff;
-  border: 1px solid #e8e8e8;
-  padding: 24px;
-  margin-bottom: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0,0,0,0.04);
+  padding: 32px;
+  margin-bottom: 24px;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 18px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 24px;
 }
 
 .card-header h3 {
@@ -107,11 +107,14 @@
 .info-val { font-size: 0.92rem; color: #111; font-weight: 600; }
 
 .message-text {
-  font-size: 0.92rem;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.8;
   color: #333;
   white-space: pre-wrap;
   margin: 0;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 /* 수정 폼 */
@@ -264,8 +267,16 @@
   font-size: 0.9rem;
 }
 .cart-item-base {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: #888;
+}
+.cart-item-multipliers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #64748b;
 }
 .cart-item-price {
   font-weight: 700;
@@ -289,12 +300,12 @@
 }
 .summary-row.highlight {
   margin-top: 0.5rem;
-  padding-top: 0.5rem;
-  border-top: 1px dashed #ffc9c9;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(217, 4, 41, 0.1);
   color: #111;
   font-size: 0.95rem;
 }
 .summary-row.highlight strong {
   color: #d90429;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
 }

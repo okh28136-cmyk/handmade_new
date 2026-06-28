@@ -9,11 +9,38 @@ import AdminLayout from './AdminLayout';
 import './InquiryDetail.css';
 
 const STATUS_MAP = {
-  'new':    { label: '신규',    cls: 'status-new' },
+  'new':    { label: '신규접수',    cls: 'status-new' },
   'review': { label: '검토중',  cls: 'status-review' },
   'sent':   { label: '견적발송', cls: 'status-sent' },
   'done':   { label: '완료',    cls: 'status-done' },
   'cancel': { label: '취소',    cls: 'status-cancel' },
+};
+
+const labelMap = {
+  simple: '1종 (단순 합포장)', normal: '2종 (일반 키팅)', complex: '3종 이상 (다양한 구성품)',
+  precision: '정밀 부착', folding: '조립형 골판지 상자', hard: '고급 싸바리 세팅',
+  courier: '개별 택배 포장', outerBox: '대형 외박스 합포장', pallet: '팔레트 단위 납품'
+};
+const getLabel = (key) => labelMap[key] || '일반 기준';
+
+const getMultiplierText = (type, key, val) => {
+  const textMap = {
+    kitting: {
+      preTask: { 1: '해체 없음', 1.2: '사전 해체 필요' },
+      mainPacking: { 1: '일반 상자류', 1.3: '비닐/파우치류', 1.2: '종이 봉투류' },
+      direction: { 1: '일반 투입', 1.2: '방향/위치 지정', 1.4: '밀착/압박 안착' }
+    },
+    attach: {
+      attachArea: { 1: '평면', 1.2: '둥근 면(부분)', 1.5: '둥근 면(전체)', 1.4: '꺾이는 모서리', 1.6: '연질/불규칙 굴곡' },
+      attachSize: { 1: '소형~중형 스티커', 1.3: '대형 사이즈(밀대 작업)' },
+      attachMaterial: { 1: '일반 재질', 1.2: '특수 재질(투명/은박 등)' }
+    },
+    assemble: {
+      innerPad: { 1: '기본 조립', 1.3: '내부 구조물 조립', 1.5: '테이프/글루건 부착' },
+      finishing: { 1: '마감 장식 없음', 1.5: '띠지/리본 묶기 추가' }
+    }
+  };
+  return textMap[type]?.[key]?.[val] || '';
 };
 
 const InquiryDetail = () => {
@@ -269,7 +296,15 @@ const InquiryDetail = () => {
                       <div key={idx} className="cart-item">
                         <div className="cart-item-info">
                           <span className="cart-item-label">{item.label}</span>
-                          <span className="cart-item-base">{item.base}</span>
+                          <span className="cart-item-base">{getLabel(item.base)}</span>
+                          {item.multipliers && (
+                            <div className="cart-item-multipliers">
+                              {Object.entries(item.multipliers).map(([mKey, mVal]) => {
+                                const text = getMultiplierText(item.type, mKey, mVal);
+                                return text ? <span key={mKey}>• {text}</span> : null;
+                              })}
+                            </div>
+                          )}
                         </div>
                         <div className="cart-item-price">
                           +{Math.round(item.calculatedPrice).toLocaleString()}원
