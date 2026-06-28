@@ -243,9 +243,9 @@
 .file-upload-wrapper {
   position: relative;
   width: 100%;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background-color: #f8fafc;
+  border: 1px solid var(--color-black);
+  border-radius: 0;
+  background-color: #ffffff;
   transition: all 0.2s ease;
   cursor: pointer;
   overflow: hidden;
@@ -268,7 +268,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 18px 24px;
   pointer-events: none;
 }
 .file-icon {
@@ -286,13 +286,13 @@
   margin: 0 15px;
 }
 .file-btn {
-  background-color: #e2e8f0;
-  color: #475569;
-  padding: 8px 16px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  border-radius: 6px;
-  border: none;
+  background-color: #f1f5f9;
+  color: var(--color-black);
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  border-radius: 0;
+  border: 1px solid var(--color-black);
   transition: all 0.2s;
 }
 .file-upload-wrapper:hover .file-btn {
