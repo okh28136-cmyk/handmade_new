@@ -184,7 +184,7 @@ const Calculator = ({ onStepChange }) => {
       <div style={{ width: '100%', margin: '0 auto', padding: '0' }}>
 
         <div 
-          className={`calc-main-wrapper animate-slide-up ${step === 3 ? 'step3-layout' : ''}`}
+          className={`calc-main-wrapper animate-slide-up ${(step === 2 || step === 3) ? 'desktop-split-layout' : ''} ${step === 3 ? 'mobile-reverse' : ''}`}
         >
       
       {/* Left Panel: Services Menu & Project Settings */}

@@ -130,15 +130,15 @@
   margin-top: 1rem;
 }
 
-/* Step 3 Layout: Desktop Side-by-side */
+/* Desktop Split Layout (Step 2, 3) */
 @media (min-width: 901px) {
-  .calc-main-wrapper.step3-layout {
+  .calc-main-wrapper.desktop-split-layout {
     flex-direction: row !important;
   }
-  .calc-main-wrapper.step3-layout > div:first-child {
+  .calc-main-wrapper.desktop-split-layout > div:first-child {
     flex: 1.5 !important;
   }
-  .calc-main-wrapper.step3-layout .calc-sidebar-wrapper {
+  .calc-main-wrapper.desktop-split-layout .calc-sidebar-wrapper {
     flex: 1 !important;
     width: auto !important;
     margin-top: 0;
@@ -152,7 +152,7 @@
   .calc-sidebar-wrapper {
     width: 380px;
   }
-  .calc-main-wrapper.step3-layout .calc-sidebar-wrapper {
+  .calc-main-wrapper.desktop-split-layout .calc-sidebar-wrapper {
     width: 300px !important;
   }
 }
@@ -162,7 +162,7 @@
     flex-direction: column;
     align-items: stretch;
   }
-  .calc-main-wrapper.step3-layout {
+  .calc-main-wrapper.mobile-reverse {
     flex-direction: column-reverse !important;
   }
   .calc-sidebar-wrapper {
