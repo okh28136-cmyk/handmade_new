@@ -94,6 +94,26 @@ const Calculator = () => {
   };
   const getLabel = (key) => labelMap[key] || '일반 기준';
 
+  const getMultiplierText = (type, key, val) => {
+    const textMap = {
+      kitting: {
+        preTask: { 1: '해체 없음', 1.2: '사전 해체 필요' },
+        mainPacking: { 1: '일반 상자류', 1.3: '비닐/파우치류', 1.2: '종이 봉투류' },
+        direction: { 1: '일반 투입', 1.2: '방향/위치 지정', 1.4: '밀착/압박 안착' }
+      },
+      attach: {
+        attachArea: { 1: '평면', 1.2: '둥근 면(부분)', 1.5: '둥근 면(전체)', 1.4: '꺾이는 모서리', 1.6: '연질/불규칙 굴곡' },
+        attachSize: { 1: '소형~중형 스티커', 1.3: '대형 사이즈(밀대 작업)' },
+        attachMaterial: { 1: '일반 재질', 1.2: '특수 재질(투명/은박 등)' }
+      },
+      assemble: {
+        innerPad: { 1: '기본 조립', 1.3: '내부 구조물 조립', 1.5: '테이프/글루건 부착' },
+        finishing: { 1: '마감 장식 없음', 1.5: '띠지/리본 묶기 추가' }
+      }
+    };
+    return textMap[type]?.[key]?.[val] || '';
+  };
+
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const fileNames = Array.from(e.target.files).map(f => f.name).join(', ');
@@ -130,7 +150,16 @@ const Calculator = () => {
       message      : formData.get('message'),
       to_email     : 'jyy1422@iroum.co.kr',
       to_email2    : 'okh@iroum.co.kr',
-      cart_details : quoteResult.enrichedCart.map(item => `- ${item.label} (${item.base}): ${item.calculatedPrice}원`).join('\n'),
+      cart_details : quoteResult.enrichedCart.map(item => {
+        let text = `- ${item.label} (${getLabel(item.base)}): ${Math.round(item.calculatedPrice)}원`;
+        if (item.multipliers) {
+          Object.entries(item.multipliers).forEach(([mKey, mVal]) => {
+            const mText = getMultiplierText(item.type, mKey, mVal);
+            if (mText) text += `\n  ㄴ ${mText}`;
+          });
+        }
+        return text;
+      }).join('\n'),
       total_price  : `${quoteResult.totalPrice.toLocaleString()}원`,
       attachment_url: attachments.length > 0 ? attachments.map(a => a.url).join(', ') : '첨부파일 없음'
     };
@@ -457,6 +486,14 @@ const Calculator = () => {
                     <div>
                       <div style={{ fontWeight: '700', color: 'var(--text-main)' }}>{item.label}</div>
                       <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{getLabel(item.base)}</div>
+                      {item.multipliers && (
+                        <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '0.25rem', lineHeight: '1.4' }}>
+                          {Object.entries(item.multipliers).map(([mKey, mVal]) => {
+                            const text = getMultiplierText(item.type, mKey, mVal);
+                            return text ? <span key={mKey} style={{ display: 'block' }}>• {text}</span> : null;
+                          })}
+                        </div>
+                      )}
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
                       <div style={{ fontWeight: '700', color: 'var(--primary)' }}>
