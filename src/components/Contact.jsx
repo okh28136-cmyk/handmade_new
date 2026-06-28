@@ -59,7 +59,7 @@ const Contact = () => {
           </div>
 
           {/* 우측 견적 문의 영역 (계산기 임베딩) */}
-          <div className="contact-form-container" style={{ padding: 0, overflow: 'hidden' }}>
+          <div className="contact-form-container">
             <Calculator />
           </div>
           

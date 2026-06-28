@@ -194,7 +194,7 @@ const Calculator = () => {
             
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-muted)' }}>총 예상 수량 (세트)</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>총 예상 수량 (세트)</label>
                 <input 
                   type="number" 
                   value={project.quantity === '' ? '' : project.quantity} 
@@ -204,7 +204,7 @@ const Calculator = () => {
                 />
               </div>
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-muted)' }}>완성품 1개의 무게/크기</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>완성품 1개의 무게/크기</label>
                 <select 
                   value={project.weight === '' ? '' : project.weight} 
                   onChange={(e) => setProject('weight', parseFloat(e.target.value))}
@@ -217,7 +217,7 @@ const Calculator = () => {
                 </select>
               </div>
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-muted)' }}>부자재 조달 방식</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>부자재 조달 방식</label>
                 <select 
                   value={project.hasBOM === '' ? '' : project.hasBOM.toString()} 
                   onChange={(e) => setProject('hasBOM', e.target.value === 'true')}
@@ -453,7 +453,7 @@ const Calculator = () => {
                   <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                       <div style={{ fontWeight: '700', color: 'var(--text-main)' }}>{item.label}</div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{getLabel(item.base)}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>{getLabel(item.base)}</div>
                       {item.multipliers && (
                         <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '0.25rem', lineHeight: '1.4' }}>
                           {Object.entries(item.multipliers).map(([mKey, mVal]) => {
@@ -479,7 +479,7 @@ const Calculator = () => {
 
           <div style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '2px solid #f1f5f9' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-              <span style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-muted)' }}>총 예상 비용</span>
+              <span style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>총 예상 비용</span>
               <div style={{ textAlign: 'right' }}>
                 <span style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--primary)', letterSpacing: '-1px' }}>{quoteResult.totalPrice.toLocaleString()}</span>
                 <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', marginLeft: '0.25rem' }}>원</span>
