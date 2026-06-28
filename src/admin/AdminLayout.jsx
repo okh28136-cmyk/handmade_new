@@ -23,13 +23,13 @@ const AdminLayout = ({ children }) => {
         </div>
 
         <nav className="sidebar-nav">
-          <NavLink to="/admin/dashboard" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
-            <span className="nav-icon">📊</span>
-            <span>통계 대시보드</span>
-          </NavLink>
           <NavLink to="/admin/inquiries" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
             <span className="nav-icon">📋</span>
             <span>견적 문의 관리</span>
+          </NavLink>
+          <NavLink to="/admin/pricing" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
+            <span className="nav-icon">💰</span>
+            <span>단가 및 견적 설정</span>
           </NavLink>
           <NavLink to="/admin/gallery" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
             <span className="nav-icon">🖼️</span>
@@ -39,9 +39,9 @@ const AdminLayout = ({ children }) => {
             <span className="nav-icon">💬</span>
             <span>FAQ 관리</span>
           </NavLink>
-          <NavLink to="/admin/pricing" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
-            <span className="nav-icon">💰</span>
-            <span>단가 및 견적 설정</span>
+          <NavLink to="/admin/dashboard" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
+            <span className="nav-icon">📊</span>
+            <span>통계 대시보드</span>
           </NavLink>
           <NavLink to="/admin/settings" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
             <span className="nav-icon">⚙️</span>
