@@ -119,14 +119,26 @@
 
 /* 우측 견적 문의 폼 영역 */
 .contact-form-container {
-  flex: 1.5;
-  background-color: transparent;
-  padding: 0;
-  box-shadow: none;
-  border-radius: 0;
-  color: var(--color-white);
+  background-color: var(--color-white);
+  padding: 80px 100px;
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  border-radius: 32px;
+  color: var(--color-black);
   border: none;
-  overflow: hidden;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+@media (max-width: 1024px) {
+  .contact-form-container {
+    padding: 60px 50px;
+  }
+}
+@media (max-width: 600px) {
+  .contact-form-container {
+    padding: 40px 24px;
+    border-radius: 24px;
+  }
 }
 
 .form-header {
