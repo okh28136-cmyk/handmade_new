@@ -178,7 +178,10 @@ const Calculator = () => {
     <div className="calculator-container" style={{ width: '100%', background: 'var(--bg-color)', color: 'var(--text-main)' }}>
       <div style={{ width: '100%', margin: '0 auto', padding: '0' }}>
 
-        <div className="calc-main-wrapper animate-slide-up">
+        <div 
+          className="calc-main-wrapper animate-slide-up" 
+          style={{ flexDirection: step === 3 ? 'column-reverse' : 'column' }}
+        >
       
       {/* Left Panel: Services Menu & Project Settings */}
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: step === 1 ? 'center' : 'stretch' }}>

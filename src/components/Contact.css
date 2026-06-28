@@ -221,18 +221,20 @@
 
 /* 파일 첨부 영역 */
 .file-upload-group {
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 .file-upload-wrapper {
   position: relative;
   width: 100%;
-  border: 2px dashed var(--color-black);
-  background-color: var(--color-gray-100);
-  transition: all 0.3s ease;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
   cursor: pointer;
+  overflow: hidden;
 }
 .file-upload-wrapper:hover {
-  background-color: var(--color-white);
+  background-color: #f1f5f9;
   border-color: var(--color-primary);
 }
 .file-input {
@@ -249,48 +251,52 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
+  padding: 10px 16px;
   pointer-events: none;
 }
 .file-icon {
   font-size: 1.2rem;
-  margin-right: 15px;
+  color: #94a3b8;
 }
 .file-text {
   flex: 1;
   font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--color-gray-600);
+  font-weight: 500;
+  color: #64748b;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: 15px;
+  margin: 0 15px;
 }
 .file-btn {
-  background-color: var(--color-black);
-  color: var(--color-white);
-  padding: 8px 15px;
-  font-size: 0.95rem;
-  font-weight: 800;
+  background-color: #e2e8f0;
+  color: #475569;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 6px;
   border: none;
-  text-transform: uppercase;
+  transition: all 0.2s;
 }
 .file-upload-wrapper:hover .file-btn {
   background-color: var(--color-primary);
+  color: #ffffff;
 }
 
 /* 개인정보 동의 체크박스 */
 .privacy-policy {
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: var(--color-gray-100);
-  border: 1px solid var(--color-gray-200);
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
 }
 
 .custom-checkbox {
   display: flex;
   align-items: flex-start;
   cursor: pointer;
+  gap: 12px;
 }
 
 .custom-checkbox input {
