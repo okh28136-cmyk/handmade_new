@@ -198,7 +198,7 @@ const Calculator = ({ onStepChange }) => {
             </div>
             <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '1.5rem', marginLeft: '2.25rem' }}>작업의 전체 규모와 물리적 하중을 파악하여 기본 고정비와 피로도 가중치를 결정합니다.</p>
             
-            <div className="step1-layout-wrapper" style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'stretch', marginTop: '2rem' }}>
+            <div className="step1-layout-wrapper">
               <div style={{ flex: '1', minWidth: '300px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>총 예상 수량 (세트)</label>
@@ -242,7 +242,7 @@ const Calculator = ({ onStepChange }) => {
                 </div>
               </div>
 
-              <div style={{ flex: '0 0 220px', display: 'flex', alignItems: 'flex-end' }}>
+              <div className="step1-btn-wrapper">
                 <button 
                   onClick={() => {
                     if (!isProjectValid) {
@@ -288,7 +288,7 @@ const Calculator = ({ onStepChange }) => {
               </button>
             </div>
             
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+            <div className="process-cards-grid">
               
               <button className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => openModal('kitting')}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '2rem' }}>

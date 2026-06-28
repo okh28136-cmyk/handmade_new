@@ -149,7 +149,44 @@
   margin-top: 1rem;
 }
 
+/* Step 1 & Step 2 Layout Classes */
+.step1-layout-wrapper {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  margin-top: 2rem;
+}
+.step1-btn-wrapper {
+  flex: 0 0 220px;
+  display: flex;
+  align-items: flex-end;
+}
+.process-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
 
+@media (max-width: 768px) {
+  .step1-layout-wrapper {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .step1-btn-wrapper {
+    flex: 1 1 100%;
+  }
+  .process-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .calculator-container .service-card h3 {
+    font-size: 2.5rem !important;
+  }
+  .calculator-container .service-card {
+    min-height: auto !important;
+    padding: 1.5rem !important;
+  }
+}
 
 @media (max-width: 1024px) {
   .calc-main-wrapper {
