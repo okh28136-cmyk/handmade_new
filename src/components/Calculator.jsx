@@ -494,6 +494,10 @@ const Calculator = () => {
                 <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', marginLeft: '0.25rem' }}>원</span>
               </div>
             </div>
+            <p style={{ fontSize: '0.8rem', color: '#94a3b8', textAlign: 'right', marginTop: '0.5rem', lineHeight: '1.4' }}>
+              * 본 견적은 자동 산출된 대략적인 예상 금액이며,<br/>
+              실제 제품 및 작업 난이도 확인 후 최종 단가가 변동될 수 있습니다.
+            </p>
             
             {project.hasBOM && (
               <div style={{ display: 'flex', gap: '0.5rem', background: '#fffbeb', color: '#b45309', padding: '0.75rem', borderRadius: 'var(--radius-md)', marginTop: '1rem', fontSize: '0.8125rem' }}>
