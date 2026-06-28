@@ -2,7 +2,7 @@ import React from 'react';
 import './Pricing.css';
 
 const Pricing = () => {
-  // 3개의 벤토 박스를 위한 데이터 구성 (담다, 붙이다, 보내다)
+  // 3개의 벤토 박스를 위한 데이터 구성 (담기, 붙이기, 만들기)
   const bentoData = [
     {
       id: 'pack',
@@ -28,13 +28,13 @@ const Pricing = () => {
     },
     {
       id: 'send',
-      icon: '🚚',
-      title: '보내기',
-      desc: '우편부터 대량 지점 배송까지 완벽하게',
+      icon: '🛠️',
+      title: '만들기',
+      desc: '다양한 형태의 상자 및 패드 조립',
       items: [
-        { id: 7, name: 'DM 발송', price: '상담 후 결정' },
-        { id: 8, name: '택배 발송', price: '건당 최저가' },
-        { id: 9, name: '지점별 배송', price: '맞춤 견적' },
+        { id: 7, name: '기본 단상자 조립', price: '150원 ~' },
+        { id: 8, name: '내부 칸막이 결합', price: '별도 문의' },
+        { id: 9, name: '띠지 및 리본 세팅', price: '맞춤 견적' },
       ]
     }
   ];
