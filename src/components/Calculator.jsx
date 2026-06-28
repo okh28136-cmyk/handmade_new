@@ -12,11 +12,16 @@ const EMAILJS_SERVICE_ID  = 'service_1tncfue';
 const EMAILJS_TEMPLATE_ID = 'template_jjsvsad';
 const EMAILJS_PUBLIC_KEY  = 'xAmHtsU9Nfdgoee-t';
 
-const Calculator = () => {
+const Calculator = ({ onStepChange }) => {
   const { state, quoteResult, setProject, addToCart, removeFromCart, isLoading } = useQuote();
   const { project } = state;
   const [activeModal, setActiveModal] = useState(null); 
   const [step, setStep] = useState(1); // 1: 기본설정, 2: 공정선택, 3: 문의폼 작성
+
+  // 부모 컴포넌트(Contact)에 step 상태 전달
+  React.useEffect(() => {
+    if (onStepChange) onStepChange(step);
+  }, [step, onStepChange]);
 
   // 폼 관련 State
   const formRef = useRef(null);
@@ -179,8 +184,7 @@ const Calculator = () => {
       <div style={{ width: '100%', margin: '0 auto', padding: '0' }}>
 
         <div 
-          className="calc-main-wrapper animate-slide-up" 
-          style={{ flexDirection: step === 3 ? 'column-reverse' : 'column' }}
+          className={`calc-main-wrapper animate-slide-up ${step === 3 ? 'step3-layout' : ''}`}
         >
       
       {/* Left Panel: Services Menu & Project Settings */}
