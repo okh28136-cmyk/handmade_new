@@ -117,6 +117,19 @@
   background-size: 1rem auto;
 }
 
+/* Service Cards Grid Layout */
+.service-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .service-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* 모바일 및 반응형 레이아웃 */
 .calc-main-wrapper {
   display: flex;
@@ -131,20 +144,7 @@
   margin-top: 1rem;
 }
 
-/* Desktop Split Layout (Step 2, 3) */
-@media (min-width: 901px) {
-  .calc-main-wrapper.desktop-split-layout {
-    flex-direction: row !important;
-  }
-  .calc-main-wrapper.desktop-split-layout > div:first-child {
-    flex: 1.15 !important;
-  }
-  .calc-main-wrapper.desktop-split-layout .calc-sidebar-wrapper {
-    flex: 1 !important;
-    width: auto !important;
-    margin-top: 0;
-  }
-}
+
 
 @media (max-width: 1024px) {
   .calc-main-wrapper {

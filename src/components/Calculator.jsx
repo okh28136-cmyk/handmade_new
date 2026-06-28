@@ -184,7 +184,7 @@ const Calculator = ({ onStepChange }) => {
       <div style={{ width: '100%', margin: '0 auto', padding: '0' }}>
 
         <div 
-          className={`calc-main-wrapper animate-slide-up ${(step === 2 || step === 3) ? 'desktop-split-layout' : ''} ${step === 3 ? 'mobile-reverse' : ''}`}
+          className={`calc-main-wrapper animate-slide-up ${step === 3 ? 'mobile-reverse' : ''}`}
         >
       
       {/* Left Panel: Services Menu & Project Settings */}
@@ -289,48 +289,30 @@ const Calculator = ({ onStepChange }) => {
               </button>
             </div>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
               
-              <button className="service-card horizontal" onClick={() => openModal('kitting')}>
-                <div className="card-left">
-                  <div className="card-text-content">
-                    <h3 style={{ fontSize: '2.5rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: 'var(--primary)' }}>담기 <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#111' }}>(Kitting & Packing)</span></h3>
-                    <p style={{ fontSize: '1.05rem', color: '#555', margin: 0, lineHeight: '1.6' }}>제품의 특성에 맞춘 꼼꼼한 개별 포장부터, 다양한 구성품을 하나의<br/>세트로 정교하게 조합하는 키팅 작업까지 완벽하게 수행합니다.<br/>복잡한 수작업도 빠르고 정확하게 해결해 드립니다.</p>
-                  </div>
-                </div>
-                <div className="card-right" style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1.1rem', background: '#fff' }}>
-                    <Plus size={20} strokeWidth={3} /> 세부 옵션 선택
-                  </span>
-                </div>
+              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem 1rem', textAlign: 'center' }} onClick={() => openModal('kitting')}>
+                <h3 style={{ fontSize: '2rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: 'var(--primary)' }}>담기</h3>
+                <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#111', marginBottom: '1.5rem' }}>(Kitting & Packing)</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1rem', background: '#fff' }}>
+                  <Plus size={18} strokeWidth={3} /> 세부 옵션 선택
+                </span>
               </button>
 
-              <button className="service-card horizontal" onClick={() => openModal('attach')}>
-                <div className="card-left">
-                  <div className="card-text-content">
-                    <h3 style={{ fontSize: '2.5rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: '#111' }}>붙이기 <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#111' }}>(Labeling & Sealing)</span></h3>
-                    <p style={{ fontSize: '1.05rem', color: '#555', margin: 0, lineHeight: '1.6' }}>라벨, 스티커, 봉인 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여<br/>제품을 밀봉하거나 외관을 꾸미는 공정입니다.</p>
-                  </div>
-                </div>
-                <div className="card-right" style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1.1rem', background: '#fff' }}>
-                    <Plus size={20} strokeWidth={3} /> 세부 옵션 선택
-                  </span>
-                </div>
+              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem 1rem', textAlign: 'center' }} onClick={() => openModal('attach')}>
+                <h3 style={{ fontSize: '2rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: '#111' }}>붙이기</h3>
+                <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#111', marginBottom: '1.5rem' }}>(Labeling & Sealing)</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1rem', background: '#fff' }}>
+                  <Plus size={18} strokeWidth={3} /> 세부 옵션 선택
+                </span>
               </button>
 
-              <button className="service-card horizontal" onClick={() => openModal('assemble')}>
-                <div className="card-left">
-                  <div className="card-text-content">
-                    <h3 style={{ fontSize: '2.5rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: '#111' }}>만들기 <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#111' }}>(Assembly & Shaping)</span></h3>
-                    <p style={{ fontSize: '1.05rem', color: '#555', margin: 0, lineHeight: '1.6' }}>평면 상태의 종이 박스나 칸막이를 입체로 성형하고, 띠지나 리본 등으로<br/>최종 외관의 디테일을 완성하는 조립 공정입니다.</p>
-                  </div>
-                </div>
-                <div className="card-right" style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1.1rem', background: '#fff' }}>
-                    <Plus size={20} strokeWidth={3} /> 세부 옵션 선택
-                  </span>
-                </div>
+              <button className="service-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem 1rem', textAlign: 'center' }} onClick={() => openModal('assemble')}>
+                <h3 style={{ fontSize: '2rem', fontWeight: '900', letterSpacing: '-1px', margin: '0 0 0.5rem 0', color: '#111' }}>만들기</h3>
+                <span style={{ fontSize: '1.1rem', fontWeight: '700', color: '#111', marginBottom: '1.5rem' }}>(Assembly & Shaping)</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', border: '2px solid var(--primary)', color: 'var(--primary)', fontWeight: '800', fontSize: '1rem', background: '#fff' }}>
+                  <Plus size={18} strokeWidth={3} /> 세부 옵션 선택
+                </span>
               </button>
 
               {/* [출고/물류 포장] 항목 임시 숨김 처리 (서비스 불가)
