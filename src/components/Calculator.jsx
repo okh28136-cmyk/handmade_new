@@ -257,14 +257,14 @@ const Calculator = ({ onStepChange }) => {
                     border: 'none', borderRadius: 0,
                     fontWeight: '800', fontSize: '1.125rem', letterSpacing: '-0.5px',
                     cursor: 'pointer', transition: 'all 0.2s',
-                    display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '0.75rem',
+                    display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.5rem',
                     boxShadow: 'none'
                   }}
                   onMouseOver={(e) => { e.currentTarget.style.background = 'var(--primary-hover)'; }}
                   onMouseOut={(e) => { e.currentTarget.style.background = 'var(--primary)'; }}
                 >
-                  <ArrowRight size={28} strokeWidth={2.5} />
-                  <span style={{ lineHeight: '1.3', textAlign: 'center' }}>다음 단계로</span>
+                  <span style={{ lineHeight: '1' }}>다음 단계로</span>
+                  <ArrowRight size={24} strokeWidth={2.5} />
                 </button>
               </div>
             </div>
