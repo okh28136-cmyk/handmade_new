@@ -11,7 +11,7 @@ import Features from './components/Features';
 import Gallery from './components/Gallery';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
-import Calculator from './components/Calculator';
+import Contact from './components/Contact';
 import QuoteTestPage from './components/QuoteTestPage';
 import Footer from './components/Footer';
 import FloatingKakao from './components/FloatingKakao';
@@ -58,7 +58,7 @@ const MainSite = () => {
         <Features />
         <Gallery />
         <Pricing />
-        <Calculator />
+        <Contact />
         <FAQ />
       </main>
       <Footer />
