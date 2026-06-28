@@ -199,69 +199,76 @@ const Calculator = ({ onStepChange }) => {
             </div>
             <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '1.5rem', marginLeft: '2.25rem' }}>작업의 전체 규모와 물리적 하중을 파악하여 기본 고정비와 피로도 가중치를 결정합니다.</p>
             
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>총 예상 수량 (세트)</label>
-                <input 
-                  type="number" 
-                  value={project.quantity === '' ? '' : project.quantity} 
-                  onChange={(e) => setProject('quantity', e.target.value === '' ? '' : parseInt(e.target.value))}
-                  className="form-input"
-                  placeholder="직접 입력 (예: 20000)"
-                />
+            <div className="step1-layout-wrapper" style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'stretch', marginTop: '2rem' }}>
+              <div style={{ flex: '1', minWidth: '300px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>총 예상 수량 (세트)</label>
+                  <input 
+                    type="number" 
+                    value={project.quantity === '' ? '' : project.quantity} 
+                    onChange={(e) => setProject('quantity', e.target.value === '' ? '' : parseInt(e.target.value))}
+                    className="form-input"
+                    placeholder="직접 입력 (예: 20000)"
+                  />
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>완성품 1개의 무게/크기</label>
+                  <select 
+                    value={project.weight === '' ? '' : project.weight} 
+                    onChange={(e) => setProject('weight', parseFloat(e.target.value))}
+                    className="form-input"
+                  >
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value={1.0}>가벼움 (한 손 취급 가능, 화장품/엽서 등)</option>
+                    <option value={1.2}>보통 (양손 취급 필요, 일반 세트류)</option>
+                    <option value={1.5}>무거움 (5kg 이상, 디퓨저/주류 등 취급 주의)</option>
+                  </select>
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>부자재 조달 방식</label>
+                  <select 
+                    value={project.hasBOM === '' ? '' : project.hasBOM.toString()} 
+                    onChange={(e) => setProject('hasBOM', e.target.value === 'true')}
+                    className="form-input"
+                  >
+                    <option value="" disabled>항목을 선택해주세요</option>
+                    <option value="false">고객 전량 입고 (순수 임가공 작업만 의뢰)</option>
+                    <option value="true">포장 부자재 제작 동시 의뢰</option>
+                  </select>
+                  {project.hasBOM === true && (
+                    <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
+                      (안내: 단상자, 골판지 박스, 스티커, 인서트 패드, 띠지 등 포장에 필요한 부자재 제작을 함께 의뢰합니다.)
+                    </p>
+                  )}
+                </div>
               </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>완성품 1개의 무게/크기</label>
-                <select 
-                  value={project.weight === '' ? '' : project.weight} 
-                  onChange={(e) => setProject('weight', parseFloat(e.target.value))}
-                  className="form-input"
+
+              <div style={{ flex: '0 0 280px', display: 'flex' }}>
+                <button 
+                  onClick={() => {
+                    if (!isProjectValid) {
+                      alert('예상 수량, 세트당 무게, 부자재 여부를 모두 입력해 주세요.');
+                      return;
+                    }
+                    setStep(2);
+                  }}
+                  style={{
+                    width: '100%', height: '100%', minHeight: '120px', padding: '2rem 1.5rem',
+                    background: 'var(--primary)', color: '#fff',
+                    border: 'none', borderRadius: 'var(--radius-lg)',
+                    fontWeight: '800', fontSize: '1.25rem', letterSpacing: '-0.5px',
+                    cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                    display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '1rem',
+                    boxShadow: '0 10px 25px -5px rgba(217,4,41,0.3)'
+                  }}
+                  onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(217,4,41,0.4)'; e.currentTarget.style.background = 'var(--primary-hover)'; }}
+                  onMouseOut={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(217,4,41,0.3)'; e.currentTarget.style.background = 'var(--primary)'; }}
                 >
-                  <option value="" disabled>항목을 선택해주세요</option>
-                  <option value={1.0}>가벼움 (한 손 취급 가능, 화장품/엽서 등)</option>
-                  <option value={1.2}>보통 (양손 취급 필요, 일반 세트류)</option>
-                  <option value={1.5}>무거움 (5kg 이상, 디퓨저/주류 등 취급 주의)</option>
-                </select>
-              </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>부자재 조달 방식</label>
-                <select 
-                  value={project.hasBOM === '' ? '' : project.hasBOM.toString()} 
-                  onChange={(e) => setProject('hasBOM', e.target.value === 'true')}
-                  className="form-input"
-                >
-                  <option value="" disabled>항목을 선택해주세요</option>
-                  <option value="false">고객 전량 입고 (순수 임가공 작업만 의뢰)</option>
-                  <option value="true">포장 부자재 제작 동시 의뢰</option>
-                </select>
-                {project.hasBOM === true && (
-                  <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-                    (안내: 단상자, 골판지 박스, 스티커, 인서트 패드, 띠지 등 포장에 필요한 부자재 제작을 함께 의뢰합니다.)
-                  </p>
-                )}
+                  <ArrowRight size={36} strokeWidth={2.5} />
+                  <span style={{ lineHeight: '1.3', textAlign: 'center' }}>다음 단계로<br/>공정 선택하기</span>
+                </button>
               </div>
             </div>
-
-            <button 
-              onClick={() => {
-                if (!isProjectValid) {
-                  alert('예상 수량, 세트당 무게, 부자재 여부를 모두 입력해 주세요.');
-                  return;
-                }
-                setStep(2);
-              }}
-              style={{
-                width: '100%', marginTop: '2rem', padding: '1rem',
-                background: 'var(--primary)',
-                color: '#fff',
-                border: 'none', borderRadius: 'var(--radius-md)',
-                fontWeight: '700', fontSize: '1rem',
-                cursor: 'pointer',
-                transition: 'all 0.2s', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem'
-              }}
-            >
-              다음 단계로 (공정 선택) <ArrowRight size={18} />
-            </button>
           </section>
         )}
 
