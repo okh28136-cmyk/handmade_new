@@ -439,6 +439,17 @@ const Calculator = () => {
                 </div>
               </div>
             )}
+            
+            {/* 기본 옵션 정보 (Step 1) 표기 */}
+            <div style={{ marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '1px dashed var(--border)' }}>
+              <h3 style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-main)', marginBottom: '0.5rem' }}>기본 정보 (Step 1)</h3>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                <li>• 예상 수량: <strong style={{color: 'var(--text-main)'}}>{project.quantity ? project.quantity.toLocaleString() + ' 세트' : '-'}</strong></li>
+                <li>• 제품 무게: <strong style={{color: 'var(--text-main)'}}>{project.weight === 1.0 ? '가벼움' : project.weight === 1.2 ? '보통' : project.weight === 1.5 ? '무거움' : '-'}</strong></li>
+                <li>• 부자재: <strong style={{color: 'var(--text-main)'}}>{project.hasBOM === true ? '동시 제작 의뢰' : project.hasBOM === false ? '고객 전량 입고' : '-'}</strong></li>
+              </ul>
+            </div>
+
             {quoteResult.enrichedCart.length === 0 ? (
               <div style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '3rem 0' }}>
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', opacity: 0.5 }}>
