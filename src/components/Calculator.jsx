@@ -186,15 +186,15 @@ const Calculator = () => {
         {/* Step 1: Project Settings Section */}
         {step === 1 && (
           <section style={{ width: '100%', maxWidth: '800px', padding: '3rem 0' }} className="animate-fade-in">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.95rem', marginBottom: '0.5rem' }}>
               <Settings size={24} color="var(--primary)" />
               <h2 style={{ fontSize: '1.25rem', fontWeight: '700' }}>Step 1. 맞춤 견적을 위해 기본 정보를 알려주세요</h2>
             </div>
-            <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginBottom: '1.5rem', marginLeft: '2.25rem' }}>작업의 전체 규모와 물리적 하중을 파악하여 기본 고정비와 피로도 가중치를 결정합니다.</p>
+            <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '1.5rem', marginLeft: '2.25rem' }}>작업의 전체 규모와 물리적 하중을 파악하여 기본 고정비와 피로도 가중치를 결정합니다.</p>
             
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>총 예상 수량 (세트)</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>총 예상 수량 (세트)</label>
                 <input 
                   type="number" 
                   value={project.quantity === '' ? '' : project.quantity} 
@@ -204,7 +204,7 @@ const Calculator = () => {
                 />
               </div>
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>완성품 1개의 무게/크기</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>완성품 1개의 무게/크기</label>
                 <select 
                   value={project.weight === '' ? '' : project.weight} 
                   onChange={(e) => setProject('weight', parseFloat(e.target.value))}
@@ -217,7 +217,7 @@ const Calculator = () => {
                 </select>
               </div>
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>부자재 조달 방식</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>부자재 조달 방식</label>
                 <select 
                   value={project.hasBOM === '' ? '' : project.hasBOM.toString()} 
                   onChange={(e) => setProject('hasBOM', e.target.value === 'true')}
@@ -228,7 +228,7 @@ const Calculator = () => {
                   <option value="true">포장 부자재 제작 동시 의뢰</option>
                 </select>
                 {project.hasBOM === true && (
-                  <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
+                  <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
                     (안내: 단상자, 골판지 박스, 스티커, 인서트 패드, 띠지 등 포장에 필요한 부자재 제작을 함께 의뢰합니다.)
                   </p>
                 )}
@@ -267,7 +267,7 @@ const Calculator = () => {
               </div>
               <button 
                 onClick={() => setStep(1)} 
-                style={{ background: 'none', border: '1px solid var(--border)', padding: '0.5rem 1rem', borderRadius: 'var(--radius-md)', color: 'var(--text-muted)', cursor: 'pointer', fontWeight: '600', fontSize: '0.875rem', transition: 'all 0.2s' }}
+                style={{ background: 'none', border: '1px solid var(--border)', padding: '0.5rem 1rem', borderRadius: 'var(--radius-md)', color: 'var(--text-muted)', cursor: 'pointer', fontWeight: '600', fontSize: '0.95rem', transition: 'all 0.2s' }}
                 onMouseOver={(e) => { e.target.style.background = 'var(--bg-color)'; e.target.style.color = 'var(--text-main)'; }}
                 onMouseOut={(e) => { e.target.style.background = 'none'; e.target.style.color = 'var(--text-muted)'; }}
               >
@@ -280,33 +280,33 @@ const Calculator = () => {
               <button className="service-card" onClick={() => openModal('kitting')}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div className="icon-wrapper"><Package size={24} /></div>
-                  <div style={{ background: 'var(--bg-color)', color: 'var(--text-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600' }}><Plus size={14} /> 선택</div>
+                  <div style={{ background: 'var(--bg-color)', color: 'var(--text-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.95rem', fontWeight: '600' }}><Plus size={14} /> 선택</div>
                 </div>
                 <div>
                   <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.25rem' }}>담기</h3>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>단순히 물건을 넣는 것을 넘어, 여러 상품을 정해진 순서와 방향에 맞게 분류하고 완충재와 함께 포장재 안에 안전하게 투입하는 공정입니다.</p>
+                  <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>단순히 물건을 넣는 것을 넘어, 여러 상품을 정해진 순서와 방향에 맞게 분류하고 완충재와 함께 포장재 안에 안전하게 투입하는 공정입니다.</p>
                 </div>
               </button>
 
               <button className="service-card" onClick={() => openModal('attach')}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div className="icon-wrapper"><Tag size={24} /></div>
-                  <div style={{ background: 'var(--bg-color)', color: 'var(--text-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600' }}><Plus size={14} /> 선택</div>
+                  <div style={{ background: 'var(--bg-color)', color: 'var(--text-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.95rem', fontWeight: '600' }}><Plus size={14} /> 선택</div>
                 </div>
                 <div>
                   <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.25rem' }}>붙이기</h3>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>라벨, 스티커, 봉인 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여 제품을 밀봉하거나 외관을 꾸미는 공정입니다.</p>
+                  <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>라벨, 스티커, 봉인 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여 제품을 밀봉하거나 외관을 꾸미는 공정입니다.</p>
                 </div>
               </button>
 
               <button className="service-card" onClick={() => openModal('assemble')}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <div className="icon-wrapper"><Box size={24} /></div>
-                  <div style={{ background: 'var(--bg-color)', color: 'var(--text-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600' }}><Plus size={14} /> 선택</div>
+                  <div style={{ background: 'var(--bg-color)', color: 'var(--text-muted)', padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.95rem', fontWeight: '600' }}><Plus size={14} /> 선택</div>
                 </div>
                 <div>
                   <h3 style={{ fontSize: '1.125rem', fontWeight: '700', marginBottom: '0.25rem' }}>만들기</h3>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>평면 상태의 종이 박스나 칸막이를 입체로 성형하고, 띠지나 리본 등으로 최종 외관의 디테일을 완성하는 조립 공정입니다.</p>
+                  <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>평면 상태의 종이 박스나 칸막이를 입체로 성형하고, 띠지나 리본 등으로 최종 외관의 디테일을 완성하는 조립 공정입니다.</p>
                 </div>
               </button>
 
@@ -347,7 +347,7 @@ const Calculator = () => {
                     자동 견적 내역과 남겨주신 정보가 담당자에게 전달되었습니다.<br/>
                     평균 영업일 기준 1일 이내에 연락드리겠습니다.
                   </p>
-                  <button onClick={() => { setStep(1); setSubmitStatus('idle'); }} style={{ marginTop: '2rem', padding: '0.75rem 2rem', background: 'var(--text-main)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '600' }}>
+                  <button onClick={() => { setStep(1); setSubmitStatus('idle'); }} style={{ marginTop: '2rem', padding: '0.95rem 2rem', background: 'var(--text-main)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '600' }}>
                     처음으로 돌아가기
                   </button>
                 </div>
@@ -428,13 +428,13 @@ const Calculator = () => {
             <h2 style={{ fontSize: '1.25rem', margin: 0, fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               견적 산출 내역
             </h2>
-            <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.25rem' }}>선택하신 공정이 합산됩니다.</p>
+            <p style={{ fontSize: '0.95rem', color: '#94a3b8', marginTop: '0.25rem' }}>선택하신 공정이 합산됩니다.</p>
           </div>
           
           <div style={{ padding: '1.5rem', maxHeight: '40vh', overflowY: 'auto', background: '#fafafa', position: 'relative' }}>
             {isLoading && (
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255,255,255,0.7)', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(2px)' }}>
-                <div style={{ padding: '0.75rem 1.5rem', background: 'var(--surface)', borderRadius: 'var(--radius-full)', boxShadow: 'var(--shadow-md)', fontWeight: '700', color: 'var(--primary)', fontSize: '0.875rem' }} className="animate-pulse">
+                <div style={{ padding: '0.95rem 1.5rem', background: 'var(--surface)', borderRadius: 'var(--radius-full)', boxShadow: 'var(--shadow-md)', fontWeight: '700', color: 'var(--primary)', fontSize: '0.95rem' }} className="animate-pulse">
                   견적 산출 중...
                 </div>
               </div>
@@ -445,7 +445,7 @@ const Calculator = () => {
                   <Package size={48} />
                 </div>
                 <p style={{ fontWeight: '600' }}>아직 추가된 공정이 없습니다.</p>
-                <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>좌측 메뉴에서 필요한 항목을 선택해 주세요.</p>
+                <p style={{ fontSize: '0.95rem', marginTop: '0.5rem' }}>좌측 메뉴에서 필요한 항목을 선택해 주세요.</p>
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -453,9 +453,9 @@ const Calculator = () => {
                   <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                       <div style={{ fontWeight: '700', color: 'var(--text-main)' }}>{item.label}</div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>{getLabel(item.base)}</div>
+                      <div style={{ fontSize: '1rem', color: 'var(--text-muted)', wordBreak: 'keep-all' }}>{getLabel(item.base)}</div>
                       {item.multipliers && (
-                        <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '0.25rem', lineHeight: '1.4' }}>
+                        <div style={{ fontSize: '0.95rem', color: '#64748b', marginTop: '0.25rem', lineHeight: '1.4' }}>
                           {Object.entries(item.multipliers).map(([mKey, mVal]) => {
                             const text = getMultiplierText(item.type, mKey, mVal);
                             return text ? <span key={mKey} style={{ display: 'block' }}>• {text}</span> : null;
@@ -485,13 +485,13 @@ const Calculator = () => {
                 <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', marginLeft: '0.25rem' }}>원</span>
               </div>
             </div>
-            <p style={{ fontSize: '0.8rem', color: '#94a3b8', textAlign: 'right', marginTop: '0.5rem', lineHeight: '1.4' }}>
+            <p style={{ fontSize: '1rem', color: '#94a3b8', textAlign: 'right', marginTop: '0.5rem', lineHeight: '1.4' }}>
               * 본 견적은 자동 산출된 대략적인 예상 금액이며,<br/>
               실제 제품 및 작업 난이도 확인 후 최종 단가가 변동될 수 있습니다.
             </p>
             
             {project.hasBOM && (
-              <div style={{ display: 'flex', gap: '0.5rem', background: '#fffbeb', color: '#b45309', padding: '0.75rem', borderRadius: 'var(--radius-md)', marginTop: '1rem', fontSize: '0.8125rem' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', background: '#fffbeb', color: '#b45309', padding: '0.95rem', borderRadius: 'var(--radius-md)', marginTop: '1rem', fontSize: '0.8125rem' }}>
                 <Info size={16} style={{ flexShrink: 0, marginTop: '2px' }} />
                 <p>부자재 제작 비용은 실비 정산으로 위 견적에는 포함되지 않았습니다.</p>
               </div>

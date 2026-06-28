@@ -16,7 +16,7 @@
 
 .faq-tag {
   display: block;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 800;
   color: var(--color-primary); /* 이미지의 파란색 대신 브랜드 컬러(레드) 적용 */
   letter-spacing: 2px;

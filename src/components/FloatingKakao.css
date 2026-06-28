@@ -35,7 +35,7 @@
 }
 
 .kakao-text {
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   font-weight: 800;
   letter-spacing: -0.5px;
 }
@@ -56,7 +56,7 @@
     height: 28px;
   }
   .kakao-text {
-    font-size: 0.75rem;
+    font-size: 0.95rem;
   }
 }
 

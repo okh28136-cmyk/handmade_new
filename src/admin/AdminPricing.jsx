@@ -107,7 +107,7 @@ const AdminPricing = () => {
           <p className="panel-desc" style={{ marginBottom: '16px' }}>
             모든 단가 계산의 베이스가 되는 시급입니다. 각 구성요소를 수정하면 <strong>합계 시급</strong>이 자동 계산됩니다.
           </p>
-          <div style={{ background: '#eff6ff', padding: '16px', borderRadius: '8px', border: '1px solid #bfdbfe', marginBottom: '24px', fontSize: '0.9rem', color: '#1e3a8a', lineHeight: '1.6' }}>
+          <div style={{ background: '#eff6ff', padding: '16px', borderRadius: '8px', border: '1px solid #bfdbfe', marginBottom: '24px', fontSize: '1rem', color: '#1e3a8a', lineHeight: '1.6' }}>
             <strong>💡 목표 시급 산정 가이드 (추천: 18,000원 ~ 20,000원)</strong>
             <ul style={{ margin: '8px 0 0 20px', padding: 0 }}>
               <li><strong>최저임금:</strong> 주휴수당, 4대보험, 휴게 로스를 포함하여 법정 최저시급보다 약 20~25% 높게 잡아야 적자가 발생하지 않습니다. (추천: 12,500원)</li>

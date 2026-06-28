@@ -19,7 +19,7 @@
 }
 
 .contact-tag {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 800;
   color: var(--color-white);
   background-color: var(--color-primary);
@@ -78,7 +78,7 @@
 }
 
 .detail-label {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 800;
   color: var(--color-primary);
 }
@@ -96,7 +96,7 @@
 }
 
 .detail-sub {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--color-gray-500);
 }
 
@@ -107,7 +107,7 @@
 }
 
 .contact-notice p {
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: var(--color-gray-500);
   margin-bottom: 5px;
 }
@@ -170,7 +170,7 @@
 
 .optional {
   color: var(--color-gray-400);
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -198,7 +198,7 @@
 }
 .select-wrapper::after {
   content: "▼";
-  font-size: 0.8rem;
+  font-size: 1rem;
   position: absolute;
   right: 20px;
   top: 50%;
@@ -270,7 +270,7 @@
   background-color: var(--color-black);
   color: var(--color-white);
   padding: 8px 15px;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 800;
   border: none;
   text-transform: uppercase;
@@ -337,7 +337,7 @@
 
 .privacy-text small {
   display: block;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: var(--color-gray-500);
   margin-top: 5px;
 }
@@ -498,7 +498,7 @@
 
 .success-summary p {
   margin: 6px 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #444;
 }
 
@@ -513,7 +513,7 @@
   color: #fff;
   border: none;
   font-family: 'Pretendard', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;

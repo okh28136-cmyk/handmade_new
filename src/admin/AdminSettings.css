@@ -18,7 +18,7 @@
 }
 
 .panel-desc {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--color-gray-600);
   margin-bottom: 25px;
   line-height: 1.5;
@@ -139,7 +139,7 @@ input:checked + .slider:before {
 }
 
 .toggle-status {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--color-gray-600);
   min-width: 180px;

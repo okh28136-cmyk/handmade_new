@@ -44,7 +44,7 @@
 .divider {
   margin: 0 10px;
   color: rgba(255, 255, 255, 0.15);
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .footer-bottom {
@@ -56,7 +56,7 @@
 }
 
 .copyright {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--color-gray-600);
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -69,7 +69,7 @@
 
 .footer-links a,
 .footer-link-btn {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--color-gray-500);
   text-decoration: none;
   font-weight: 600;
