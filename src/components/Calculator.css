@@ -137,7 +137,7 @@
     flex-direction: row !important;
   }
   .calc-main-wrapper.desktop-split-layout > div:first-child {
-    flex: 1.5 !important;
+    flex: 1.15 !important;
   }
   .calc-main-wrapper.desktop-split-layout .calc-sidebar-wrapper {
     flex: 1 !important;

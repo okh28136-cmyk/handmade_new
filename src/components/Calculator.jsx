@@ -464,9 +464,9 @@ const Calculator = ({ onStepChange }) => {
             )}
             
             {/* 기본 옵션 정보 (Step 1) 표기 */}
-            <div style={{ marginBottom: '2rem', paddingBottom: '1.5rem', borderBottom: '2px solid #000' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '900', color: '#000', marginBottom: '1rem' }}>기본 정보 (Step 1)</h3>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '1rem', color: '#333', lineHeight: '1.8' }}>
+            <div style={{ marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '2px solid #000' }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: '900', color: '#000', marginBottom: '0.5rem' }}>기본 정보 (Step 1)</h3>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.95rem', color: '#333', lineHeight: '1.5' }}>
                 <li><strong>예상 수량 :</strong> {project.quantity ? project.quantity.toLocaleString() + ' 세트' : '-'}</li>
                 <li><strong>제품 무게 :</strong> {project.weight === 1.0 ? '가벼움' : project.weight === 1.2 ? '보통' : project.weight === 1.5 ? '무거움' : '-'}</li>
                 <li><strong>부자재 :</strong> {project.hasBOM === true ? '동시 제작 의뢰' : project.hasBOM === false ? '고객 전량 입고' : '-'}</li>
@@ -481,12 +481,12 @@ const Calculator = ({ onStepChange }) => {
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {quoteResult.enrichedCart.map((item) => (
-                  <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '1rem', marginBottom: '1rem', borderBottom: '1px solid #eee' }}>
+                  <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '0.5rem', marginBottom: '0.5rem', borderBottom: '1px solid #eee' }}>
                     <div>
-                      <div style={{ fontWeight: '900', color: '#000', fontSize: '1.1rem', marginBottom: '0.25rem' }}>{item.label}</div>
-                      <div style={{ fontSize: '0.95rem', color: '#333', wordBreak: 'keep-all' }}>{getLabel(item.base)}</div>
+                      <div style={{ fontWeight: '900', color: '#000', fontSize: '1.05rem', marginBottom: '0.1rem' }}>{item.label}</div>
+                      <div style={{ fontSize: '0.9rem', color: '#333', wordBreak: 'keep-all' }}>{getLabel(item.base)}</div>
                       {item.multipliers && (
-                        <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem', lineHeight: '1.5' }}>
+                        <div style={{ fontSize: '0.85rem', color: '#666', marginTop: '0.2rem', lineHeight: '1.4' }}>
                           {Object.entries(item.multipliers).map(([mKey, mVal]) => {
                             const text = getMultiplierText(item.type, mKey, mVal);
                             return text ? <span key={mKey} style={{ display: 'block' }}>- {text}</span> : null;
@@ -496,7 +496,7 @@ const Calculator = ({ onStepChange }) => {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <button onClick={() => removeFromCart(item.id)} style={{ background: 'none', border: 'none', color: '#999', cursor: 'pointer', padding: '0.25rem' }}>
-                        <X size={20} strokeWidth={2.5} />
+                        <X size={18} strokeWidth={2.5} />
                       </button>
                     </div>
                   </div>
