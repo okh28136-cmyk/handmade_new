@@ -81,13 +81,15 @@
 
 .hero-video-iframe {
   position: absolute;
-  top: 0;
-  left: 0;
-  /* 확대를 최소화(1.15배)하되 좌상단 기준으로 렌더링하여 우측 하단 텍스트만 밖으로 밀어냄 */
-  width: 115vw;
-  height: 64.68vw; /* 16:9 비율 유지 */
-  min-height: 115vh;
-  min-width: 204.44vh;
+  top: 50%;
+  left: 50%;
+  /* 16:9 비율 유지하면서 빈 공간(블랙바) 없이 꽉 채우는 정석적인 방법 */
+  width: 100vw;
+  height: 56.25vw; 
+  min-height: 700px; /* 컨테이너 높이와 동일 */
+  min-width: 1244.44px; /* 700px * (16/9) */
+  /* 정중앙 정렬 후, 워터마크만 가리도록 1.1배만 살짝 확대 */
+  transform: translate(-50%, -50%) scale(1.1);
   pointer-events: none; /* 클릭 불가 처리 */
 }
 
