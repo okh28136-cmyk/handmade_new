@@ -63,6 +63,7 @@
 .hero-image-wrapper {
   position: relative;
   width: 100%;
+  max-width: 1200px; /* 명시적으로 1200px 폭 설정 */
   height: 700px; /* 고정 높이 */
   margin: 0 auto;
   overflow: hidden;
@@ -76,22 +77,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
-  overflow: hidden;
-}
-
-.hero-video-iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  /* 16:9 비율 유지하면서 빈 공간(블랙바) 없이 꽉 채우는 정석적인 방법 */
-  width: 100vw;
-  height: 56.25vw; 
-  min-height: 700px; /* 컨테이너 높이와 동일 */
-  min-width: 1244.44px; /* 700px * (16/9) */
-  /* 정중앙 정렬 후, 워터마크만 가리도록 1.1배만 살짝 확대 */
-  transform: translate(-50%, -50%) scale(1.1);
-  pointer-events: none; /* 클릭 불가 처리 */
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-overlay {
