@@ -26,9 +26,9 @@ const Hero = () => {
           <div className="hero-bg-layer">
             <iframe
               className="hero-video-iframe"
-              src="https://www.youtube.com/embed/m47f9IhwWuk?autoplay=1&mute=1&controls=0&loop=1&playlist=m47f9IhwWuk&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1"
+              src="https://www.youtube.com/embed/m47f9IhwWuk?autoplay=1&mute=1&controls=0&loop=1&playlist=m47f9IhwWuk&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1"
               frameBorder="0"
-              allow="autoplay; encrypted-media"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               title="Background Video"
             ></iframe>
           </div>
