@@ -82,24 +82,21 @@
 
 
 
-.hero-overlay-text {
-  position: absolute;
-  bottom: 8%; /* -5%에서 8%로 올려서 잘림 방지 */
-  left: 0;
+.hero-text-bottom {
   width: 100%;
-  font-size: 5.5rem; /* 글씨 크기 축소 */
+  max-width: 1200px;
+  margin: 10px auto 0; /* 이미지 하단에 딱 붙고 중앙 정렬되도록 마진 설정 */
+  font-size: 5.5rem;
   font-weight: 900;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--color-gray-200); /* 흰 배경에서 은은하게 보이도록 밝은 회색 적용 */
   text-align: center;
-  line-height: 1;
+  line-height: 0.9; /* 텍스트 위아래 공백 최소화 */
   letter-spacing: 4px;
-  white-space: nowrap; /* 한 줄로 강제 정렬 */
-  pointer-events: none;
-  z-index: 3; /* 오버레이 위로 노출 */
+  white-space: nowrap;
 }
 
 @media (max-width: 1024px) {
-  .hero-overlay-text {
+  .hero-text-bottom {
     font-size: 5rem;
   }
 }
@@ -134,10 +131,9 @@
     width: 100%; /* 모바일에서 꽉 차게 변경 */
     margin-bottom: 0;
   }
-  .hero-overlay-text {
+  .hero-text-bottom {
     font-size: clamp(2rem, 8vw, 3rem);
     letter-spacing: 2px;
-    bottom: 5%;
   }
   .hero-image-wrapper {
     height: 400px;

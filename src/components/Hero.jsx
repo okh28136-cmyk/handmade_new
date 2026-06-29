@@ -28,9 +28,9 @@ const Hero = () => {
           alt="Handmade Factory Background" 
           className="hero-bg-image"
         />
-        <div className="hero-overlay-text">
-          HANDMADE FACTORY
-        </div>
+      </div>
+      <div className="hero-text-bottom">
+        HANDMADE FACTORY
       </div>
     </section>
   );
