@@ -29,9 +29,6 @@ const Hero = () => {
           className="hero-bg-image"
         />
       </div>
-      <div className="hero-text-bottom">
-        HANDMADE FACTORY
-      </div>
     </section>
   );
 };
