@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './Hero.css';
 
 const images = [
@@ -9,12 +10,20 @@ const images = [
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    }, 4000); // 4초마다 슬라이드 변경
+      nextSlide();
+    }, 4000); // 4초마다 슬라이드 변경 (우측에서 좌측으로)
     return () => clearInterval(timer);
-  }, []);
+  }, [currentSlide]);
 
   return (
     <section className="hero">
@@ -50,6 +59,14 @@ const Hero = () => {
             />
           ))}
         </div>
+        
+        {/* 화살표 버튼 추가 */}
+        <button className="hero-slider-btn prev" onClick={prevSlide}>
+          <ChevronLeft size={36} />
+        </button>
+        <button className="hero-slider-btn next" onClick={nextSlide}>
+          <ChevronRight size={36} />
+        </button>
       </div>
     </section>
   );
