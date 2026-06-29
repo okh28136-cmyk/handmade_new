@@ -69,10 +69,16 @@
   overflow: hidden;
 }
 
+.hero-slider {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); /* 부드러운 슬라이드 애니메이션 */
+  will-change: transform;
+}
+
 .hero-bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
+  flex-shrink: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
