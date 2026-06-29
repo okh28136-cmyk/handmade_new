@@ -7,22 +7,51 @@ const images = [
   "/hero-bg-2.jpeg"
 ];
 
+// 무한 슬라이드를 위해 첫 번째 이미지를 배열 끝에 복제
+const extendedImages = [...images, images[0]];
+
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    if (currentSlide >= images.length) return; // 트랜지션 중 연타 방지
+    setTransitionEnabled(true);
+    setCurrentSlide((prev) => prev + 1);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    if (currentSlide === 0) {
+      // 첫 슬라이드에서 이전 버튼을 누르면, 트랜지션 없이 맨 끝(복제본)으로 이동 후 바로 실제 마지막 이미지로 슬라이드
+      setTransitionEnabled(false);
+      setCurrentSlide(images.length);
+      setTimeout(() => {
+        setTransitionEnabled(true);
+        setCurrentSlide(images.length - 1);
+      }, 50);
+    } else {
+      setTransitionEnabled(true);
+      setCurrentSlide((prev) => prev - 1);
+    }
   };
 
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 4000); // 4초마다 슬라이드 변경 (우측에서 좌측으로)
+    }, 4000); // 4초마다 우측에서 좌측으로 슬라이드
     return () => clearInterval(timer);
+  }, [currentSlide]);
+
+  useEffect(() => {
+    // 복제본(배열의 마지막)에 도달하여 슬라이드 애니메이션이 끝난 후(0.8초 뒤)
+    // 트랜지션을 끄고 몰래 실제 첫 번째 이미지(index 0)로 둔갑시킴
+    if (currentSlide === images.length) {
+      const resetTimer = setTimeout(() => {
+        setTransitionEnabled(false);
+        setCurrentSlide(0);
+      }, 800); // CSS transition 시간과 동일하게 대기
+      return () => clearTimeout(resetTimer);
+    }
   }, [currentSlide]);
 
   return (
@@ -48,13 +77,16 @@ const Hero = () => {
       <div className="hero-image-wrapper">
         <div 
           className="hero-slider"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          style={{ 
+            transform: `translateX(-${currentSlide * 100}%)`,
+            transition: transitionEnabled ? 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)' : 'none'
+          }}
         >
-          {images.map((imgSrc, index) => (
+          {extendedImages.map((imgSrc, index) => (
             <img 
               key={index}
               src={imgSrc} 
-              alt={`Handmade Factory Background ${index + 1}`} 
+              alt={`Handmade Factory Background ${index}`} 
               className="hero-bg-image"
             />
           ))}
