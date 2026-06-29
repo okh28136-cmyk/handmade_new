@@ -79,21 +79,7 @@
   background-position: center;
 }
 
-.hero-overlay {
-  position: absolute;
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.25); /* 기본 오버레이 */
-  pointer-events: none;
-  z-index: 2;
-  transition: background 1.5s ease; /* 부드럽게 어두워지는 효과 */
-}
 
-.hero-image-wrapper:hover .hero-overlay {
-  background: rgba(0, 0, 0, 0.45); /* 호버 시 텍스트를 더 돋보이게 어두워짐 */
-}
 
 .hero-overlay-text {
   position: absolute;

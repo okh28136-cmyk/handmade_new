@@ -27,8 +27,6 @@ const Hero = () => {
           className="hero-bg-layer"
           style={{ backgroundImage: `url("/hero-new.png")` }}
         />
-        {/* 가독성을 높이기 위한 어두운 오버레이 */}
-        <div className="hero-overlay"></div>
         <div className="hero-overlay-text">
           HANDMADE FACTORY
         </div>
