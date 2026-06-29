@@ -128,9 +128,10 @@
   .hero {
     padding-top: 100px;
     padding-bottom: 50px;
+    text-align: left;
   }
   .hero-badge {
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 4px 8px;
     margin-bottom: 15px;
   }
@@ -140,13 +141,15 @@
     margin-bottom: 30px;
   }
   .hero-title {
-    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
     margin-bottom: 15px;
+    word-break: keep-all; /* 모바일에서 단어 중간에 줄바꿈 방지 */
   }
   .hero-title strong {
-    font-size: clamp(2.8rem, 10vw, 4rem);
+    font-size: clamp(2.4rem, 9vw, 3.2rem);
     margin-top: 5px;
     letter-spacing: -1px;
+    word-break: keep-all;
   }
   .hero-cta-button {
     font-size: 1.05rem;
@@ -155,6 +158,23 @@
     margin-bottom: 0;
   }
   .hero-image-wrapper {
-    height: 400px;
+    height: 350px; /* 모바일에서 이미지가 너무 길지 않도록 조금 더 축소 */
+    border-radius: 16px; /* 모바일에 맞게 곡률 살짝 축소 */
+  }
+  
+  /* 모바일 화살표 버튼 축소 */
+  .hero-slider-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .hero-slider-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+  .hero-slider-btn.prev {
+    left: 10px;
+  }
+  .hero-slider-btn.next {
+    right: 10px;
   }
 }
