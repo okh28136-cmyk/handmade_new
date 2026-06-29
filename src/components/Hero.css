@@ -67,6 +67,7 @@
   height: 500px; /* 고정 높이 축소 */
   margin: 0 auto;
   overflow: hidden;
+  border-radius: 24px; /* 프리미엄한 라운드 처리 */
 }
 
 .hero-slider {
