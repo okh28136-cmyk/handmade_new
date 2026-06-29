@@ -64,7 +64,7 @@
   position: relative;
   width: 100%;
   max-width: 1200px; /* 명시적으로 1200px 폭 설정 */
-  height: 700px; /* 고정 높이 */
+  height: 500px; /* 고정 높이 축소 */
   margin: 0 auto;
   overflow: hidden;
   background-color: var(--color-black);
@@ -101,12 +101,13 @@
   bottom: -5%;
   left: 0;
   width: 100%;
-  font-size: 8rem;
+  font-size: 5.5rem; /* 글씨 크기 축소 */
   font-weight: 900;
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
   line-height: 1;
   letter-spacing: 4px;
+  white-space: nowrap; /* 한 줄로 강제 정렬 */
   pointer-events: none;
   z-index: 3; /* 오버레이 위로 노출 */
 }
