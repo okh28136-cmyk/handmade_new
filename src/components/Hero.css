@@ -78,11 +78,13 @@
   background-size: cover;
   background-position: center;
   transform: scale(1.02); /* 기본 상태 */
-  transition: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 시네마틱 줌 트랜지션 */
+  filter: grayscale(80%) contrast(1.1); /* 컬러 톤업을 위한 차분한 무채색 기본 상태 */
+  transition: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 2s ease; /* 시네마틱 줌 + 컬러 전환 애니메이션 */
 }
 
 .hero-image-wrapper:hover .hero-bg-layer {
   transform: scale(1.08); /* 호버 시 줌 인 */
+  filter: grayscale(0%) contrast(1.0); /* 호버 시 생생한 풀컬러로 피어남 */
 }
 
 .hero-overlay {
