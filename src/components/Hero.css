@@ -77,7 +77,12 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  transform: scale(1.02); /* 살짝 커져있는 효과로 사진 몰입감 부여 */
+  transform: scale(1.02); /* 기본 상태 */
+  transition: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 시네마틱 줌 트랜지션 */
+}
+
+.hero-image-wrapper:hover .hero-bg-layer {
+  transform: scale(1.08); /* 호버 시 줌 인 */
 }
 
 .hero-overlay {
@@ -86,9 +91,14 @@
   left: 0; 
   right: 0; 
   bottom: 0;
-  background: rgba(0, 0, 0, 0.25); /* 사진이 밝아도 텍스트가 보이도록 어두운 막 형성 */
+  background: rgba(0, 0, 0, 0.25); /* 기본 오버레이 */
   pointer-events: none;
   z-index: 2;
+  transition: background 1.5s ease; /* 부드럽게 어두워지는 효과 */
+}
+
+.hero-image-wrapper:hover .hero-overlay {
+  background: rgba(0, 0, 0, 0.45); /* 호버 시 텍스트를 더 돋보이게 어두워짐 */
 }
 
 .hero-overlay-text {
