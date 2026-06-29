@@ -22,10 +22,15 @@ const Hero = () => {
         </div>
       </div>
       <div className="hero-image-wrapper">
-        <div 
-          className="hero-bg-layer"
-          style={{ backgroundImage: `url(/hero-bg-1.jpg)` }}
-        />
+        <div className="hero-bg-layer">
+          <iframe
+            className="hero-video-iframe"
+            src="https://www.youtube.com/embed/m47f9IhwWuk?autoplay=1&mute=1&controls=0&loop=1&playlist=m47f9IhwWuk&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            title="Background Video"
+          ></iframe>
+        </div>
         {/* 가독성을 높이기 위한 어두운 오버레이 */}
         <div className="hero-overlay"></div>
         <div className="hero-overlay-text font-playfair">
