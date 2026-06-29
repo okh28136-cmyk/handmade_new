@@ -85,20 +85,19 @@
 .hero-text-bottom {
   width: 100%;
   max-width: 1200px;
-  margin: 10px auto 0; /* 이미지 하단에 딱 붙고 중앙 정렬되도록 마진 설정 */
-  font-size: 5.5rem;
+  margin: -10px auto 0; /* 이미지 하단에 바짝 붙이도록 네거티브 마진 적용 */
+  font-size: clamp(4rem, 12.8vw, 9.5rem); /* 좌우 1200px 폭에 꽉 차도록 폰트 크기 대폭 확대 (화면 크기에 따라 자동 축소) */
   font-weight: 900;
   color: var(--color-gray-200); /* 흰 배경에서 은은하게 보이도록 밝은 회색 적용 */
   text-align: center;
-  line-height: 0.9; /* 텍스트 위아래 공백 최소화 */
-  letter-spacing: 4px;
+  line-height: 0.75; /* 텍스트 윗부분 공백 최소화하여 이미지에 밀착 */
+  letter-spacing: -5px; /* 자간을 더 좁게 설정 */
   white-space: nowrap;
+  overflow: hidden; /* 혹시 모를 가로 스크롤 방지 */
 }
 
 @media (max-width: 1024px) {
-  .hero-text-bottom {
-    font-size: 5rem;
-  }
+  /* 태블릿 뷰 */
 }
 
 @media (max-width: 768px) {
@@ -130,10 +129,6 @@
     padding: 16px 20px;
     width: 100%; /* 모바일에서 꽉 차게 변경 */
     margin-bottom: 0;
-  }
-  .hero-text-bottom {
-    font-size: clamp(2rem, 8vw, 3rem);
-    letter-spacing: 2px;
   }
   .hero-image-wrapper {
     height: 400px;
