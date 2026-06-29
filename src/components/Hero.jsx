@@ -23,9 +23,10 @@ const Hero = () => {
       </div>
       
       <div className="hero-image-wrapper">
-        <div 
-          className="hero-bg-layer"
-          style={{ backgroundImage: `url(/hero-bg-3.jpeg)` }}
+        <img 
+          src="/hero-bg-3.jpeg" 
+          alt="Handmade Factory Background" 
+          className="hero-bg-image"
         />
         <div className="hero-overlay-text">
           HANDMADE FACTORY
