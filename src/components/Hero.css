@@ -98,7 +98,7 @@
 
 .hero-overlay-text {
   position: absolute;
-  bottom: -5%;
+  bottom: 8%; /* -5%에서 8%로 올려서 잘림 방지 */
   left: 0;
   width: 100%;
   font-size: 5.5rem; /* 글씨 크기 축소 */
