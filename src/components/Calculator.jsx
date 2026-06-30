@@ -453,7 +453,7 @@ const Calculator = ({ onStepChange }) => {
                   <Plus size={48} strokeWidth={1} color="#000" />
                 </div>
                 <p style={{ fontSize: '1.15rem', color: '#111', lineHeight: '1.6', margin: '0 0 2rem 0', wordBreak: 'keep-all', fontWeight: '500' }}>
-                  제품의 특성에 맞춘 개별 포장부터, 구성품을 정교하게 조합하는 키팅 작업까지
+                  웰컴 키트 다구성품 취합, 화장품 세트 박스 포장, 봉투 내 리플렛 및 판촉물 삽입 작업 등
                 </p>
                 <span style={{ color: 'var(--primary)', fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.5px', marginTop: 'auto' }}>
                   옵션을 선택해주세요
@@ -466,7 +466,7 @@ const Calculator = ({ onStepChange }) => {
                   <Plus size={48} strokeWidth={1} color="#000" />
                 </div>
                 <p style={{ fontSize: '1.15rem', color: '#111', lineHeight: '1.6', margin: '0 0 2rem 0', wordBreak: 'keep-all', fontWeight: '500' }}>
-                  라벨, 씰 등을 지정된 위치에 기포나 오차 없이 정밀하게 부착하여 외관을 꾸미는 작업까지
+                  단상자 라벨 작업, 제품용기 스티커부착, 내용 변경 덧붙임 라벨, 박스 봉인 스티커 부착 등
                 </p>
                 <span style={{ color: 'var(--primary)', fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.5px', marginTop: 'auto' }}>
                   옵션을 선택해주세요
@@ -479,7 +479,7 @@ const Calculator = ({ onStepChange }) => {
                   <Plus size={48} strokeWidth={1} color="#000" />
                 </div>
                 <p style={{ fontSize: '1.15rem', color: '#111', lineHeight: '1.6', margin: '0 0 2rem 0', wordBreak: 'keep-all', fontWeight: '500' }}>
-                  평면 종이 박스를 입체로 성형하고, 리본 등으로 최종 외관의 디테일을 완성하는 조립 공정까지
+                  단상자 및 G형 종이 박스 접기, 선물 포장용 십자 리본 묶기, 쇼핑백 끈 결합 및 형태 조립 등
                 </p>
                 <span style={{ color: 'var(--primary)', fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.5px', marginTop: 'auto' }}>
                   옵션을 선택해주세요
