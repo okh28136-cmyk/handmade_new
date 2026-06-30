@@ -288,3 +288,6 @@
     width: 100%;
   }
 }
+
+.calculator-container .step2-card { display: flex; flex-direction: column; align-items: flex-start; padding: 2.5rem 2rem; text-align: left; min-height: 360px; }
+@media (max-width: 900px) { .calculator-container .step2-card { padding: 1.5rem; min-height: auto; } }

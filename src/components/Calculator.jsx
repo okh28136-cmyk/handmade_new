@@ -447,7 +447,7 @@ const Calculator = ({ onStepChange }) => {
             
             <div className="process-cards-grid">
               
-              <div className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => setActiveModal(activeModal === "kitting" ? null : "kitting")}>
+              <div className="service-card step2-card" onClick={() => setActiveModal(activeModal === "kitting" ? null : "kitting")}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '2rem' }}>
                   <h3 style={{ fontSize: '3.5rem', fontWeight: '900', letterSpacing: '-2px', margin: '0', color: '#000', lineHeight: '1' }}>담기</h3>
                   <Plus size={48} strokeWidth={1} color="#000" />
@@ -460,7 +460,7 @@ const Calculator = ({ onStepChange }) => {
                 </span>
               <div className={`mobile-accordion ${activeModal === "kitting" ? "open" : ""}`}>{activeModal === "kitting" && KittingForm}</div></div>
 
-              <div className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => setActiveModal(activeModal === "attach" ? null : "attach")}>
+              <div className="service-card step2-card" onClick={() => setActiveModal(activeModal === "attach" ? null : "attach")}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '2rem' }}>
                   <h3 style={{ fontSize: '3.5rem', fontWeight: '900', letterSpacing: '-2px', margin: '0', color: '#000', lineHeight: '1' }}>붙이기</h3>
                   <Plus size={48} strokeWidth={1} color="#000" />
@@ -473,7 +473,7 @@ const Calculator = ({ onStepChange }) => {
                 </span>
               <div className={`mobile-accordion ${activeModal === "attach" ? "open" : ""}`}>{activeModal === "attach" && AttachForm}</div></div>
 
-              <div className="service-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '2.5rem 2rem', textAlign: 'left', minHeight: '360px' }} onClick={() => setActiveModal(activeModal === "assemble" ? null : "assemble")}>
+              <div className="service-card step2-card" onClick={() => setActiveModal(activeModal === "assemble" ? null : "assemble")}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%', marginBottom: '2rem' }}>
                   <h3 style={{ fontSize: '3.5rem', fontWeight: '900', letterSpacing: '-2px', margin: '0', color: '#000', lineHeight: '1' }}>만들기</h3>
                   <Plus size={48} strokeWidth={1} color="#000" />
@@ -667,13 +667,12 @@ const Calculator = ({ onStepChange }) => {
               </div>
             </div>
             <div style={{ border: '2px solid var(--primary)', padding: '1.25rem', background: '#fff' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                <AlertCircle size={20} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.2)', padding: '1rem', borderRadius: '12px' }}>
+                <AlertCircle size={20} color="#ef4444" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <div>
-                  <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: 'var(--text-main)', marginBottom: '0.25rem', margin: 0 }}>안내 사항</h4>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: '0.25rem 0 0 0', wordBreak: 'keep-all' }}>
-                    본 견적은 시스템에 의해 <strong style={{ color: '#ef4444' }}>자동 산출된 대략적인 예상 금액</strong>입니다.<br/>
-                    실제 제품의 규격 및 작업 난이도를 확인한 후 <strong>최종 견적 단가가 변동</strong>될 수 있습니다.
+                  <h4 style={{ fontSize: '0.95rem', fontWeight: '800', color: '#b91c1c', marginBottom: '0.25rem', margin: 0, wordBreak: 'keep-all' }}>본 견적은 대략적인 예상가입니다</h4>
+                  <p style={{ fontSize: '0.85rem', color: '#ef4444', lineHeight: '1.5', margin: '0.25rem 0 0 0', wordBreak: 'keep-all', fontWeight: '600' }}>
+                    실제 제품 입고 후 작업 난이도 확인 시 <strong>최종 단가가 변동</strong>될 수 있습니다.
                   </p>
                 </div>
               </div>
