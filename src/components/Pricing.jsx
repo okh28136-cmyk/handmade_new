@@ -17,7 +17,7 @@ const Pricing = () => {
     },
     {
       id: 'pack-box',
-      image: 'https://images.unsplash.com/photo-1607006411011-cb6ac911a3d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1589815089308-4eeb00d024fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
       title: '단상자 조립 및 포장',
       desc: '단상자 조립 후 상품 인서트 및 마감 처리',
       details: '기본수량 1,000개 기준 / 1개당 200원',
@@ -38,7 +38,6 @@ const Pricing = () => {
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">STANDARD PACKAGE</h2>
-          <p className="section-subtitle">수작업팩토리 표준 단가표 및 결제 (샘플)</p>
         </div>
 
         <div className="package-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginTop: '40px' }}>
