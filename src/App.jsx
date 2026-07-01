@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { db } from './firebase';
 import { doc, onSnapshot } from 'firebase/firestore';
 
@@ -19,6 +19,10 @@ import Popup from './components/Popup';
 import PaymentForm from './components/PaymentForm';
 import PaymentSuccess from './components/PaymentSuccess';
 
+// 신규 페이지 (회사소개, 오시는길)
+import About from './pages/About';
+import Location from './pages/Location';
+
 // 관리자 페이지 컴포넌트
 import AdminLogin from './admin/AdminLogin';
 import InquiryList from './admin/InquiryList';
@@ -33,7 +37,34 @@ import AdminDashboard from './admin/AdminDashboard';
 import AdminPayments from './admin/AdminPayments';
 import AdminSettings from './admin/AdminSettings';
 
+import AdminSettings from './admin/AdminSettings';
 import AdminPricing from './admin/AdminPricing';
+
+// 해시 스크롤 처리 컴포넌트
+const ScrollToHashElement = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        // 헤더 높이만큼 띄워서 스크롤
+        const headerOffset = 70;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location]);
+
+  return null;
+};
 
 // 메인 사이트 페이지
 const MainSite = () => {
@@ -127,9 +158,14 @@ function App() {
   return (
     <QuoteProvider>
       <BrowserRouter>
+        <ScrollToHashElement />
         <Routes>
         {/* 메인 사이트 */}
         <Route path="/" element={<MainSite />} />
+        
+        {/* 일반 서브 페이지 */}
+        <Route path="/about" element={<About />} />
+        <Route path="/location" element={<Location />} />
 
         {/* 결제 페이지 */}
         <Route path="/payment" element={<PaymentForm />} />
