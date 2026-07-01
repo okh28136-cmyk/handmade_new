@@ -31,7 +31,7 @@ const Footer = () => {
             <div className="footer-company-info">
               <div className="company-name">이룸디자인</div>
               <div className="info-text">
-                본사 : 04624 서울특별시 중구 필동로9 이룸디자인 (필빌딩 2층) &nbsp;|&nbsp; 대표 : 전양숙 외 <br />
+                본사 : 04624 서울특별시 중구 필동로9 이룸디자인 (필빌딩 2층) &nbsp;|&nbsp; 대표 : 오길환 <br />
                 사업자등록번호 : 201-13-17458 &nbsp;|&nbsp; 통신판매신고번호 : 중구-1033호 &nbsp;|&nbsp; 개인정보보호책임자 : 오길환 실장 <br />
                 업태 : 제조업, 정보통신업, 소매, 서비스 &nbsp;|&nbsp; 종목 : 경 인쇄업, 기타 인쇄물 출판업, 기획물/인쇄출력, 전자상거래, 컴퓨터 프로그래밍 서비스업, 시각디자인
               </div>

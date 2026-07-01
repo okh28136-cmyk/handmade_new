@@ -1,41 +1,35 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Pricing.css';
 
 const Pricing = () => {
-  // 3개의 벤토 박스를 위한 데이터 구성 (담기, 붙이기, 만들기)
-  const bentoData = [
+  const navigate = useNavigate();
+
+  // KCP 심사 및 실제 표준 단가표용 패키지 데이터
+  const packages = [
     {
-      id: 'pack',
-      icon: '📦',
-      title: '담기',
-      desc: '포장부터 세트 구성까지 기본 작업',
-      items: [
-        { id: 1, name: '단순 OPP 포장', price: '60원 ~' },
-        { id: 2, name: '박스 조립 및 포장', price: '200원 ~' },
-        { id: 3, name: '세트 상품 구성', price: '상담후결정' },
-      ]
+      id: 'pack-basic',
+      image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      title: '단순 OPP 포장 패키지',
+      desc: '기본적인 비닐(OPP) 포장 및 분류 작업',
+      details: '기본수량 1,000개 기준 / 1개당 60원',
+      price: 60000,
     },
     {
-      id: 'attach',
-      icon: '🏷️',
-      title: '붙이기',
-      desc: '라벨링 및 스티커 세밀 작업',
-      items: [
-        { id: 4, name: '바코드 라벨링', price: '60원 ~' },
-        { id: 5, name: '양면 테이프 부착', price: '60원 ~' },
-        { id: 6, name: '봉인 스티커 작업', price: '별도 문의' },
-      ]
+      id: 'pack-box',
+      image: 'https://images.unsplash.com/photo-1607006411011-cb6ac911a3d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      title: '단상자 조립 및 포장',
+      desc: '단상자 조립 후 상품 인서트 및 마감 처리',
+      details: '기본수량 1,000개 기준 / 1개당 200원',
+      price: 200000,
     },
     {
-      id: 'send',
-      icon: '🛠️',
-      title: '만들기',
-      desc: '다양한 형태의 상자 및 패드 조립',
-      items: [
-        { id: 7, name: '기본 단상자 조립', price: '150원 ~' },
-        { id: 8, name: '내부 칸막이 결합', price: '별도 문의' },
-        { id: 9, name: '띠지 및 리본 세팅', price: '맞춤 견적' },
-      ]
+      id: 'pack-premium',
+      image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      title: '프리미엄 세트 포장',
+      desc: '다양한 구성품 세팅, 띠지 작업 및 리본 마감',
+      details: '기본수량 1,000개 기준 / 1개당 350원',
+      price: 350000,
     }
   ];
 
@@ -43,34 +37,44 @@ const Pricing = () => {
     <section className="pricing" id="pricing">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">PRICING</h2>
-          <p className="section-subtitle">합리적이고 투명한 3단계 수작업 비용 가이드</p>
+          <h2 className="section-title">STANDARD PACKAGE</h2>
+          <p className="section-subtitle">수작업팩토리 표준 단가표 및 결제 (샘플)</p>
         </div>
 
-        {/* 벤토(Bento) 그리드 레이아웃 */}
-        <div className="bento-grid">
-          {bentoData.map((bento) => (
-            <div key={bento.id} className={`bento-box bento-${bento.id}`}>
-              <div className="bento-header">
-                <div className="bento-title-wrapper">
-                  <h3 className="bento-title">{bento.title}</h3>
-                  <p className="bento-desc">{bento.desc}</p>
+        <div className="package-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginTop: '40px' }}>
+          {packages.map((pkg) => (
+            <div key={pkg.id} className="package-card" style={{ background: '#fff', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}>
+              <div className="package-img" style={{ height: '200px', overflow: 'hidden' }}>
+                <img src={pkg.image} alt={pkg.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              <div className="package-info" style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '8px', color: '#111827' }}>{pkg.title}</h3>
+                <p style={{ color: '#4b5563', fontSize: '0.95rem', marginBottom: '16px' }}>{pkg.desc}</p>
+                <div style={{ background: '#f3f4f6', padding: '12px', borderRadius: '8px', marginBottom: '20px', fontSize: '0.9rem', color: '#374151' }}>
+                  {pkg.details}
+                </div>
+                <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '1.5rem', fontWeight: '800', color: '#d90429' }}>
+                    {pkg.price.toLocaleString()}원
+                  </span>
+                  <button 
+                    onClick={() => navigate(`/payment?amount=${pkg.price}`)}
+                    style={{ background: '#111827', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '6px', fontWeight: '600', cursor: 'pointer' }}
+                  >
+                    결제하기
+                  </button>
                 </div>
               </div>
-              <ul className="bento-list">
-                {bento.items.map(item => (
-                  <li key={item.id} className="bento-list-item">
-                    <span className="item-name">{item.name}</span>
-                    <span className="item-price">{item.price}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
         
-        <div className="pricing-notice">
-          <p>* 위 단가는 기본 가이드라인이며, 작업 난이도 및 수량에 따라 최종 단가가 변동될 수 있습니다.</p>
+        <div className="policy-notice" style={{ marginTop: '50px', background: '#f8fafc', padding: '24px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.9rem', color: '#475569', lineHeight: '1.6' }}>
+          <strong style={{ color: '#0f172a', display: 'block', marginBottom: '8px', fontSize: '1rem' }}>📌 배송 및 교환/환불 정책 안내</strong>
+          - <strong>배송 안내:</strong> 모든 작업물은 협의된 납기일에 맞춰 택배, 퀵, 또는 화물로 안전하게 배송됩니다. (배송비 별도 협의)<br />
+          - <strong>취소/환불 규정:</strong> 본 서비스는 1:1 맞춤형 주문제작 방식입니다. 결제 후 <strong>작업 착수(인쇄/수작업 등)가 시작된 이후에는 단순 변심으로 인한 취소 및 환불이 원칙적으로 절대 불가</strong>합니다.<br />
+          - <strong>교환 안내:</strong> 당사의 과실로 인한 작업 불량, 파손 등의 하자가 발생한 경우 상품 수령일로부터 7일 이내에 연락 주시면 100% 무상 재작업 및 교환 처리해 드립니다.<br />
+          - 보다 자세한 내용은 결제 페이지 및 하단 <strong>이용약관</strong>, <strong>개인정보처리방침</strong>을 참고해 주시기 바랍니다.
         </div>
       </div>
     </section>
