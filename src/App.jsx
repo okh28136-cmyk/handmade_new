@@ -36,8 +36,6 @@ import AdminLayout from './admin/AdminLayout';
 import AdminDashboard from './admin/AdminDashboard';
 import AdminPayments from './admin/AdminPayments';
 import AdminSettings from './admin/AdminSettings';
-
-import AdminSettings from './admin/AdminSettings';
 import AdminPricing from './admin/AdminPricing';
 
 // 해시 스크롤 처리 컴포넌트
