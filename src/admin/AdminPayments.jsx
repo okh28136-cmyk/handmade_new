@@ -9,6 +9,18 @@ const AdminPayments = () => {
   const [loading, setLoading] = useState(true);
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [linkAmount, setLinkAmount] = useState('');
+
+  const handleCopyLink = () => {
+    if (!linkAmount) {
+      alert('금액을 입력해주세요.');
+      return;
+    }
+    const link = `https://www.iroum.com/payment?amount=${linkAmount}`;
+    navigator.clipboard.writeText(link)
+      .then(() => alert('결제 링크가 복사되었습니다!\n카카오톡에 붙여넣기(Ctrl+V) 해주세요.'))
+      .catch(() => alert('복사에 실패했습니다. 직접 드래그해서 복사해주세요.'));
+  };
 
   const fetchPayments = async () => {
     try {
@@ -90,6 +102,28 @@ const AdminPayments = () => {
           <button className="refresh-btn" onClick={fetchPayments}>
             🔄 새로고침
           </button>
+        </div>
+
+        <div className="link-generator-box">
+          <div className="generator-title">🔗 개인 결제창 링크 생성기</div>
+          <p className="generator-desc">고객에게 보낼 전용 결제 링크를 원클릭으로 생성하세요.</p>
+          <div className="generator-controls">
+            <input 
+              type="number" 
+              placeholder="결제 금액 입력 (예: 50000)" 
+              value={linkAmount}
+              onChange={(e) => setLinkAmount(e.target.value)}
+              className="generator-input"
+            />
+            <button className="generator-copy-btn" onClick={handleCopyLink}>
+              복사하기
+            </button>
+          </div>
+          {linkAmount && (
+            <div className="generator-preview">
+              생성된 링크: <span>https://www.iroum.com/payment?amount={linkAmount}</span>
+            </div>
+          )}
         </div>
 
         <div className="table-wrapper">
