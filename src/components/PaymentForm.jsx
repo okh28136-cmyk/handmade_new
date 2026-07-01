@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import Header from './Header';
@@ -7,12 +7,17 @@ import Footer from './Footer';
 import './PaymentForm.css';
 const PaymentForm = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   // 접근 권한 상태 (KCP 심사를 위해 임시로 true 처리. 심사 완료 후 false로 변경 필요)
   const [isAuthorized, setIsAuthorized] = useState(true);
   const [passwordInput, setPasswordInput] = useState('');
 
-  const [amount, setAmount] = useState('');
+  // URL에서 amount를 읽어오고, 없으면 KCP 심사용 기본값 1,000원으로 고정
+  const [amount, setAmount] = useState(() => {
+    const urlAmount = searchParams.get('amount');
+    return urlAmount ? Number(urlAmount).toLocaleString('ko-KR') : '1,000';
+  });
   const [buyerName, setBuyerName] = useState('');
   const [buyerEmail, setBuyerEmail] = useState('');
   const [isAgreed, setIsAgreed] = useState(false);
@@ -170,11 +175,9 @@ const PaymentForm = () => {
             <input
               type="text"
               className="amount-input"
-              placeholder="0"
               value={amount}
-              onChange={handleAmountChange}
-              maxLength="11"
-              required
+              readOnly
+              style={{ backgroundColor: '#f3f4f6', cursor: 'not-allowed', color: '#6b7280' }}
             />
           </div>
         </div>
@@ -232,12 +235,17 @@ const PaymentForm = () => {
 
 
         <button 
-          type="button" 
+          type="submit" 
           className="pay-button"
-          disabled={true}
-          style={{ backgroundColor: '#9ca3af', cursor: 'not-allowed' }}
+          disabled={isProcessing}
         >
-          현재 결제 시스템 점검 중입니다 (PG사 연동 중)
+          {isProcessing ? '처리 중...' : 'KCP 안전 결제하기'}
+          {!isProcessing && (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          )}
         </button>
 
         <div className="kcp-notice">
