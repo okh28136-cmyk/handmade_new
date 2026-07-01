@@ -17,7 +17,7 @@ const Pricing = () => {
     },
     {
       id: 'pack-box',
-      image: 'https://images.unsplash.com/photo-1589815089308-4eeb00d024fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
       title: '단상자 조립 및 포장',
       desc: '단상자 조립 후 상품 인서트 및 마감 처리',
       details: '기본수량 1,000개 기준 / 1개당 200원',
