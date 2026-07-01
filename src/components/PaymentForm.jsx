@@ -52,7 +52,7 @@ const PaymentForm = () => {
         <div className="payment-content-centered">
           <div className="payment-container">
             <div className="payment-header">
-              <h1>수작업팩토리 결제</h1>
+              <h1>결제안내</h1>
               <p>관리자에게 전달받은 결제 비밀번호를 입력해주세요.</p>
             </div>
             <form onSubmit={handlePasswordSubmit}>
@@ -141,9 +141,9 @@ const PaymentForm = () => {
       <div className="payment-content-centered">
         <div className="payment-container">
           <div className="payment-header">
-        <h1>수작업팩토리 결제</h1>
-        <p>결제하실 금액과 정보를 입력해주세요.</p>
-      </div>
+            <h1>결제안내</h1>
+            <p>결제하실 금액과 정보를 입력해주세요.</p>
+          </div>
       <div className="bank-transfer-info" style={{ marginBottom: '32px' }}>
         <div className="bank-info-title">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
