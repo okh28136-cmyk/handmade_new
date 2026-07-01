@@ -16,6 +16,8 @@ import QuoteTestPage from './components/QuoteTestPage';
 import Footer from './components/Footer';
 import FloatingKakao from './components/FloatingKakao';
 import Popup from './components/Popup';
+import PaymentForm from './components/PaymentForm';
+import PaymentSuccess from './components/PaymentSuccess';
 
 // 관리자 페이지 컴포넌트
 import AdminLogin from './admin/AdminLogin';
@@ -26,8 +28,10 @@ import { QuoteProvider } from './context/QuoteContext';
 
 import AdminGallery from './admin/AdminGallery';
 import AdminFAQ from './admin/AdminFAQ';
-import AdminSettings from './admin/AdminSettings';
+import AdminLayout from './admin/AdminLayout';
 import AdminDashboard from './admin/AdminDashboard';
+import AdminPayments from './admin/AdminPayments';
+import AdminSettings from './admin/AdminSettings';
 
 import AdminPricing from './admin/AdminPricing';
 
@@ -127,15 +131,22 @@ function App() {
         {/* 메인 사이트 */}
         <Route path="/" element={<MainSite />} />
 
+        {/* 결제 페이지 */}
+        <Route path="/payment" element={<PaymentForm />} />
+        <Route path="/payment/success" element={<PaymentSuccess />} />
+
         {/* 비공개 견적 테스트 페이지 */}
         <Route path="/quote-test" element={<QuoteTestPage />} />
 
-        {/* 관리자 로그인 */}
+        {/* 관리자 페이지 */}
         <Route path="/admin" element={<AdminLogin />} />
 
         {/* 관리자 보호 라우트 */}
         <Route path="/admin/dashboard" element={
           <ProtectedRoute><AdminDashboard /></ProtectedRoute>
+        } />
+        <Route path="/admin/payments" element={
+          <ProtectedRoute><AdminPayments /></ProtectedRoute>
         } />
         <Route path="/admin/inquiries" element={
           <ProtectedRoute><InquiryList /></ProtectedRoute>

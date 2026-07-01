@@ -12,33 +12,34 @@ const Footer = () => {
       <footer className="footer">
         <div className="container footer-container">
           
-          <div className="footer-top">
-            <h2 className="footer-logo">이룸디자인</h2>
+          <div className="footer-left">
+            <h3 className="cs-title">고객센터</h3>
+            <div className="cs-number">02-2268-7512</div>
+            <div className="cs-email">E : jyy1422@iroum.co.kr</div>
           </div>
 
-          <div className="footer-info">
-            <p>
-              04624 서울특별시 중구 필동로9 이룸디자인 <span className="divider">|</span> 대표 전양숙 외
-            </p>
-            <p>
-              통신판매신고번호 중구-1033호 <span className="divider">|</span> 사업자등록번호 201-13-17458호
-            </p>
-            <p>
-              개인정보보호책임자 오길환 실장
-            </p>
-            <p className="footer-contact">
-              TEL 02-2268-7512 <span className="divider">|</span> FAX 02-2268-7514 <br />
-              E-MAIL jyy1422@iroum.co.kr
-            </p>
-          </div>
-
-          <div className="footer-bottom">
-            <p className="copyright">
-              Copyright &copy; 2008 SUJAKUP FACTORY. All rights reserved.
-            </p>
-            <div className="footer-links">
+          <div className="footer-right">
+            <div className="footer-nav">
+              <span className="nav-text">회사소개</span>
               <button className="footer-link-btn" onClick={() => setIsTermsOpen(true)}>이용약관</button>
               <button className="footer-link-btn" onClick={() => setIsPrivacyOpen(true)}>개인정보처리방침</button>
+              <span className="nav-text">찾아오시는 길</span>
+            </div>
+
+            <div className="footer-company-info">
+              <div className="company-name">이룸디자인</div>
+              <div className="info-text">
+                본사 : 04624 서울특별시 중구 필동로9 이룸디자인 (필빌딩 2층) &nbsp;|&nbsp; 대표 : 전양숙 외 <br />
+                사업자등록번호 : 201-13-17458 &nbsp;|&nbsp; 통신판매신고번호 : 중구-1033호 &nbsp;|&nbsp; 개인정보보호책임자 : 오길환 실장 <br />
+                업태 : 제조업, 정보통신업, 소매, 서비스 &nbsp;|&nbsp; 종목 : 경 인쇄업, 기타 인쇄물 출판업, 기획물/인쇄출력, 전자상거래, 컴퓨터 프로그래밍 서비스업, 시각디자인
+              </div>
+              <div className="info-desc">
+                본 사이트 내에서 제공되는 모든 이미지와 텍스트는 저작권법에 의거해 보호를 받고 있으며 무단 도용 및 복사를 금지하고 있음을 알려드립니다.
+              </div>
+            </div>
+
+            <div className="footer-copyright">
+              COPYRIGHT &copy; 2008 SUJAKUP FACTORY. All Rights Reserved.
             </div>
           </div>
 

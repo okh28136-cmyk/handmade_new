@@ -1,10 +1,15 @@
-.floating-kakao {
+.floating-container {
   position: fixed;
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-  background-color: #FEE500; /* 카카오톡 공식 옐로우 */
-  color: #3C1E1E; /* 카카오톡 공식 브라운/블랙 */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 9999;
+}
+
+.floating-btn {
   width: 70px;
   height: 70px;
   border-radius: 50%; /* 둥근 원형태 */
@@ -14,13 +19,25 @@
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   text-decoration: none;
-  z-index: 9999;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
 }
 
-.floating-kakao:hover {
-  transform: translateY(-50%) scale(1.1); /* 마우스 오버 시 살짝 커짐 */
+.floating-btn:hover {
+  transform: scale(1.1); /* 마우스 오버 시 살짝 커짐 */
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.kakao-btn {
+  background-color: #FEE500; /* 카카오톡 공식 옐로우 */
+  color: #3C1E1E; /* 카카오톡 공식 브라운/블랙 */
+}
+
+.payment-btn {
+  background-color: rgba(255, 255, 255, 0.7); /* 반투명 화이트 */
+  color: #333333;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px); /* 유리처럼 뒤가 비치는 효과 */
 }
 
 .kakao-icon {
@@ -34,29 +51,41 @@
   height: 100%;
 }
 
-.kakao-text {
-  font-size: 0.95rem;
+.payment-icon {
+  font-size: 1.6rem;
+  margin-bottom: 2px;
+  line-height: 1;
+}
+
+.btn-text {
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: -0.5px;
 }
 
 /* 모바일 화면 대응 */
 @media (max-width: 768px) {
-  .floating-kakao {
-    width: 65px;
-    height: 65px;
+  .floating-container {
     right: 15px;
-    bottom: 20px; /* 우측 중앙에서 우측 하단으로 이동 (엄지손가락 접근성) */
+    bottom: 20px; /* 우측 중앙에서 우측 하단으로 이동 */
     top: auto;
     transform: none;
+    gap: 12px;
+  }
+  .floating-btn {
+    width: 60px;
+    height: 60px;
     animation: bounce-mobile 2s infinite; /* 모바일 전용 튀어오르는 효과 */
   }
   .kakao-icon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
   }
-  .kakao-text {
-    font-size: 0.95rem;
+  .payment-icon {
+    font-size: 1.3rem;
+  }
+  .btn-text {
+    font-size: 0.8rem;
   }
 }
 
@@ -65,10 +94,10 @@
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   60% {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
   }
 }
 
@@ -79,9 +108,9 @@
   right: 2px;
   width: 14px;
   height: 14px;
-  background-color: var(--color-primary); /* 포인트 레드 컬러 */
+  background-color: #ff3333; /* 포인트 레드 컬러 */
   border-radius: 50%;
-  border: 2px solid var(--color-white); /* 겹치는 부분 깔끔하게 처리 */
+  border: 2px solid #ffffff; /* 겹치는 부분 깔끔하게 처리 */
   z-index: 10;
   animation: pulse-ring 2s infinite; /* 심장 박동처럼 뛰는 효과 */
 }
@@ -89,14 +118,14 @@
 @keyframes pulse-ring {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(217, 4, 41, 0.7);
+    box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.7);
   }
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(217, 4, 41, 0);
+    box-shadow: 0 0 0 10px rgba(255, 51, 51, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(217, 4, 41, 0);
+    box-shadow: 0 0 0 0 rgba(255, 51, 51, 0);
   }
 }

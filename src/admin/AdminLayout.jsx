@@ -23,6 +23,10 @@ const AdminLayout = ({ children }) => {
         </div>
 
         <nav className="sidebar-nav">
+          <NavLink to="/admin/payments" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
+            <span className="nav-icon">💳</span>
+            <span>결제 및 주문 관리</span>
+          </NavLink>
           <NavLink to="/admin/inquiries" className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
             <span className="nav-icon">📋</span>
             <span>견적 문의 관리</span>
