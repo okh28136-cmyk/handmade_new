@@ -8,8 +8,8 @@ import './PaymentForm.css';
 const PaymentForm = () => {
   const navigate = useNavigate();
 
-  // 접근 권한 상태
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  // 접근 권한 상태 (KCP 심사를 위해 임시로 true 처리. 심사 완료 후 false로 변경 필요)
+  const [isAuthorized, setIsAuthorized] = useState(true);
   const [passwordInput, setPasswordInput] = useState('');
 
   const [amount, setAmount] = useState('');
