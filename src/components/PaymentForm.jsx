@@ -202,12 +202,20 @@ const PaymentForm = () => {
         </div>
 
         <div className="agreement-section">
-          <div className="terms-box">
-            <strong>[구매 조건 및 취소/환불 규정]</strong><br /><br />
-            1. <strong>결제 및 서비스:</strong> 고객님이 입력하신 금액에 맞춰 맞춤형 서비스/상품이 제공됩니다.<br />
-            2. <strong>취소 및 환불:</strong> 작업 착수 전(통상 1~2일 내)에는 100% 환불이 가능합니다. 단, 맞춤형 수작업 특성상 <strong>작업이 본격적으로 착수된 이후에는 원칙적으로 취소 및 환불이 불가</strong>하므로 신중한 결제 부탁드립니다.<br />
-            3. <strong>배송/작업 기간:</strong> 사전에 안내된 개별 협의 기간이 소요됩니다.<br />
-            4. <strong>개인정보 동의:</strong> 서비스 제공 및 결제 내역 확인을 위해 입력된 정보가 수집되며 목적 달성 후 폐기됩니다.
+          <div className="terms-box" style={{ fontSize: '0.85rem', lineHeight: '1.6', color: '#4b5563', padding: '16px', background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '8px', overflowY: 'auto', maxHeight: '180px' }}>
+            <strong style={{ color: '#111827' }}>[이룸디자인(수작업팩토리) 주문제작 취소 및 환불 규정]</strong><br /><br />
+            본 결제는 1:1 맞춤형 디자인 및 인쇄/제작 서비스를 위한 결제입니다. 맞춤형 상품 특성상 아래의 취소/환불 규정이 엄격히 적용되므로 반드시 확인 후 결제해 주시기 바랍니다.<br /><br />
+            
+            <strong style={{ color: '#111827' }}>1. 취소 및 환불 안내</strong><br />
+            - <strong>시안 작업 전:</strong> 결제 후 디자인 시안 작업에 착수하기 전에는 100% 전액 환불이 가능합니다.<br />
+            - <strong>시안 작업 중:</strong> 디자인 시안 작업이 시작된 이후 취소 시, 진행된 디자인 공정에 따른 비용(결제 금액의 30~50%)을 공제한 후 환불됩니다.<br />
+            - <strong style={{ color: '#d90429' }}>최종 시안 확정 및 인쇄 착수 후 (환불 불가):</strong> 맞춤형 주문제작 상품의 특성상, <strong>고객님의 최종 시안 확정으로 인쇄 및 제작이 시작된 이후에는 단순 변심에 의한 취소, 환불 및 교환이 원칙적으로 절대 불가</strong>합니다. (전자상거래 등에서의 소비자보호에 관한 법률 제17조 2항 6호에 의거)<br /><br />
+
+            <strong style={{ color: '#111827' }}>2. 불량 및 오배송 교환</strong><br />
+            - 당사의 과실(인쇄 불량, 오배송, 파손 등)로 인한 하자가 발생한 경우, 상품 수령일로부터 7일 이내에 고객센터로 연락 주시면 100% 무상 재작업 및 교환 처리를 진행해 드립니다.<br /><br />
+            
+            <strong style={{ color: '#111827' }}>3. 개인정보 수집 및 이용 동의</strong><br />
+            - 서비스 제공, 결제 내역 확인 및 배송 처리를 위해 고객님이 입력하신 정보(이름, 이메일, 연락처 등)가 수집되며, 수집된 정보는 관련 법령에 따라 보존 기간 만료 시 안전하게 파기됩니다.
           </div>
           <label className="checkbox-label">
             <input 
