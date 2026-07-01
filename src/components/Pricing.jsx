@@ -9,7 +9,7 @@ const Pricing = () => {
   const packages = [
     {
       id: 'pack-basic',
-      image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      image: '/images/opp_packaging.png',
       title: '단순 OPP 포장 패키지',
       desc: '기본적인 비닐(OPP) 포장 및 분류 작업',
       details: '기본수량 1,000개 기준 / 1개당 60원',
@@ -17,7 +17,7 @@ const Pricing = () => {
     },
     {
       id: 'pack-box',
-      image: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      image: '/images/box_assembly.png',
       title: '단상자 조립 및 포장',
       desc: '단상자 조립 후 상품 인서트 및 마감 처리',
       details: '기본수량 1,000개 기준 / 1개당 200원',
@@ -25,7 +25,7 @@ const Pricing = () => {
     },
     {
       id: 'pack-premium',
-      image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+      image: '/images/premium_packaging.png',
       title: '프리미엄 세트 포장',
       desc: '다양한 구성품 세팅, 띠지 작업 및 리본 마감',
       details: '기본수량 1,000개 기준 / 1개당 350원',
