@@ -10,10 +10,6 @@ const AdminPayments = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  useEffect(() => {
-    fetchPayments();
-  }, []);
-
   const fetchPayments = async () => {
     try {
       setLoading(true);
@@ -33,6 +29,11 @@ const AdminPayments = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchPayments();
+  }, []);
 
   const formatDate = (timestamp) => {
     if (!timestamp) return '알 수 없음';
