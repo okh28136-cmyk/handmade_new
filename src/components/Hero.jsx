@@ -25,7 +25,7 @@ const Hero = () => {
           <div className="hero-title-group">
             <h1 className="hero-title">
               손이 많이 가고 복잡한 수작업<br />
-              <strong>쉽고 간단하게 해결하세요.</strong>
+              <strong>저희가 제일 잘 합니다.</strong>
             </h1>
           </div>
         </div>
