@@ -84,9 +84,11 @@
   display: block; 
   font-size: 4.5rem; 
   font-weight: 800;
-  color: var(--color-primary); /* 키컬러 붉은색 */
+  color: var(--color-primary);
   margin-top: 10px; 
   letter-spacing: -2px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
 
 
 
