@@ -28,17 +28,6 @@ const Hero = () => {
               <strong>쉽고 간단하게 해결하세요.</strong>
             </h1>
           </div>
-          
-          <div className="hero-features">
-            <div className="feature-item">
-              <span className="feature-icon">✨</span>
-              <span className="feature-text">디테일을 살리는 정교한 수작업</span>
-            </div>
-            <div className="feature-item">
-              <span className="feature-icon">⚡</span>
-              <span className="feature-text">빠르고 정확한 대량 작업</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
