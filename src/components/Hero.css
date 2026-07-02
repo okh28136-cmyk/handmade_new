@@ -27,6 +27,7 @@
   height: 100%;
   object-fit: cover; /* 화면 비율 찌그러짐 없이 꽉 채움 */
   pointer-events: none; /* 클릭 및 상호작용 원천 방지 */
+  transform: scale(1.08) translateY(3.5%); /* 하단 'veo' 워터마크를 컨테이너 바깥으로 완벽히 밀어내어 크롭 */
 }
 
 /* 오버레이 (영상이 너무 밝을 때 텍스트를 살리기 위함) */
