@@ -1,27 +1,47 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import './Service.css';
 
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: custom * 0.15, ease: [0.16, 1, 0.3, 1] }
+  })
+};
+
 const Service = () => {
-  // 0: 첫번째 박스, 1: 두번째 박스, 2: 세번째 박스
   const [expandedIndex, setExpandedIndex] = useState(0);
 
   return (
     <section className="service" id="service">
       <div className="container">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUpVariant}
+          custom={0}
+        >
           <h2 className="section-title">SERVICE</h2>
           <p className="section-subtitle">
             까다롭고 손이 많이 가는 포장 및 수작업 쉽고 간단하게 해결하세요.
           </p>
-        </div>
+        </motion.div>
         
         <div 
           className="service-cards" 
-          // 마우스가 전체 영역을 벗어나면 다시 첫번째가 열리도록 (또는 마지막 상태 유지하려면 이 줄을 지우면 됩니다)
           onMouseLeave={() => setExpandedIndex(0)} 
         >
           {/* Card 0: 담기 */}
-          <div 
+          <motion.div 
+            custom={1}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUpVariant}
             className={`service-card ${expandedIndex === 0 ? 'expanded' : 'folded'}`}
             onMouseEnter={() => setExpandedIndex(0)}
           >
@@ -34,10 +54,15 @@ const Service = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
           
           {/* Card 1: 붙이기 */}
-          <div 
+          <motion.div 
+            custom={2}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUpVariant}
             className={`service-card ${expandedIndex === 1 ? 'expanded' : 'folded'}`}
             onMouseEnter={() => setExpandedIndex(1)}
           >
@@ -50,10 +75,15 @@ const Service = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
           
           {/* Card 2: 만들기 */}
-          <div 
+          <motion.div 
+            custom={3}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUpVariant}
             className={`service-card ${expandedIndex === 2 ? 'expanded' : 'folded'}`}
             onMouseEnter={() => setExpandedIndex(2)}
           >
@@ -66,18 +96,24 @@ const Service = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* 서비스 영역 하단 견적문의 유도 버튼 추가 */}
-        <div className="service-cta-container">
+        <motion.div 
+          className="service-cta-container"
+          custom={4}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUpVariant}
+        >
           <button 
             className="service-cta-button"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             견적 문의하기 ➔
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,11 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'motion/react';
 import './Pricing.css';
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: custom * 0.15, ease: [0.16, 1, 0.3, 1] }
+  })
+};
 
 const Pricing = () => {
   const navigate = useNavigate();
 
-  // KCP 심사 및 실제 표준 단가표용 패키지 데이터
   const packages = [
     {
       id: 'pack-basic',
@@ -36,13 +45,29 @@ const Pricing = () => {
   return (
     <section className="pricing" id="pricing">
       <div className="container">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUpVariant}
+          custom={0}
+        >
           <h2 className="section-title">STANDARD PACKAGE</h2>
-        </div>
+        </motion.div>
 
         <div className="package-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginTop: '40px' }}>
-          {packages.map((pkg) => (
-            <div key={pkg.id} className="package-card" style={{ background: '#fff', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}>
+          {packages.map((pkg, index) => (
+            <motion.div 
+              key={pkg.id} 
+              className="package-card" 
+              style={{ background: '#fff', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUpVariant}
+              custom={index + 1}
+            >
               <div className="package-img" style={{ height: '200px', overflow: 'hidden' }}>
                 <img src={pkg.image} alt={pkg.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
@@ -64,17 +89,25 @@ const Pricing = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         
-        <div className="policy-notice" style={{ marginTop: '50px', background: '#f8fafc', padding: '24px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.9rem', color: '#475569', lineHeight: '1.6' }}>
+        <motion.div 
+          className="policy-notice" 
+          style={{ marginTop: '50px', background: '#f8fafc', padding: '24px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.9rem', color: '#475569', lineHeight: '1.6' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUpVariant}
+          custom={4}
+        >
           <strong style={{ color: '#0f172a', display: 'block', marginBottom: '8px', fontSize: '1rem' }}>📌 배송 및 교환/환불 정책 안내</strong>
           - <strong>배송 안내:</strong> 모든 작업물은 협의된 납기일에 맞춰 택배, 퀵, 또는 화물로 안전하게 배송됩니다. (배송비 별도 협의)<br />
           - <strong>취소/환불 규정:</strong> 본 서비스는 1:1 맞춤형 주문제작 방식입니다. 결제 후 <strong>작업 착수(인쇄/수작업 등)가 시작된 이후에는 단순 변심으로 인한 취소 및 환불이 원칙적으로 절대 불가</strong>합니다.<br />
           - <strong>교환 안내:</strong> 당사의 과실로 인한 작업 불량, 파손 등의 하자가 발생한 경우 상품 수령일로부터 7일 이내에 연락 주시면 100% 무상 재작업 및 교환 처리해 드립니다.<br />
           - 보다 자세한 내용은 결제 페이지 및 하단 <strong>이용약관</strong>, <strong>개인정보처리방침</strong>을 참고해 주시기 바랍니다.
-        </div>
+        </motion.div>
       </div>
     </section>
   );

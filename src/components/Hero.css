@@ -128,13 +128,16 @@
   }
 
   .hero-title {
-    font-size: clamp(1.8rem, 7vw, 2.4rem);
+    font-size: clamp(1.6rem, 6.5vw, 2.2rem);
+    line-height: 1.15;
     word-break: keep-all; 
+    letter-spacing: -0.5px;
   }
   
   .hero-title strong {
-    font-size: clamp(2.6rem, 10vw, 3.5rem);
+    font-size: clamp(2.4rem, 9vw, 3.2rem);
     margin-top: 5px;
     letter-spacing: -1px;
+    line-height: 1.05;
   }
 }

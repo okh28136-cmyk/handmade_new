@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { motion } from 'motion/react';
 import './FAQ.css';
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: custom * 0.1, ease: [0.16, 1, 0.3, 1] }
+  })
+};
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -10,7 +20,6 @@ const FAQ = () => {
   const ITEMS_PER_PAGE = 5;
 
   useEffect(() => {
-    // Firestore에서 faq 컬렉션을 order(순서) 오름차순으로 실시간 구독
     const q = query(collection(db, 'faqs'), orderBy('order', 'asc'));
     const unsub = onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map(doc => ({
@@ -29,10 +38,8 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // 페이지네이션 계산
   const totalPages = Math.max(1, Math.ceil(faqData.length / ITEMS_PER_PAGE));
   
-  // 현재 페이지의 데이터만 슬라이싱
   const currentData = faqData.slice(
     (currentPage - 1) * ITEMS_PER_PAGE, 
     currentPage * ITEMS_PER_PAGE
@@ -41,7 +48,7 @@ const FAQ = () => {
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      setOpenIndex(null); // 페이지 전환 시 열린 아코디언 닫기
+      setOpenIndex(null); 
     }
   };
 
@@ -49,14 +56,19 @@ const FAQ = () => {
     <section className="faq" id="faq">
       <div className="container faq-container">
         
-        {/* 상단 헤더 영역 */}
-        <div className="faq-header-left">
+        <motion.div 
+          className="faq-header-left"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUpVariant}
+          custom={0}
+        >
           <span className="faq-tag">FAQ</span>
           <h2 className="faq-title">자주 묻는 질문</h2>
           <p className="faq-subtitle">수작업팩토리에 대해 가장 많이 물어보시는 질문들을 모았습니다.</p>
-        </div>
+        </motion.div>
 
-        {/* 아코디언 리스트 영역 */}
         <div className="faq-list">
           {currentData.length === 0 ? (
             <div style={{ padding: '40px', textAlign: 'center', color: '#888' }}>
@@ -64,9 +76,14 @@ const FAQ = () => {
             </div>
           ) : (
             currentData.map((item, index) => (
-              <div 
+              <motion.div 
                 key={item.id} 
                 className={`faq-item ${openIndex === index ? 'active' : ''}`}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={fadeUpVariant}
+                custom={index + 1}
               >
                 <button 
                   className="faq-question" 
@@ -78,7 +95,6 @@ const FAQ = () => {
                 
                 <div className="faq-answer-wrapper">
                   <div className="faq-answer">
-                    {/* 줄바꿈을 <br />로 렌더링하기 위해 split 처리 */}
                     {item.answer.split('\n').map((line, i) => (
                       <React.Fragment key={i}>
                         {line}
@@ -87,7 +103,7 @@ const FAQ = () => {
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))
           )}
         </div>
