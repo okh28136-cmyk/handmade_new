@@ -61,7 +61,7 @@
   font-weight: 800; 
   letter-spacing: 0.15em; /* 하이엔드 아이브로우 라벨링을 위한 넓은 자간 */
   margin-bottom: 30px; 
-  border-radius: 9999px; /* 알약 형태(Pill)로 부드럽게 */
+  border-radius: 0; /* 라운드 없는 직각 스타일 */
 }
 
 .hero-title-group {

@@ -20,7 +20,7 @@ const Hero = () => {
       
       <div className="container hero-content-container">
         <div className="hero-content">
-          <div className="hero-badge">PREMIUM PACKAGING PARTNER</div>
+          <div className="hero-badge">수작업팩토리</div>
           
           <div className="hero-title-group">
             <h1 className="hero-title">
