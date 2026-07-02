@@ -25,42 +25,34 @@ const Contact = () => {
 
       {/* 하단 회사 연락처 정보 */}
       <div className="container" style={{ maxWidth: '1200px' }}>
-        <div className="contact-details-horizontal">
-          
-          <div className="detail-item">
-            <span className="detail-icon">📍</span>
-            <div className="detail-text-group">
-              <span className="detail-label">Address</span>
-              <span className="detail-value-small">서울특별시 중구 필동로9</span>
+        <div className="contact-details-editorial">
+          <div className="editorial-left">
+            <h3 className="editorial-heading font-playfair">HEADQUARTERS</h3>
+            <p className="editorial-desc">
+              수작업팩토리는 완벽한 디테일을 위해<br />
+              최고의 설비와 인프라를 갖추고 있습니다.
+            </p>
+          </div>
+          <div className="editorial-right">
+            <div className="editorial-group">
+              <span className="editorial-label">ADDRESS</span>
+              <span className="editorial-value">서울특별시 중구 필동로9</span>
+            </div>
+            <div className="editorial-group">
+              <span className="editorial-label">DIRECT LINE</span>
+              <span className="editorial-value">02-2268-7512</span>
+              <span className="editorial-sub">FAX. 02-2268-7514</span>
+            </div>
+            <div className="editorial-group">
+              <span className="editorial-label">EMAIL</span>
+              <span className="editorial-value">jyy1422@iroum.co.kr</span>
+            </div>
+            <div className="editorial-group">
+              <span className="editorial-label">BUSINESS HOURS</span>
+              <span className="editorial-value">평일 09:00 - 18:00</span>
+              <span className="editorial-sub">LUNCH. 12:00 - 13:00</span>
             </div>
           </div>
-          
-          <div className="detail-item">
-            <span className="detail-icon">✉️</span>
-            <div className="detail-text-group">
-              <span className="detail-label">EMAIL</span>
-              <span className="detail-value-small">jyy1422@iroum.co.kr</span>
-            </div>
-          </div>
-          
-          <div className="detail-item">
-            <span className="detail-icon">📞</span>
-            <div className="detail-text-group">
-              <span className="detail-label">Direct Line</span>
-              <span className="detail-value-bold">02-2268-7512</span>
-              <span className="detail-sub">Fax: 02-2268-7514</span>
-            </div>
-          </div>
-          
-          <div className="detail-item">
-            <span className="detail-icon">🕒</span>
-            <div className="detail-text-group">
-              <span className="detail-label">Business Hours</span>
-              <span className="detail-value-small">평일 09:00 - 18:00</span>
-              <span className="detail-sub">점심시간 12:00 - 13:00</span>
-            </div>
-          </div>
-
         </div>
 
         <div className="contact-notice-bottom">

@@ -515,27 +515,30 @@ const Calculator = ({ onStepChange }) => {
             </div>
 
             <div style={{ padding: '2rem' }}>
-              {submitStatus === 'success' ? (
-                <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-                  <CheckCircle size={64} color="#10b981" style={{ margin: '0 auto 1.5rem auto' }} />
-                  <h3 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '1rem' }}>견적 문의가 성공적으로 접수되었습니다!</h3>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>
-                    자동 견적 내역과 남겨주신 정보가 담당자에게 전달되었습니다.<br/>
-                    평균 영업일 기준 1일 이내에 연락드리겠습니다.
-                  </p>
-                  <button onClick={() => { setStep(1); setSubmitStatus('idle'); }} style={{ marginTop: '2rem', padding: '0.95rem 2rem', background: 'var(--text-main)', color: '#fff', border: 'none', borderRadius: 'var(--radius-md)', cursor: 'pointer', fontWeight: '600' }}>
-                    처음으로 돌아가기
-                  </button>
+              {submitStatus === 'success' && (
+                <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ background: '#fff', padding: '4rem 3rem', maxWidth: '500px', width: '90%', textAlign: 'center', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)', borderRadius: '0' }} className="animate-slide-up">
+                    <CheckCircle size={72} color="var(--color-primary)" style={{ margin: '0 auto 1.5rem auto' }} strokeWidth={1.5} />
+                    <h3 style={{ fontSize: '1.8rem', fontWeight: '900', marginBottom: '1rem', letterSpacing: '-1px', color: '#000' }}>THANK YOU</h3>
+                    <p style={{ color: '#555', lineHeight: '1.6', fontSize: '1.05rem', fontWeight: '500', wordBreak: 'keep-all', marginBottom: '2.5rem' }}>
+                      견적 문의가 성공적으로 접수되었습니다.<br/>
+                      담당자가 내용을 확인한 후,<br/>신속하게 연락드리겠습니다.
+                    </p>
+                    <button onClick={() => { setStep(1); setSubmitStatus('idle'); }} style={{ width: '100%', padding: '1.1rem', background: '#000', color: '#fff', border: 'none', cursor: 'pointer', fontWeight: '800', fontSize: '1.1rem', letterSpacing: '1px', transition: 'background 0.3s' }} onMouseOver={(e) => e.target.style.background = 'var(--color-primary)'} onMouseOut={(e) => e.target.style.background = '#000'}>
+                      돌아가기
+                    </button>
+                  </div>
                 </div>
-              ) : (
-                <form className="contact-form" ref={formRef} onSubmit={handleFormSubmit} style={{ margin: 0 }}>
-                  {submitStatus === 'error' && (
-                    <div style={{ padding: '1rem', background: '#fef2f2', color: '#ef4444', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem', fontWeight: '600' }}>
-                      ❌ 접수 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.
-                    </div>
-                  )}
+              )}
 
-                  <div className="form-row">
+              <form className="contact-form" ref={formRef} onSubmit={handleFormSubmit} style={{ margin: 0 }}>
+                {submitStatus === 'error' && (
+                  <div style={{ padding: '1rem', background: '#fef2f2', color: '#ef4444', borderRadius: '0', marginBottom: '1.5rem', fontWeight: '600', border: '1px solid #ef4444' }}>
+                    ❌ 접수 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.
+                  </div>
+                )}
+
+                <div className="form-row">
                     <div className="form-group">
                       <label htmlFor="company">회사명 <span className="optional">(선택)</span></label>
                       <input type="text" id="company" name="company" placeholder="업체명" />
@@ -589,7 +592,6 @@ const Calculator = ({ onStepChange }) => {
                     {submitStatus === 'sending' ? '전송 중...' : '견적 문의하기 →'}
                   </button>
                 </form>
-              )}
             </div>
           </section>
         )}

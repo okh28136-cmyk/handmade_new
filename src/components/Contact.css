@@ -46,61 +46,69 @@
   line-height: 1.6;
 }
 
-/* 하단 4열 가로형 연락처 정보 */
-.contact-details-horizontal {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2.5rem;
-  padding-top: 3.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.detail-item {
+/* 에디토리얼 레이아웃 연락처 정보 */
+.contact-details-editorial {
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 15px;
+  padding-top: 5rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  gap: 4rem;
 }
 
-.detail-icon {
+.editorial-left {
+  flex: 1;
+  max-width: 400px;
+}
+
+.editorial-heading {
   font-size: 1.5rem;
-  background-color: transparent;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0;
+  font-weight: 900;
   color: var(--color-primary);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
 }
 
-.detail-text-group {
+.editorial-desc {
+  font-size: 1.1rem;
+  color: var(--color-gray-400);
+  line-height: 1.6;
+  font-weight: 500;
+  word-break: keep-all;
+}
+
+.editorial-right {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 2rem;
+}
+
+.editorial-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
-.detail-label {
-  font-size: 0.95rem;
+.editorial-label {
+  font-size: 0.85rem;
   font-weight: 800;
-  color: var(--color-gray-400);
-  letter-spacing: 1px;
-}
-
-.detail-value-bold {
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--color-white);
-}
-
-.detail-value-small {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--color-white);
-}
-
-.detail-sub {
-  font-size: 0.9rem;
   color: var(--color-gray-500);
+  letter-spacing: 1.5px;
+}
+
+.editorial-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: -0.5px;
+}
+
+.editorial-sub {
+  font-size: 0.9rem;
+  color: var(--color-gray-400);
+  font-weight: 500;
 }
 
 .contact-notice-bottom {
@@ -228,8 +236,9 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  background-color: var(--color-white);
-  border-color: var(--color-black);
+  background-color: #fff;
+  border-color: var(--color-primary); /* 브랜드 레드 포커스 */
+  box-shadow: 0 0 0 3px rgba(217, 4, 41, 0.15); /* 은은한 글로우 효과 */
 }
 
 .form-group textarea {
@@ -429,8 +438,13 @@
   .contact-title {
     font-size: 2.2rem;
   }
-  .detail-value-bold {
-    font-size: 1.2rem;
+  .editorial-right {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .contact-details-editorial {
+    flex-direction: column;
+    gap: 3rem;
   }
 }
 
