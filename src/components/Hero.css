@@ -13,50 +13,31 @@
 /* 16:9 꽉 차는 비디오 배경 */
 .hero-video-bg {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%; /* vw 대신 %를 사용하여 1920px body 컨테이너에 맞춤 */
-  height: 56.25vw;
-  min-height: 100vh;
-  min-width: 177.77vh;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1;
-  background-image: url('/heri-3.jpeg');
-  background-size: cover;
-  background-position: center;
-}
-
-/* YouTube API에 의해 동적으로 제어되는 래퍼 */
-.video-wrapper {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 1.5s ease; /* 하드코딩된 대기 시간(delay) 삭제, 재생 시 즉시 페이드인 */
+  z-index: 0;
+  overflow: hidden;
+  background-color: #000;
 }
 
-/* React 상태(isPlaying)에 의해 클래스가 붙으면 서서히 나타남 */
-.video-wrapper.is-playing {
-  opacity: 1;
-}
-
-#youtube-player {
+.native-video-bg {
   width: 100%;
   height: 100%;
-  pointer-events: none; 
-  /* 16:9 원본 느낌을 최대한 살리기 위해 확대 비율을 1.1배로 줄이고, 하단의 로고만 밀어냄 */
-  transform: scale(1.1) translateY(2%); 
+  object-fit: cover; /* 화면 비율 찌그러짐 없이 꽉 채움 */
+  pointer-events: none; /* 클릭 및 상호작용 원천 방지 */
 }
 
-/* 오버레이 제거 (완전 투명) */
+/* 오버레이 (영상이 너무 밝을 때 텍스트를 살리기 위함) */
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
-  z-index: 2;
+  background: rgba(0, 0, 0, 0.4); /* 필요에 따라 투명도 조절 */
+  pointer-events: none;
 }
 
 /* 영상 위에 뜰 텍스트 컨테이너 */
