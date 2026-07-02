@@ -49,7 +49,8 @@ const Gallery = () => {
         </motion.div>
       </div>
 
-      <div className="gallery-grid-bento">
+      {/* 화면 전체 너비를 꽉 채우기 위해 container 바깥으로 분리 */}
+      <div className="gallery-grid-fullbleed">
         {loading ? (
           <div style={{ textAlign: 'center', padding: '50px', width: '100%', color: '#666' }}>이미지를 불러오는 중...</div>
         ) : images.length === 0 ? (

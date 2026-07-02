@@ -3,34 +3,23 @@
   background-color: var(--color-white); /* 블랙 테마(강점) 밑에 다시 화사한 화이트 테마로 전환 */
 }
 
-.gallery-grid-bento {
+.gallery-grid-fullbleed {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  grid-auto-rows: 320px; /* 고정 높이 기준점 */
-  gap: 24px; /* 타일 사이의 고급스러운 여백 */
+  grid-template-columns: repeat(4, 1fr); /* 캡처화면처럼 4열 구조 */
+  gap: 0; /* 틈새 없이 완벽하게 밀착 */
   width: 100%;
-  max-width: var(--max-width);
-  margin: 60px auto 0;
-  padding: 0 40px;
+  margin-top: 60px;
 }
 
-/* 갤러리 개별 상자 (Bento Tile) */
+/* 갤러리 개별 상자 */
 .gallery-item {
   position: relative;
-  border-radius: 24px; /* 애플 스타일의 부드러운 곡선 */
+  border-radius: 0; /* 둥근 모서리 제거하여 직각으로 꽉 차게 */
   overflow: hidden;
   cursor: pointer;
   background-color: var(--color-gray-100);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 은은한 입체감 */
+  aspect-ratio: 1 / 1; /* 캡처화면처럼 완벽한 1:1 정사각형 비율 */
 }
-
-/* 벤토 그리드 타일 사이즈 배분 (완벽한 직사각형 패턴) */
-.gallery-item:nth-child(6n + 1) { grid-column: span 2; grid-row: span 2; }
-.gallery-item:nth-child(6n + 2) { grid-column: span 2; grid-row: span 1; }
-.gallery-item:nth-child(6n + 3) { grid-column: span 1; grid-row: span 1; }
-.gallery-item:nth-child(6n + 4) { grid-column: span 1; grid-row: span 2; }
-.gallery-item:nth-child(6n + 5) { grid-column: span 2; grid-row: span 1; }
-.gallery-item:nth-child(6n + 6) { grid-column: span 1; grid-row: span 1; }
 
 /* 내부 이미지 */
 .gallery-image {
@@ -82,21 +71,8 @@
 
 /* 모바일 및 태블릿 반응형 처리 */
 @media (max-width: 992px) {
-  .gallery-grid-bento {
-    grid-template-columns: repeat(2, 1fr); /* 태블릿은 2열 */
-    grid-auto-rows: 250px;
-    padding: 0 20px;
-  }
-  
-  /* 모바일/태블릿용 벤토 패턴 초기화 */
-  .gallery-item:nth-child(n) {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
-  /* 강조할 이미지만 크게 */
-  .gallery-item:nth-child(3n + 1) {
-    grid-column: span 2;
-    grid-row: span 2;
+  .gallery-grid-fullbleed {
+    grid-template-columns: repeat(3, 1fr); /* 태블릿은 3열 */
   }
 }
 
@@ -104,18 +80,7 @@
   .gallery {
     padding: 80px 0;
   }
-  .gallery-grid-bento {
-    grid-template-columns: 1fr; /* 모바일은 1열 세로 정렬 */
-    grid-auto-rows: auto;
-    gap: 16px;
-    padding: 0 20px;
-  }
-  .gallery-item {
-    aspect-ratio: 4 / 3; /* 모바일에서는 높이를 유동적으로 */
-    border-radius: 16px;
-  }
-  .gallery-item:nth-child(n) {
-    grid-column: span 1;
-    grid-row: auto;
+  .gallery-grid-fullbleed {
+    grid-template-columns: repeat(2, 1fr); /* 모바일은 2열로 꽉 차게 */
   }
 }
