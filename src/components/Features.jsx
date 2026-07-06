@@ -1,20 +1,44 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import './Features.css';
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: custom * 0.1, ease: [0.16, 1, 0.3, 1] }
+  })
+};
 
 const Features = () => {
   return (
     <section className="features" id="features">
       <div className="container">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeUpVariant}
+          custom={0}
+        >
           <h2 className="section-title">
             골치 아픈 포장, 수작업<br />
             신뢰할수있는 수작업팩토리에서<br />
             완벽하게 해결해드립니다.
           </h2>
-        </div>
+        </motion.div>
 
         <div className="features-list-minimal">
-          <div className="feature-minimal-item">
+          <motion.div 
+            className="feature-minimal-item"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUpVariant}
+            custom={1}
+          >
             <span className="feature-num">01</span>
             <div className="feature-text">
               <h3 className="feature-title">철저한 보안 시스템</h3>
@@ -23,9 +47,16 @@ const Features = () => {
                 필요한경우 출입 통제부터 CCTV 모니터링까지 완벽한 보안 인프라를 구축하고 있습니다.
               </p>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="feature-minimal-item">
+          <motion.div 
+            className="feature-minimal-item"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUpVariant}
+            custom={2}
+          >
             <span className="feature-num">02</span>
             <div className="feature-text">
               <h3 className="feature-title">신속한 긴급 대응</h3>
@@ -34,9 +65,16 @@ const Features = () => {
                 유연하게 대처할 수 있습니다.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="feature-minimal-item">
+          <motion.div 
+            className="feature-minimal-item"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUpVariant}
+            custom={3}
+          >
             <span className="feature-num">03</span>
             <div className="feature-text">
               <h3 className="feature-title">완벽한 품질 관리 (QC)</h3>
@@ -45,7 +83,7 @@ const Features = () => {
                 체계적인 QC 프로세스를 통해 미세한 물량도 허용하지 않는 무결점 서비스를 제공합니다.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

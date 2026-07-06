@@ -14,6 +14,7 @@ import Contact from './components/Contact';
 import QuoteTestPage from './components/QuoteTestPage';
 import Footer from './components/Footer';
 import FloatingKakao from './components/FloatingKakao';
+import MobileQuickBar from './components/MobileQuickBar';
 import Popup from './components/Popup';
 import PaymentForm from './components/PaymentForm';
 import PaymentSuccess from './components/PaymentSuccess';
@@ -94,6 +95,7 @@ const MainSite = () => {
       </main>
       <Footer />
       <FloatingKakao />
+      <MobileQuickBar />
       <Popup />
     </>
   );

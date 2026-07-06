@@ -1,5 +1,15 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import './Service.css';
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: custom * 0.15, ease: [0.16, 1, 0.3, 1] }
+  })
+};
 
 const Service = () => {
   return (
@@ -7,7 +17,14 @@ const Service = () => {
       <div className="container">
         <div className="service-list">
           {/* Row 1 */}
-          <div className="service-row">
+          <motion.div 
+            className="service-row"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUpVariant}
+            custom={0}
+          >
             <div className="service-img-col">
               <img src="/service_kitting.png" alt="Kitting & Packaging" />
             </div>
@@ -20,10 +37,17 @@ const Service = () => {
                 복잡한 수작업도 빠르고 정확하게 해결해 드립니다.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Row 2 */}
-          <div className="service-row reverse">
+          <motion.div 
+            className="service-row reverse"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUpVariant}
+            custom={1}
+          >
             <div className="service-img-col">
               <img src="/service_label.png" alt="Labeling" />
             </div>
@@ -36,10 +60,17 @@ const Service = () => {
                 정확한 위치에 깔끔한 마무리를 약속드립니다.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Row 3 */}
-          <div className="service-row">
+          <motion.div 
+            className="service-row"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUpVariant}
+            custom={2}
+          >
             <div className="service-img-col">
               <img src="/service_assembly.png" alt="Assembly & Setting" />
             </div>
@@ -52,7 +83,7 @@ const Service = () => {
                 완성하는 조립 공정을 섬세하게 제공합니다.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

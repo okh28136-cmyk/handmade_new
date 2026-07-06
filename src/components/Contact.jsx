@@ -3,7 +3,17 @@ import emailjs from '@emailjs/browser';
 import { db, storage } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { motion } from 'motion/react';
 import './Contact.css';
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: custom * 0.1, ease: [0.16, 1, 0.3, 1] }
+  })
+};
 
 // ====================================================
 // ✅ EmailJS 설정값 (대표님이 직접 채워 넣으셔야 합니다)
@@ -111,7 +121,14 @@ const Contact = () => {
         <div className="contact-wrapper">
           
           {/* 좌측 안내 문구 영역 */}
-          <div className="contact-info">
+          <motion.div 
+            className="contact-info"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUpVariant}
+            custom={0}
+          >
             <span className="contact-tag font-playfair">EXPERT CONSULTATION</span>
             <h2 className="contact-title font-playfair">REQUEST<br/>A QUOTE</h2>
             <p className="contact-desc">
@@ -158,10 +175,17 @@ const Contact = () => {
               <p>* 방문 상담을 원하실 경우 사전에 전화로 일정을 예약해 주시기 바랍니다.</p>
               <p>* 대량 견적의 경우 샘플을 보내주시면 더 정확한 산출이 가능합니다.</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* 우측 견적 문의 폼 영역 */}
-          <div className="contact-form-container">
+          <motion.div 
+            className="contact-form-container"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUpVariant}
+            custom={2}
+          >
             <div className="form-header">
               <h3 className="form-title">온라인 견적 문의</h3>
               <p className="form-subtitle">상세 내용을 남겨주시면 담당자가 확인 후 신속히 연락드립니다.</p>
@@ -274,7 +298,7 @@ const Contact = () => {
               </button>
               </form>
             )}
-          </div>
+          </motion.div>
           
         </div>
       </div>

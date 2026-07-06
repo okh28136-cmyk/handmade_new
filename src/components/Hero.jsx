@@ -1,12 +1,29 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import './Hero.css';
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: custom * 0.1, ease: [0.16, 1, 0.3, 1] }
+  })
+};
 
 const Hero = () => {
   return (
     <section className="hero">
       <div className="container">
         
-        <div className="hero-video-box">
+        <motion.div 
+          className="hero-video-box"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeUpVariant}
+          custom={0}
+        >
           <video 
             className="hero-video"
             autoPlay 
@@ -25,15 +42,22 @@ const Hero = () => {
               <strong>저희가 제일 잘 합니다.</strong>
             </h2>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="hero-bottom-text">
+        <motion.div 
+          className="hero-bottom-text"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.8 }}
+          variants={fadeUpVariant}
+          custom={2}
+        >
           <h3>아직도 직접 밤새워 포장하시나요?"</h3>
           <p>
             기계가 할 수 없는 가장 정교한 포장및 수작업을<br />
             합리적인 맞춤 단가로 제공합니다.
           </p>
-        </div>
+        </motion.div>
         
       </div>
     </section>
