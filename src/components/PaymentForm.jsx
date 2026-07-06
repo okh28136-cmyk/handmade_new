@@ -149,23 +149,7 @@ const PaymentForm = () => {
             <h1>결제안내</h1>
             <p>결제하실 금액과 정보를 입력해주세요.</p>
           </div>
-      <div className="bank-transfer-info" style={{ marginBottom: '32px' }}>
-        <div className="bank-info-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-            <line x1="2" y1="10" x2="22" y2="10"></line>
-          </svg>
-          무통장 입금 계좌안내
-        </div>
-        <div className="bank-info-details">
-          <strong>신한은행</strong> 100-024-342782<br />
-          예금주: 이룸디자인
-        </div>
-      </div>
 
-      <div style={{ marginBottom: '20px', borderTop: '1px solid #E5E7EB', paddingTop: '20px' }}>
-        <h2 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--color-black)', marginBottom: '8px', textAlign: 'center' }}>카드 결제</h2>
-      </div>
 
       <form onSubmit={handlePayment}>
         <div className="form-group">
