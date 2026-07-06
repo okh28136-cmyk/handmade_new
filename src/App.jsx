@@ -9,7 +9,6 @@ import Hero from './components/Hero';
 import Service from './components/Service';
 import Features from './components/Features';
 import Gallery from './components/Gallery';
-import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import QuoteTestPage from './components/QuoteTestPage';
@@ -90,7 +89,6 @@ const MainSite = () => {
         <Service />
         <Features />
         <Gallery />
-        <Pricing />
         <Contact />
         <FAQ />
       </main>
