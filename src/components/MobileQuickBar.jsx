@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MobileQuickBar.css';
 
 const MobileQuickBar = () => {
@@ -17,7 +17,7 @@ const MobileQuickBar = () => {
   }, []);
 
   return (
-    <div className={mobile-quick-bar ${isVisible ? 'visible' : ''}`}>
+    <div className={`mobile-quick-bar ${isVisible ? 'visible' : ''}`}>
       <a href="tel:02-2268-7512" className="quick-btn phone-btn">
         <span className="icon">📞</span>
         <span className="text">전화 상담</span>
