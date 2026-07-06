@@ -1,48 +1,63 @@
 .faq {
-  padding: 120px 0;
-  background-color: var(--color-white);
+  padding: 200px 0;
+  background-color: #ffffff; /* Pure White */
 }
 
 .faq-container {
-  max-width: 900px; /* 캡처화면처럼 리스트가 가로로 너무 퍼지지 않게 폭 제한 */
+  max-width: 1400px;
   margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 120px;
+  padding: 0 40px;
 }
 
-/* 헤더 영역 */
 .faq-header-left {
+  flex: 0 0 35%;
+  position: sticky;
+  top: 150px;
   text-align: left;
-  margin-bottom: 60px;
 }
 
 .faq-tag {
   display: block;
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--color-primary); /* 이미지의 파란색 대신 브랜드 컬러(레드) 적용 */
-  letter-spacing: 2px;
-  margin-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
 .faq-title {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--color-black);
-  margin-bottom: 15px;
-  letter-spacing: -1px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 4rem; /* Giant Typography */
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 30px;
+  letter-spacing: -2px;
+  line-height: 1.1;
 }
 
 .faq-subtitle {
   font-size: 1.1rem;
-  color: var(--color-gray-500);
+  color: #777777;
+  line-height: 1.6;
 }
 
-/* 아코디언 리스트 */
+.faq-content-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .faq-list {
-  border-top: 1px solid var(--color-gray-200); /* 리스트 시작 상단 밑줄 */
+  border-top: 1px solid #e0e0e0;
+  width: 100%;
 }
 
 .faq-item {
-  border-bottom: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .faq-question {
@@ -50,52 +65,49 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 10px;
+  padding: 25px 10px;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--color-black);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #000000;
   text-align: left;
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .faq-question:hover {
-  color: var(--color-primary); /* 호버 시 붉은색 강조 */
+  opacity: 0.6;
 }
 
 .faq-icon {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 300;
-  color: var(--color-gray-500);
-  transition: transform 0.3s ease, color 0.3s ease;
+  color: #000000;
+  transition: transform 0.4s ease;
 }
 
 .faq-item.active .faq-icon {
-  color: var(--color-primary);
+  transform: rotate(45deg);
 }
 
-/* 답변 애니메이션 영역 */
 .faq-answer-wrapper {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* 스르륵 열리는 효과 */
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .faq-item.active .faq-answer-wrapper {
-  max-height: 300px; /* 답변이 열릴 수 있도록 충분한 높이 확보 */
+  max-height: 500px;
 }
 
 .faq-answer {
-  padding: 0 10px 30px 10px;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--color-gray-600);
-  background-color: var(--color-white);
+  padding: 0 10px 50px 10px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555555;
 }
 
-/* 하단 페이지네이션 */
 .faq-pagination {
   display: flex;
   justify-content: center;
@@ -104,33 +116,44 @@
   margin-top: 60px;
 }
 
-.page-number, .page-next {
+.page-number, .page-prev, .page-next {
   font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--color-gray-400);
+  font-weight: 500;
+  color: #cccccc;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
-.page-number:hover, .page-next:hover {
-  color: var(--color-black);
+.page-number:hover, .page-prev:not(.disabled):hover, .page-next:not(.disabled):hover {
+  color: #000000;
 }
 
 .page-number.active {
-  color: var(--color-primary); /* 이미지의 파란색 대신 붉은색 적용 */
+  color: #000000;
+  font-weight: 700;
 }
 
-/* 모바일 화면 대응 */
+@media (max-width: 1200px) {
+  .faq-title { font-size: 3rem; }
+  .faq-container { gap: 80px; }
+}
+
+@media (max-width: 992px) {
+  .faq-container {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .faq-header-left {
+    position: relative;
+    top: 0;
+    flex: none;
+    width: 100%;
+  }
+}
 @media (max-width: 768px) {
-  .faq-title {
-    font-size: 2rem;
-  }
-  .faq-question {
-    font-size: 1.1rem;
-    padding: 20px 5px;
-  }
-  .faq-answer {
-    padding: 0 5px 20px 5px;
-    font-size: 0.95rem;
-  }
+  .faq { padding: 120px 0; }
+  .faq-container { padding: 0 20px; }
+  .faq-title { font-size: 2.5rem; }
+  .faq-question { padding: 20px 5px; font-size: 1.1rem; }
+  .faq-answer { padding: 0 5px 30px 5px; font-size: 0.95rem; }
 }

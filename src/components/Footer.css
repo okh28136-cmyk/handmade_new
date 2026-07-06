@@ -1,8 +1,9 @@
 .footer {
-  background-color: #2b2b2b;
-  color: #a3a3a3;
-  padding: 60px 0;
-  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #000000;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #999999;
+  padding: 80px 0;
+  font-family: 'Pretendard', sans-serif;
 }
 
 .footer-container {
@@ -12,6 +13,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
+  padding: 0 20px;
 }
 
 /* Left Section: CS */
@@ -20,15 +22,15 @@
 }
 
 .cs-title {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #dddddd;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #cccccc;
   margin: 0 0 10px 0;
 }
 
 .cs-number {
   font-size: 2.2rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffffff;
   line-height: 1.2;
   letter-spacing: -1px;
@@ -37,7 +39,8 @@
 
 .cs-email {
   font-size: 0.95rem;
-  color: #cccccc;
+  font-weight: 500;
+  color: #999999;
   margin-top: 10px;
 }
 
@@ -58,7 +61,7 @@
 .footer-nav .footer-link-btn {
   font-size: 0.95rem;
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 700;
   background: none;
   border: none;
   padding: 0;
@@ -69,7 +72,7 @@
 }
 
 .footer-nav .footer-link-btn:hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .footer-company-info {
@@ -78,43 +81,45 @@
 
 .company-name {
   font-size: 1rem;
-  color: #bbbbbb;
-  font-weight: 500;
+  color: #ffffff;
+  font-weight: 700;
   margin-bottom: 8px;
 }
 
 .info-text {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   line-height: 1.7;
-  color: #999999;
+  color: #cccccc;
   margin-bottom: 12px;
 }
 
 .info-desc {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   line-height: 1.6;
-  color: #777777;
+  color: #999999;
   max-width: 800px;
 }
 
 .footer-copyright {
   font-size: 0.85rem;
-  color: #888888;
+  color: #666666;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
 
 /* 모바일 화면 대응 */
 @media (max-width: 768px) {
+  .footer {
+    padding: 60px 0;
+  }
   .footer-container {
     flex-direction: column;
-    padding: 0 20px;
   }
   
   .footer-left {
     margin-bottom: 30px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 30px;
     width: 100%;
   }
 

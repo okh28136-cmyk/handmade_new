@@ -49,30 +49,29 @@ const Gallery = () => {
         </motion.div>
       </div>
 
-      {/* 화면 전체 너비를 꽉 채우기 위해 container 바깥으로 분리 */}
-      <div className="gallery-grid-fullbleed">
-        {loading ? (
-          <div style={{ textAlign: 'center', padding: '50px', width: '100%', color: '#666' }}>이미지를 불러오는 중...</div>
-        ) : images.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '50px', width: '100%', color: '#666' }}>등록된 이미지가 없습니다.</div>
-        ) : (
-          images.map((img, index) => (
-            <motion.div 
-              key={img.id} 
-              className="gallery-item"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUpVariant}
-              custom={(index % 6) + 1}
-            >
-              <img src={img.url} alt={img.alt} className="gallery-image" />
-              <div className="gallery-overlay">
-                <span className="overlay-text">현장 보기</span>
-              </div>
-            </motion.div>
-          ))
-        )}
+      <div className="gallery-grid">
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '50px', width: '100%', color: '#666' }}>이미지를 불러오는 중...</div>
+          ) : images.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '50px', width: '100%', color: '#666' }}>등록된 이미지가 없습니다.</div>
+          ) : (
+            images.map((img, index) => (
+              <motion.div 
+                key={img.id} 
+                className="gallery-item"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={fadeUpVariant}
+                custom={(index % 5) + 1}
+              >
+                <img src={img.url} alt={img.alt} className="gallery-image" />
+                <div className="gallery-overlay">
+                  <span className="overlay-text">현장 보기</span>
+                </div>
+              </motion.div>
+            ))
+          )}
       </div>
     </section>
   );

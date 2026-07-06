@@ -69,7 +69,8 @@ const FAQ = () => {
           <p className="faq-subtitle">수작업팩토리에 대해 가장 많이 물어보시는 질문들을 모았습니다.</p>
         </motion.div>
 
-        <div className="faq-list">
+        <div className="faq-content-right">
+          <div className="faq-list">
           {currentData.length === 0 ? (
             <div style={{ padding: '40px', textAlign: 'center', color: '#888' }}>
               등록된 자주 묻는 질문이 없습니다.
@@ -138,6 +139,7 @@ const FAQ = () => {
             </span>
           </div>
         )}
+        </div>
 
       </div>
     </section>
