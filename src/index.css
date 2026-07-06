@@ -49,8 +49,6 @@
 
 body {
   min-width: 320px;
-  max-width: 1920px; /* 전체 캔버스 폭 제한 */
-  margin: 0 auto; /* 1920px 초과 모니터에서 중앙 정렬 */
   min-height: 100vh;
   position: relative; /* 자식 요소들의 기준점 */
   overflow-x: hidden; /* 가로 스크롤 방지 */
