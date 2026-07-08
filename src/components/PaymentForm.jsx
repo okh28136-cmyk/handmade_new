@@ -113,29 +113,21 @@ const PaymentForm = () => {
     setIsProcessing(true);
 
     try {
-      if (window.m_Completepayment) {
-         // KCP 폼 세팅 및 호출 로직이 이곳에 들어갑니다.
-         // 예: window.KCP_Pay_Execute(document.order_info);
+      // KCP 결제창 호출
+      if (window.KCP_Pay_Execute) {
+         window.KCP_Pay_Execute(document.order_info);
+         // 결제창이 뜨면 로딩 상태를 풀어주고 기다림
+         setIsProcessing(false);
+         return; 
+      } else {
+         alert('결제 모듈을 불러오는 중입니다. 새로고침 후 다시 시도해주세요.');
+         setIsProcessing(false);
+         return;
       }
-      
-      // Firebase DB에 주문 정보 저장 (무통장/카드 결합)
-      await addDoc(collection(db, 'payments'), {
-        amount: numAmount,
-        buyerName,
-        buyerEmail,
-        status: '신청완료',
-        createdAt: serverTimestamp()
-      });
-
-      // 완료 안내 (1초 대기 후 페이지 이동)
-      setTimeout(() => {
-        setIsProcessing(false);
-        navigate('/payment/success');
-      }, 500);
 
     } catch (error) {
-      console.error('결제/DB 저장 에러:', error);
-      alert('접수 중 문제가 발생했습니다.');
+      console.error('결제 에러:', error);
+      alert('결제창 호출 중 문제가 발생했습니다.');
       setIsProcessing(false);
     }
   };
@@ -239,18 +231,22 @@ const PaymentForm = () => {
 
       {/* KCP 표준 결제를 위한 필수 숨김 폼 (Hidden Form) 구조 뼈대 */}
       <form name="order_info" method="post" action="kcp_api" style={{ display: 'none' }}>
-        <input type="hidden" name="ordr_idxx" value="TEST_ORDER_1234" />
-            <input type="hidden" name="good_name" value="수작업팩토리 맞춤 결제" />
-            <input type="hidden" name="good_mny" value={amount.replace(/,/g, '')} />
-            <input type="hidden" name="buyr_name" value={buyerName} />
-            <input type="hidden" name="buyr_mail" value={buyerEmail} />
-            {/* 추가 필수 파라미터들이 여기에 들어갑니다 (site_cd, site_key 등) */}
-          </form>
-        </div>
-      </div>
-      <Footer />
+        <input type="hidden" name="ordr_idxx" value={`ORDER_${Date.now()}`} />
+        <input type="hidden" name="good_name" value="수작업팩토리 맞춤 결제" />
+        <input type="hidden" name="good_mny" value={amount.replace(/,/g, '')} />
+        <input type="hidden" name="buyr_name" value={buyerName} />
+        <input type="hidden" name="buyr_mail" value={buyerEmail} />
+        
+        {/* KCP OpenAPI 연동 필수 파라미터 */}
+        <input type="hidden" name="site_cd" value="P7547" />
+        <input type="hidden" name="Ret_URL" value="https://iroum.com/api/kcp-approve" />
+        <input type="hidden" name="req_tx" value="pay" />
+      </form>
     </div>
-  );
+  </div>
+  <Footer />
+</div>
+);
 };
 
 export default PaymentForm;
