@@ -54,39 +54,36 @@ export default async function handler(req, res) {
       kcpError = err.response ? err.response.data : err.message;
     }
 
-    const htmlResponse = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <title>KCP 최종 승인 결과</title>
-        <style>
-          body { padding: 20px; font-family: sans-serif; }
-          .container { background: #f4f4f4; padding: 15px; border-radius: 8px; word-wrap: break-word; }
-          .success { color: green; }
-          .error { color: red; }
-        </style>
-      </head>
-      <body>
-        <h1>KCP 최종 승인 결과</h1>
-        <p>요청 방식: ${req.method}</p>
-        
-        <h3>1. 본사 승인 응답 (이 데이터가 가장 중요합니다!)</h3>
-        <div class="container ${kcpResponseData?.res_cd === '0000' ? 'success' : 'error'}">
-          <pre>${JSON.stringify(kcpResponseData || kcpError, null, 2)}</pre>
-        </div>
+    // 결제 실패 처리
+    if (kcpResponseData?.res_cd !== '0000') {
+      const errorMsg = kcpResponseData?.res_msg || '결제 승인 실패';
+      const htmlResponse = `
+        <script>
+          alert("결제 실패: ${errorMsg}");
+          if (window.opener) { window.close(); }
+          else if (window.parent && window.parent !== window) { window.parent.location.href = '/payment'; }
+          else { window.location.href = '/payment'; }
+        </script>
+      `;
+      return res.status(200).setHeader('Content-Type', 'text/html; charset=utf-8').send(htmlResponse);
+    }
 
-        <h3>2. 결제창에서 넘어온 원본 데이터</h3>
-        <div class="container">
-          <pre>${JSON.stringify(payload, null, 2)}</pre>
-        </div>
-        
-        <p>대표님, 이 화면이 캡처본의 <b>마지막</b>이 될 것입니다! 캡처 부탁드립니다!</p>
-      </body>
-      </html>
+    // 결제 성공 처리 -> PaymentSuccess 페이지로 이동
+    const htmlResponse = `
+      <script>
+        if (window.opener) {
+          window.opener.location.href = '/payment/success';
+          window.close();
+        } else if (window.parent && window.parent !== window) {
+          window.parent.location.href = '/payment/success';
+        } else {
+          window.location.href = '/payment/success';
+        }
+      </script>
     `;
 
     res.status(200).setHeader('Content-Type', 'text/html; charset=utf-8').send(htmlResponse);
+
   } catch (error) {
     console.error("KCP Approval Error:", error);
     res.status(500).send(`<h2>서버 에러 발생</h2><p>${error.message}</p>`);
