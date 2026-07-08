@@ -37,6 +37,7 @@ export default async function handler(req, res) {
       kcp_cert_info: KCP_CERT_INFO,
       enc_data: payload.enc_data,
       enc_info: payload.enc_info,
+      tran_cd: payload.tran_cd,       // <-- 추가된 필수값
       ordr_mony: payload.good_mny,
       ordr_idxx: payload.ordr_idxx,
     };
