@@ -27,8 +27,8 @@ const PaymentForm = () => {
   useEffect(() => {
     if (!isAuthorized) return; // 권한이 있을 때만 KCP 스크립트 로드
     const script = document.createElement('script');
-    // 테스트용 KCP 스크립트 URL (실제 운영시 https://spay.kcp.co.kr/plugin/kcp_spay_hub.js)
-    script.src = 'https://testspay.kcp.co.kr/plugin/kcp_spay_hub.js';
+    // 실제 운영 KCP 스크립트 URL (P7547은 실결제 상점아이디이므로 운영서버 사용)
+    script.src = 'https://spay.kcp.co.kr/plugin/kcp_spay_hub.js';
     script.async = true;
     document.body.appendChild(script);
 
