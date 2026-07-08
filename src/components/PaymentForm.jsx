@@ -238,6 +238,7 @@ const PaymentForm = () => {
         <input type="hidden" name="buyr_mail" value={buyerEmail} />
         
         {/* KCP OpenAPI 연동 필수 파라미터 */}
+        <input type="hidden" name="pay_method" value="100000000000" /> {/* 신용카드 결제 수단 코드 */}
         <input type="hidden" name="site_cd" value="P7547" />
         <input type="hidden" name="Ret_URL" value="https://iroum.com/api/kcp-approve" />
         <input type="hidden" name="req_tx" value="pay" />
