@@ -230,7 +230,7 @@ const PaymentForm = () => {
       </form>
 
       {/* KCP 표준 결제를 위한 필수 숨김 폼 (Hidden Form) 구조 뼈대 */}
-      <form name="order_info" method="post" action="kcp_api" style={{ display: 'none' }}>
+      <form name="order_info" method="post" action="/api/kcp-approve" style={{ display: 'none' }}>
         <input type="hidden" name="ordr_idxx" value={`ORDER_${Date.now()}`} />
         <input type="hidden" name="good_name" value="수작업팩토리 맞춤 결제" />
         <input type="hidden" name="good_mny" value={amount.replace(/,/g, '')} />
