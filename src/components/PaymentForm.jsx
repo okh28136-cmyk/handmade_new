@@ -113,7 +113,19 @@ const PaymentForm = () => {
     setIsProcessing(true);
 
     try {
-      // KCP 결제창 호출
+      // 1. Firebase에 먼저 '결제대기' 상태로 문서 생성
+      const docRef = await addDoc(collection(db, 'payments'), {
+        amount: numAmount,
+        buyerName,
+        buyerEmail,
+        status: '결제대기',
+        createdAt: serverTimestamp(),
+      });
+
+      // 2. KCP 폼의 주문번호(ordr_idxx)를 생성된 Firebase 문서 ID로 덮어쓰기
+      document.order_info.ordr_idxx.value = docRef.id;
+
+      // 3. KCP 결제창 호출
       if (window.KCP_Pay_Execute) {
          window.KCP_Pay_Execute(document.order_info);
          // 결제창이 뜨면 로딩 상태를 풀어주고 기다림
@@ -127,7 +139,7 @@ const PaymentForm = () => {
 
     } catch (error) {
       console.error('결제 에러:', error);
-      alert('결제창 호출 중 문제가 발생했습니다.');
+      alert('결제 준비 중 문제가 발생했습니다.');
       setIsProcessing(false);
     }
   };

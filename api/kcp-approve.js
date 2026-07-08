@@ -68,16 +68,18 @@ export default async function handler(req, res) {
       return res.status(200).setHeader('Content-Type', 'text/html; charset=utf-8').send(htmlResponse);
     }
 
-    // 결제 성공 처리 -> PaymentSuccess 페이지로 이동
+    // 결제 성공 처리 -> PaymentSuccess 페이지로 이동 (주문번호를 함께 전달)
+    const orderId = payload.ordr_idxx;
     const htmlResponse = `
       <script>
+        const successUrl = '/payment/success?order_id=${orderId}';
         if (window.opener) {
-          window.opener.location.href = '/payment/success';
+          window.opener.location.href = successUrl;
           window.close();
         } else if (window.parent && window.parent !== window) {
-          window.parent.location.href = '/payment/success';
+          window.parent.location.href = successUrl;
         } else {
-          window.location.href = '/payment/success';
+          window.location.href = successUrl;
         }
       </script>
     `;

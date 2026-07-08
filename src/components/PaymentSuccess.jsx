@@ -1,9 +1,29 @@
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 import Header from './Header';
 import './PaymentForm.css'; // 같은 스타일 시스템 공유
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const orderId = searchParams.get('order_id');
+
+  useEffect(() => {
+    if (orderId) {
+      const updatePaymentStatus = async () => {
+        try {
+          // Firebase에서 해당 문서의 상태를 '결제완료'로 업데이트
+          const docRef = doc(db, 'payments', orderId);
+          await updateDoc(docRef, { status: '결제완료' });
+        } catch (error) {
+          console.error('결제 상태 업데이트 오류:', error);
+        }
+      };
+      updatePaymentStatus();
+    }
+  }, [orderId]);
 
   return (
     <div className="payment-page-wrapper">
