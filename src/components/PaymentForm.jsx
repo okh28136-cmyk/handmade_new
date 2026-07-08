@@ -242,6 +242,15 @@ const PaymentForm = () => {
         <input type="hidden" name="site_cd" value="P7547" />
         <input type="hidden" name="Ret_URL" value="https://iroum.com/api/kcp-approve" />
         <input type="hidden" name="req_tx" value="pay" />
+        
+        {/* KCP 결제결과를 담을 빈 파라미터들 (필수) */}
+        <input type="hidden" name="res_cd" value="" />
+        <input type="hidden" name="res_msg" value="" />
+        <input type="hidden" name="enc_info" value="" />
+        <input type="hidden" name="enc_data" value="" />
+        <input type="hidden" name="ret_pay_method" value="" />
+        <input type="hidden" name="tran_cd" value="" />
+        <input type="hidden" name="use_pay_method" value="" />
       </form>
     </div>
   </div>
