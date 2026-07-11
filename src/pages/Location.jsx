@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FloatingKakao from '../components/FloatingKakao';
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import './PageStyles.css';
 
 const fadeUpVariant = {
@@ -20,7 +21,11 @@ const Location = () => {
   }, []);
 
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper location-page">
+      <Helmet>
+        <title>오시는길 | 수작업팩토리</title>
+        <meta name="description" content="서울 중구 충무로에 위치한 수작업팩토리 본사 및 공장 오시는 길과 상세 주소 안내." />
+      </Helmet>
       <Header />
       <div className="premium-container">
         <motion.div 
@@ -32,7 +37,7 @@ const Location = () => {
           custom={0}
         >
           <span className="premium-tag">Location</span>
-          <h1 className="premium-title font-playfair">OUR LOCATION</h1>
+          <h2 className="premium-title font-playfair">OUR LOCATION</h2>
           <p className="premium-subtitle">이룸디자인(수작업팩토리) 오시는 길을 안내해 드립니다.</p>
         </motion.div>
         

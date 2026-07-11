@@ -37,7 +37,7 @@ const PaymentSuccess = () => {
             </svg>
           </div>
           
-          <h1 className="success-title">결제가 완료되었습니다</h1>
+          <h2 className="success-title">결제가 완료되었습니다</h2>
           <p className="success-desc">
             성공적으로 접수되었습니다.<br />
             담당자가 확인 후 빠르게 안내해 드리겠습니다.

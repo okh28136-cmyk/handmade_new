@@ -37,6 +37,7 @@ import AdminDashboard from './admin/AdminDashboard';
 import AdminPayments from './admin/AdminPayments';
 import AdminSettings from './admin/AdminSettings';
 import AdminPricing from './admin/AdminPricing';
+import { Helmet } from 'react-helmet-async';
 
 // 해시 스크롤 처리 컴포넌트
 const ScrollToHashElement = () => {
@@ -84,6 +85,10 @@ const MainSite = () => {
 
   return (
     <>
+      <Helmet>
+        <title>수작업팩토리 - 충무로 포장 대행·임가공·조립 전문</title>
+        <meta name="description" content="단순 포장부터 라벨링, 복합 조립, 배송까지. 빠르고 정확한 수작업이 필요할 땐 수작업팩토리와 상의하세요." />
+      </Helmet>
       <Header />
       <main>
         <Hero />

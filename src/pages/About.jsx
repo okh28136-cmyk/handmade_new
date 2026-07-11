@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FloatingKakao from '../components/FloatingKakao';
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import './PageStyles.css';
 
 const fadeUpVariant = {
@@ -20,7 +21,12 @@ const About = () => {
   }, []);
 
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper about-page">
+      <Helmet>
+        <title>회사소개 | 수작업팩토리</title>
+        <meta name="description" content="수작업팩토리(이룸디자인)의 회사 비전, 포장 대행 철학 및 최적화된 물류 작업 환경을 소개합니다." />
+      </Helmet>
+      
       <Header />
       <div className="premium-container">
         <motion.div 
@@ -32,7 +38,7 @@ const About = () => {
           custom={0}
         >
           <span className="premium-tag">About Us</span>
-          <h1 className="premium-title font-playfair">WHO WE ARE</h1>
+          <h2 className="premium-title font-playfair">WHO WE ARE</h2>
           <p className="premium-subtitle">고객의 가치를 새롭게 디자인하는 이룸디자인</p>
         </motion.div>
         
@@ -45,7 +51,7 @@ const About = () => {
             variants={fadeUpVariant}
             custom={1}
           >
-            <img src="https://images.unsplash.com/photo-1542744094-24638ea0b56c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="이룸디자인 회사소개" />
+            <img src="https://images.unsplash.com/photo-1542744094-24638ea0b56c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="수작업팩토리(이룸디자인)의 충무로 공장 전경 및 쾌적한 포장 대행 작업 환경" />
           </motion.div>
           
           <motion.div 

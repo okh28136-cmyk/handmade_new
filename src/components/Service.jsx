@@ -26,7 +26,7 @@ const Service = () => {
             custom={0}
           >
             <div className="service-img-col">
-              <img src="/service_kitting.png" alt="Kitting & Packaging" />
+              <img src="/service_kitting.png" alt="기획 세트 포장 및 조립 대행 (Kitting & Packaging)" />
             </div>
             <div className="service-text-col">
               <h3 className="service-item-title">Kitting & Packaging</h3>
@@ -49,7 +49,7 @@ const Service = () => {
             custom={1}
           >
             <div className="service-img-col">
-              <img src="/service_label.png" alt="Labeling" />
+              <img src="/service_label.png" alt="라벨링 및 바코드 부착 작업 (Labeling)" />
             </div>
             <div className="service-text-col">
               <h3 className="service-item-title">Labeling</h3>
@@ -72,7 +72,7 @@ const Service = () => {
             custom={2}
           >
             <div className="service-img-col">
-              <img src="/service_assembly.png" alt="Assembly & Setting" />
+              <img src="/service_assembly.png" alt="복합 수작업 조립 및 세팅 (Assembly & Setting)" />
             </div>
             <div className="service-text-col">
               <h3 className="service-item-title">Assembly & Setting</h3>
