@@ -5,6 +5,44 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 import AdminLayout from './AdminLayout';
 import './AdminGallery.css';
 
+const convertToWebP = (file) => {
+  return new Promise((resolve, reject) => {
+    if (!file.type.startsWith('image/')) {
+      resolve(file);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const originalName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+            const newFile = new File([blob], `${originalName}_optimized.webp`, {
+              type: 'image/webp',
+            });
+            resolve(newFile);
+          } else {
+            reject(new Error("Canvas to Blob failed"));
+          }
+        }, 'image/webp', 0.8);
+      };
+      img.onerror = (error) => reject(error);
+    };
+    reader.onerror = (error) => reject(error);
+  });
+};
+
+
 const AdminGallery = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,8 +77,15 @@ const AdminGallery = () => {
     setUploading(true);
     
     try {
-      const fileRef = ref(storage, `gallery/${Date.now()}_${selectedFile.name}`);
-      const snapshot = await uploadBytes(fileRef, selectedFile);
+      let fileToUpload = selectedFile;
+      try {
+        fileToUpload = await convertToWebP(selectedFile);
+      } catch (err) {
+        console.warn('WebP 변환 실패, 원본 파일로 업로드합니다.', err);
+      }
+
+      const fileRef = ref(storage, `gallery/${Date.now()}_${fileToUpload.name}`);
+      const snapshot = await uploadBytes(fileRef, fileToUpload);
       const url = await getDownloadURL(snapshot.ref);
       
       const newImg = {
