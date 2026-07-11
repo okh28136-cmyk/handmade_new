@@ -51,7 +51,6 @@ const Location = () => {
             custom={1}
           >
             <div className="location-item">
-              <div className="icon">🏢</div>
               <div className="location-text">
                 <h3>Address</h3>
                 <p>서울특별시 중구 필동로9</p>
@@ -60,7 +59,6 @@ const Location = () => {
             </div>
             
             <div className="location-item">
-              <div className="icon">📞</div>
               <div className="location-text">
                 <h3>Contact</h3>
                 <p>02-2268-7512</p>
@@ -69,7 +67,6 @@ const Location = () => {
             </div>
             
             <div className="location-item">
-              <div className="icon">✉️</div>
               <div className="location-text">
                 <h3>Email</h3>
                 <p>jyy1422@iroum.co.kr</p>
@@ -85,11 +82,15 @@ const Location = () => {
             variants={fadeUpVariant}
             custom={2}
           >
-            {/* TODO: 카카오맵 등 삽입 시 이 영역을 교체하세요 */}
-            <div className="map-placeholder">
-              <div className="map-icon">📍</div>
-              <p>서울특별시 중구 필동로9</p>
-            </div>
+            <iframe 
+              src="https://maps.google.com/maps?q=서울특별시%20중구%20필동로9&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0, minHeight: '400px', borderRadius: '8px' }} 
+              allowFullScreen="" 
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </motion.div>
         </div>
       </div>
