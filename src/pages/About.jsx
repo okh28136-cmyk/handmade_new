@@ -71,7 +71,6 @@ const About = () => {
             variants={fadeUpVariant}
             custom={3}
           >
-            <div className="icon">✨</div>
             <h3>맞춤형 1:1 컨설팅</h3>
             <p>고객의 제품 특성과 납기일을 정확히 파악하여 최적의 작업 단가와 방향을 제시합니다.</p>
           </motion.div>
@@ -84,7 +83,6 @@ const About = () => {
             variants={fadeUpVariant}
             custom={4}
           >
-            <div className="icon">🛠️</div>
             <h3>전문 수작업 노하우</h3>
             <p>오랜 경험의 숙련된 인력들이 어떤 형태의 까다로운 패키징 작업도 완벽하게 소화합니다.</p>
           </motion.div>
@@ -97,7 +95,6 @@ const About = () => {
             variants={fadeUpVariant}
             custom={5}
           >
-            <div className="icon">🔍</div>
             <h3>철저한 품질 검수 (QC)</h3>
             <p>꼼꼼한 다중 검수 시스템을 통해 불량률 제로에 도전하는 최상의 퀄리티를 보장합니다.</p>
           </motion.div>
