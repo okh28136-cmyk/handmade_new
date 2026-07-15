@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>수작업팩토리 - 프리미엄 포장 및 조립 전문 파트너</title>
+    <title>수작업팩토리</title>
     <link>https://www.iroum.com/</link>
-    <description>단순 포장부터 라벨링, 복합 조립, 전국 물류 배송까지. 불량 제로를 지향하는 수작업 전문가와 상의하세요.</description>
-    <language>ko-KR</language>
-    <pubDate>Tue, 23 Jun 2026 12:00:00 +0900</pubDate>
-    <lastBuildDate>Tue, 23 Jun 2026 12:00:00 +0900</lastBuildDate>
-    <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-    <generator>Custom XML</generator>
+    <description>충무로 포장 대행, 임가공, 조립 전문 수작업팩토리입니다.</description>
+    <language>ko</language>
+    <pubDate>Wed, 15 Jul 2026 09:00:00 +0900</pubDate>
+    <lastBuildDate>Wed, 15 Jul 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://www.iroum.com/rss.xml" rel="self" type="application/rss+xml"/>
+    
     <item>
-      <title>수작업팩토리 메인 홈페이지</title>
+      <title>수작업팩토리 메인페이지</title>
       <link>https://www.iroum.com/</link>
-      <description>단순 포장부터 라벨링, 복합 조립, 전국 물류 배송까지 책임집니다.</description>
-      <pubDate>Tue, 23 Jun 2026 12:00:00 +0900</pubDate>
-      <guid isPermaLink="true">https://www.iroum.com/</guid>
+      <description>단순 포장부터 라벨링, 복합 조립, 배송까지 빠르고 정확한 수작업이 필요할 땐 수작업팩토리와 상의하세요.</description>
+      <pubDate>Mon, 22 Jun 2026 09:00:00 +0900</pubDate>
+      <guid>https://www.iroum.com/</guid>
+    </item>
+    
+    <item>
+      <title>수작업팩토리 회사소개</title>
+      <link>https://www.iroum.com/about</link>
+      <description>수작업팩토리(이룸디자인)의 회사 비전, 포장 대행 철학 및 최적화된 물류 작업 환경을 소개합니다.</description>
+      <pubDate>Sat, 11 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://www.iroum.com/about</guid>
+    </item>
+
+    <item>
+      <title>수작업팩토리 오시는길</title>
+      <link>https://www.iroum.com/location</link>
+      <description>서울 중구 충무로에 위치한 수작업팩토리 본사 및 공장 오시는 길과 상세 주소 안내.</description>
+      <pubDate>Sat, 11 Jul 2026 09:00:00 +0900</pubDate>
+      <guid>https://www.iroum.com/location</guid>
     </item>
   </channel>
 </rss>
