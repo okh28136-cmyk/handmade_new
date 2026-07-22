@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       good_name,
       buyr_name,
       pay_method: 'CARD', // 스마트폰은 CARD (PC의 100000000000 대신)
-      currency: 'WON', // 원화 코드 (KCP 모바일 표준웹은 WON)
+      currency: '410',
       Ret_URL,
       escw_used: 'N',
     };

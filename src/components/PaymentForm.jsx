@@ -145,26 +145,38 @@ const PaymentForm = () => {
         const data = await response.json();
         
         if (response.ok && data.PayUrl && data.approvalKey) {
-          // 모바일용 필수 파라미터 세팅
-          document.order_info.action = data.PayUrl;
-          document.order_info.pay_method.value = 'CARD';
           
-          // 승인키 숨김 폼 추가
-          const approvalInput = document.createElement('input');
-          approvalInput.type = 'hidden';
-          approvalInput.name = 'approval_key';
-          approvalInput.value = data.approvalKey;
-          document.order_info.appendChild(approvalInput);
+          // [NEW] KCP 스크립트 간섭을 막기 위해 새 폼을 동적으로 생성하여 전송
+          const mobileForm = document.createElement('form');
+          mobileForm.method = 'POST';
+          mobileForm.action = data.PayUrl;
+          mobileForm.acceptCharset = 'utf-8';
+          mobileForm.style.display = 'none';
+
+          const params = {
+            approval_key: data.approvalKey,
+            Ret_URL: 'https://iroum.com/api/kcp-approve',
+            pay_method: 'CARD', // 모바일 카드결제 코드
+            ordr_idxx: docRef.id,
+            good_name: '수작업팩토리 맞춤 결제',
+            good_mny: numAmount,
+            buyr_name: buyerName,
+            buyr_mail: buyerEmail,
+            site_cd: 'P7547',
+            req_tx: 'pay',
+            currency: '410' // KCP 모바일 원화 코드 필수
+          };
+
+          for (const key in params) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = params[key];
+            mobileForm.appendChild(input);
+          }
           
-          // 통화 코드 숨김 폼 추가 (KCP 모바일 규격 원화는 WON)
-          const currencyInput = document.createElement('input');
-          currencyInput.type = 'hidden';
-          currencyInput.name = 'currency';
-          currencyInput.value = 'WON';
-          document.order_info.appendChild(currencyInput);
-          
-          // 폼 전송 (KCP 모바일 결제 페이지로 브라우저 이동)
-          document.order_info.submit();
+          document.body.appendChild(mobileForm);
+          mobileForm.submit();
         } else {
           alert('모바일 결제 준비 중 오류가 발생했습니다.');
           setIsProcessing(false);
