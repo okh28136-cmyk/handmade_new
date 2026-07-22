@@ -150,7 +150,7 @@ const PaymentForm = () => {
           const mobileForm = document.createElement('form');
           mobileForm.method = 'POST';
           mobileForm.action = data.PayUrl;
-          mobileForm.acceptCharset = 'utf-8';
+          mobileForm.acceptCharset = 'euc-kr'; // KCP는 EUC-KR을 기본으로 받음
           mobileForm.style.display = 'none';
 
           const params = {
@@ -164,8 +164,7 @@ const PaymentForm = () => {
             buyr_mail: buyerEmail,
             site_cd: 'P7547',
             req_tx: 'pay',
-            currency: '410', // KCP 모바일 원화 코드 필수
-            encoding_trans: 'UTF-8' // 한글 깨짐 방지
+            currency: '410' // KCP 모바일 원화 코드 필수
           };
 
           for (const key in params) {
