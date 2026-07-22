@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, query, orderBy, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, query, orderBy, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import AdminLayout from './AdminLayout';
 import './AdminPayments.css';
@@ -84,6 +84,30 @@ const AdminPayments = () => {
     } catch (error) {
       console.error('상태 변경 오류:', error);
       alert('상태 변경 중 오류가 발생했습니다.');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const handleDeletePayment = async (id) => {
+    const isConfirm = window.confirm("정말로 이 내역을 삭제하시겠습니까?\n삭제된 데이터는 복구할 수 없습니다.");
+    if (!isConfirm) return;
+
+    try {
+      setIsUpdating(true);
+      await deleteDoc(doc(db, 'payments', id));
+      
+      // 로컬 상태 업데이트 (삭제된 내역 화면에서 제거)
+      setPayments(payments.filter(p => p.id !== id));
+      
+      if (selectedPayment && selectedPayment.id === id) {
+        closePopup();
+      }
+      
+      alert('결제 내역이 정상적으로 삭제되었습니다.');
+    } catch (error) {
+      console.error('삭제 오류:', error);
+      alert('결제 내역 삭제 중 오류가 발생했습니다.');
     } finally {
       setIsUpdating(false);
     }
@@ -212,6 +236,24 @@ const AdminPayments = () => {
                   disabled={isUpdating}
                 >
                   입금 완료
+                </button>
+              </div>
+              <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #e5e7eb', display: 'flex', justifyContent: 'flex-end' }}>
+                <button 
+                  onClick={() => handleDeletePayment(selectedPayment.id)}
+                  disabled={isUpdating}
+                  style={{ 
+                    backgroundColor: '#fee2e2', 
+                    color: '#ef4444', 
+                    border: 'none', 
+                    padding: '8px 16px', 
+                    borderRadius: '6px', 
+                    cursor: isUpdating ? 'not-allowed' : 'pointer',
+                    fontWeight: '600',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  🗑️ 내역 삭제하기
                 </button>
               </div>
             </div>
