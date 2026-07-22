@@ -125,16 +125,56 @@ const PaymentForm = () => {
       // 2. KCP 폼의 주문번호(ordr_idxx)를 생성된 Firebase 문서 ID로 덮어쓰기
       document.order_info.ordr_idxx.value = docRef.id;
 
-      // 3. KCP 결제창 호출
-      if (window.KCP_Pay_Execute) {
-         window.KCP_Pay_Execute(document.order_info);
-         // 결제창이 뜨면 로딩 상태를 풀어주고 기다림
-         setIsProcessing(false);
-         return; 
+      // 3. 접속 기기 감지 (PC vs Mobile)
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+      if (isMobile) {
+        // [모바일 환경] 거래 사전 등록 후 KCP 모바일 결제창으로 이동
+        const response = await fetch('/api/kcp-mobile-register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ordr_idxx: docRef.id,
+            good_mny: numAmount,
+            good_name: '수작업팩토리 맞춤 결제',
+            buyr_name: buyerName,
+            Ret_URL: 'https://iroum.com/api/kcp-approve'
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.PayUrl && data.approvalKey) {
+          // 모바일용 필수 파라미터 세팅
+          document.order_info.action = data.PayUrl;
+          document.order_info.pay_method.value = 'CARD';
+          
+          // 승인키 숨김 폼 추가
+          const approvalInput = document.createElement('input');
+          approvalInput.type = 'hidden';
+          approvalInput.name = 'approval_key';
+          approvalInput.value = data.approvalKey;
+          document.order_info.appendChild(approvalInput);
+          
+          // 폼 전송 (KCP 모바일 결제 페이지로 브라우저 이동)
+          document.order_info.submit();
+        } else {
+          alert('모바일 결제 준비 중 오류가 발생했습니다.');
+          setIsProcessing(false);
+          return;
+        }
+
       } else {
-         alert('결제 모듈을 불러오는 중입니다. 새로고침 후 다시 시도해주세요.');
-         setIsProcessing(false);
-         return;
+        // [PC 환경] 기존 팝업(아이프레임) 모드
+        if (window.KCP_Pay_Execute) {
+           window.KCP_Pay_Execute(document.order_info);
+           setIsProcessing(false);
+           return; 
+        } else {
+           alert('결제 모듈을 불러오는 중입니다. 새로고침 후 다시 시도해주세요.');
+           setIsProcessing(false);
+           return;
+        }
       }
 
     } catch (error) {
