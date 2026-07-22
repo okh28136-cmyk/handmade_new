@@ -156,11 +156,11 @@ const PaymentForm = () => {
           approvalInput.value = data.approvalKey;
           document.order_info.appendChild(approvalInput);
           
-          // 통화 코드 숨김 폼 추가 (KCP 모바일 규격 410 = 원화)
+          // 통화 코드 숨김 폼 추가 (KCP 모바일 규격 원화는 WON)
           const currencyInput = document.createElement('input');
           currencyInput.type = 'hidden';
           currencyInput.name = 'currency';
-          currencyInput.value = '410';
+          currencyInput.value = 'WON';
           document.order_info.appendChild(currencyInput);
           
           // 폼 전송 (KCP 모바일 결제 페이지로 브라우저 이동)
