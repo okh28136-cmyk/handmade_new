@@ -25,6 +25,7 @@ export default async function handler(req, res) {
       buyr_name,
       pay_method: 'CARD', // 스마트폰은 CARD (PC의 100000000000 대신)
       currency: '410',
+      encoding_trans: 'UTF-8', // 한글 깨짐 방지
       Ret_URL,
       escw_used: 'N',
     };

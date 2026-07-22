@@ -164,7 +164,8 @@ const PaymentForm = () => {
             buyr_mail: buyerEmail,
             site_cd: 'P7547',
             req_tx: 'pay',
-            currency: '410' // KCP 모바일 원화 코드 필수
+            currency: '410', // KCP 모바일 원화 코드 필수
+            encoding_trans: 'UTF-8' // 한글 깨짐 방지
           };
 
           for (const key in params) {
