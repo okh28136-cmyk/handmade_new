@@ -101,7 +101,6 @@ const Contact = () => {
         console.error('Firestore 저장 오류 (무시됨):', err);
       });
 
-      // 이메일 전송은 필수로 기다림
       await emailPromise;
       // Firestore는 백그라운드 저장 시도 (타임아웃으로 블로킹 방지)
       await firestorePromise;
@@ -111,7 +110,7 @@ const Contact = () => {
       setFileName('파일을 첨부하시려면 클릭하세요.');
     } catch (mailErr) {
       console.error('전송 오류:', mailErr);
-      setStatus('error');
+      setStatus(`error: ${mailErr?.text || mailErr?.message || '네트워크 통신 오류'}`);
     }
   };
 
@@ -211,9 +210,10 @@ const Contact = () => {
             ) : (
               <></>
             )}
-            {status === 'error' && (
+            {status.startsWith('error') && (
               <div className="form-result form-result--error">
-                ❌ 접수 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화(02-2268-7512)로 문의해 주세요.
+                ❌ 접수 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화(02-2268-7512)로 문의해 주세요.<br/>
+                <small style={{ color: '#ff6b6b' }}>[에러 상세: {status.replace('error: ', '')}]</small>
               </div>
             )}
 
