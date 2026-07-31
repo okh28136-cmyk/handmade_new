@@ -32,7 +32,7 @@ const Hero = () => {
             playsInline
             poster="/heri-3.jpeg"
           >
-            <source src="/hero-bg.mp4" type="video/mp4" />
+            <source src="/hero.mp4" type="video/mp4" />
           </video>
           <div className="hero-video-overlay"></div>
           
