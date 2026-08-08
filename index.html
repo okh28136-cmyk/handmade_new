@@ -101,6 +101,53 @@
     ]
   }
   </script>
+  
+  <!-- LocalBusiness 구조화된 데이터 (GEO/AEO 최적화) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "수작업팩토리",
+    "image": "https://www.iroum.com/og-image.jpg",
+    "@id": "https://www.iroum.com",
+    "url": "https://www.iroum.com",
+    "telephone": "+82-2-2268-7512",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "필동로9",
+      "addressLocality": "중구",
+      "addressRegion": "서울특별시",
+      "postalCode": "04624",
+      "addressCountry": "KR"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "priceRange": "견적 문의"
+  }
+  </script>
+
+  <!-- Service 구조화된 데이터 (GEO/AEO 최적화) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "수작업 포장 및 조립 임가공 대행",
+    "provider": {
+      "@type": "Organization",
+      "name": "수작업팩토리"
+    },
+    "description": "단순 포장, 라벨링, 복합 조립, 기획 세트 포장, 물류 대행 등 빠르고 정확한 맞춤형 수작업 서비스",
+    "serviceType": "Packaging and Assembly Service",
+    "areaServed": {
+      "@type": "Country",
+      "name": "KR"
+    }
+  }
+  </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>

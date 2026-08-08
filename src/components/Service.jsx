@@ -15,9 +15,10 @@ const Service = () => {
   return (
     <section className="service" id="service">
       <div className="container">
+        <h2 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>수작업팩토리 핵심 서비스: 포장, 라벨링, 조립</h2>
         <div className="service-list">
           {/* Row 1 */}
-          <motion.div 
+          <motion.article 
             className="service-row"
             initial="hidden"
             whileInView="visible"
@@ -37,10 +38,10 @@ const Service = () => {
                 복잡한 수작업도 빠르고 정확하게 해결해 드립니다.
               </p>
             </div>
-          </motion.div>
+          </motion.article>
 
           {/* Row 2 */}
-          <motion.div 
+          <motion.article 
             className="service-row reverse"
             initial="hidden"
             whileInView="visible"
@@ -60,10 +61,10 @@ const Service = () => {
                 정확한 위치에 깔끔한 마무리를 약속드립니다.
               </p>
             </div>
-          </motion.div>
+          </motion.article>
 
           {/* Row 3 */}
-          <motion.div 
+          <motion.article 
             className="service-row"
             initial="hidden"
             whileInView="visible"
@@ -83,7 +84,7 @@ const Service = () => {
                 완성하는 조립 공정을 섬세하게 제공합니다.
               </p>
             </div>
-          </motion.div>
+          </motion.article>
         </div>
       </div>
     </section>

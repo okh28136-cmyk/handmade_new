@@ -31,7 +31,7 @@ const Features = () => {
         </motion.div>
 
         <div className="features-list-minimal">
-          <motion.div 
+          <motion.article 
             className="feature-minimal-item"
             initial="hidden"
             whileInView="visible"
@@ -47,9 +47,9 @@ const Features = () => {
                 필요한경우 출입 통제부터 CCTV 모니터링까지 완벽한 보안 인프라를 구축하고 있습니다.
               </p>
             </div>
-          </motion.div>
+          </motion.article>
           
-          <motion.div 
+          <motion.article 
             className="feature-minimal-item"
             initial="hidden"
             whileInView="visible"
@@ -65,9 +65,9 @@ const Features = () => {
                 유연하게 대처할 수 있습니다.
               </p>
             </div>
-          </motion.div>
+          </motion.article>
 
-          <motion.div 
+          <motion.article 
             className="feature-minimal-item"
             initial="hidden"
             whileInView="visible"
@@ -83,7 +83,7 @@ const Features = () => {
                 체계적인 QC 프로세스를 통해 미세한 물량도 허용하지 않는 무결점 서비스를 제공합니다.
               </p>
             </div>
-          </motion.div>
+          </motion.article>
         </div>
       </div>
     </section>
