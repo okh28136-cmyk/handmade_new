@@ -27,6 +27,7 @@ const Contact = () => {
   const formRef = useRef(null);
   const [fileName, setFileName] = useState('파일을 첨부하시려면 클릭하세요.');
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const mountTime = useRef(Date.now()); // 스팸 방지용 마운트 시간 기록
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -41,9 +42,26 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus('sending');
+    
+    // --- 봇 방어 1: 폼 제출 속도 체크 (3초 이내 제출은 봇으로 간주) ---
+    const submitTime = Date.now();
+    if (submitTime - mountTime.current < 3000) {
+      console.warn('봇 제출 감지 (속도):', submitTime - mountTime.current);
+      setStatus('success'); // 성공한 척 하지만 실제로는 저장/전송 안 함
+      return;
+    }
 
     const formData = new FormData(formRef.current);
+
+    // --- 봇 방어 2: 허니팟 필드 체크 (숨겨진 필드에 값이 있으면 봇으로 간주) ---
+    const honeypot = formData.get('bot_field');
+    if (honeypot) {
+      console.warn('봇 제출 감지 (허니팟):', honeypot);
+      setStatus('success'); // 성공한 척
+      return;
+    }
+
+    setStatus('sending');
     const templateParams = {
       from_company : formData.get('company')  || '(미입력)',
       from_name    : formData.get('name'),
@@ -220,6 +238,14 @@ const Contact = () => {
             {/* 성공 상태면 폼 숨기기 */}
             {status !== 'success' && (
               <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
+                {/* 봇 방어용 허니팟 필드 (화면에 안 보임, 사용자는 입력 불가) */}
+                <input 
+                  type="text" 
+                  name="bot_field" 
+                  style={{ display: 'none' }} 
+                  tabIndex="-1" 
+                  autoComplete="off" 
+                />
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="company">회사명 <span className="optional">(선택)</span></label>
