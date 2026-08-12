@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -22,6 +22,7 @@ const PaymentForm = () => {
   const [buyerEmail, setBuyerEmail] = useState('');
   const [isAgreed, setIsAgreed] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const mountTime = useRef(Date.now()); // 스팸 방지용 마운트 시간 기록
 
   // KCP 스크립트 동적 로딩 (옵션 A를 위한 표준 결제창 스크립트)
   useEffect(() => {
@@ -95,6 +96,22 @@ const PaymentForm = () => {
 
   const handlePayment = async (e) => {
     e.preventDefault();
+
+    // --- 봇 방어 1: 폼 제출 속도 체크 (3초 이내 제출은 봇으로 간주) ---
+    const submitTime = Date.now();
+    if (submitTime - mountTime.current < 3000) {
+      console.warn('봇 제출 감지 (속도):', submitTime - mountTime.current);
+      return; // 봇은 아무 동작 없이 조용히 차단
+    }
+
+    // --- 봇 방어 2: 허니팟 필드 체크 (숨겨진 필드에 값이 있으면 봇으로 간주) ---
+    const formData = new FormData(e.target);
+    const honeypot = formData.get('bot_field');
+    if (honeypot) {
+      console.warn('봇 제출 감지 (허니팟):', honeypot);
+      return; // 봇은 조용히 차단
+    }
+
     const numAmount = parseInt(amount.replace(/,/g, ''));
     
     if (!numAmount || numAmount < 100) {
@@ -215,6 +232,14 @@ const PaymentForm = () => {
 
 
       <form onSubmit={handlePayment}>
+        {/* 봇 방어용 허니팟 필드 (화면에 안 보임, 사용자는 입력 불가) */}
+        <input 
+          type="text" 
+          name="bot_field" 
+          style={{ display: 'none' }} 
+          tabIndex="-1" 
+          autoComplete="off" 
+        />
         <div className="form-group">
           <label>결제 금액</label>
           <div className="input-wrapper">
