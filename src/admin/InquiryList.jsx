@@ -24,6 +24,18 @@ const InquiryList = () => {
   const ITEMS_PER_PAGE = 10;
   const navigate = useNavigate();
 
+  // 날짜 포맷 헬퍼 (월/일 두 자리일 때도 분까지 정상 표시)
+  const formatInquiryDate = (timestamp) => {
+    if (!timestamp) return '-';
+    const d = timestamp.toDate();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const hh = String(d.getHours()).padStart(2, '0');
+    const min = String(d.getMinutes()).padStart(2, '0');
+    return `${yyyy}. ${mm}. ${dd}. ${hh}:${min}`;
+  };
+
   // Firestore 실시간 구독
   useEffect(() => {
     const q = query(collection(db, 'inquiries'), orderBy('createdAt', 'desc'));
@@ -32,7 +44,7 @@ const InquiryList = () => {
         id: doc.id,
         ...doc.data(),
         // Firestore Timestamp → 문자열 변환
-        createdAt: doc.data().createdAt?.toDate().toLocaleString('ko-KR', { hour12: false }).slice(0, 16) || '-',
+        createdAt: formatInquiryDate(doc.data().createdAt),
       }));
       setInquiries(data);
       setLoading(false);

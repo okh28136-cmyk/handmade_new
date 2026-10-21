@@ -53,6 +53,18 @@ const InquiryDetail = () => {
   const [editMode, setEditMode] = useState(false);
   const [editData, setEditData] = useState({});
 
+  // 날짜 포맷 헬퍼
+  const formatDateTime = (dateObj) => {
+    if (!dateObj) return '-';
+    const d = dateObj instanceof Date ? dateObj : dateObj.toDate();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const hh = String(d.getHours()).padStart(2, '0');
+    const min = String(d.getMinutes()).padStart(2, '0');
+    return `${yyyy}. ${mm}. ${dd}. ${hh}:${min}`;
+  };
+
   // Firestore에서 문의 데이터 불러오기
   useEffect(() => {
     const fetchData = async () => {
@@ -64,7 +76,7 @@ const InquiryDetail = () => {
           const parsed = {
             id: docSnap.id,
             ...data,
-            createdAt: data.createdAt?.toDate().toLocaleString('ko-KR', { hour12: false }).slice(0, 16) || '-',
+            createdAt: formatDateTime(data.createdAt),
           };
           setInquiry(parsed);
           setEditData(parsed);
@@ -90,7 +102,7 @@ const InquiryDetail = () => {
     if (!newMemo.trim()) return;
     const memo = {
       text: newMemo.trim(),
-      time: new Date().toLocaleString('ko-KR', { hour12: false }).slice(0, 16),
+      time: formatDateTime(new Date()),
     };
     setSaving(true);
     await updateDoc(doc(db, 'inquiries', id), { memos: arrayUnion(memo) });
