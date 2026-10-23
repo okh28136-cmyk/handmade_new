@@ -62,22 +62,40 @@ const AdminPricing = () => {
 
   // UPH ➔ 개당 단가로 보여주고 저장할 때 다시 UPH로 변환하는 함수
   const handleUnitPriceChange = (category, subCategory, key, value) => {
+    if (value === '') {
+      setPricing((prev) => ({
+        ...prev,
+        [category]: {
+          ...prev[category],
+          [subCategory]: {
+            ...prev[category][subCategory],
+            [key]: 0
+          }
+        }
+      }));
+      return;
+    }
     const unitPrice = Number(value);
     if (unitPrice > 0) {
       setPricing((prev) => {
-        const updated = { ...prev };
-        // 개당 단가 = 시급 / UPH
-        // UPH = 시급 / 개당 단가
         const newUph = prev.hourlyRate / unitPrice;
-        updated[category][subCategory][key] = newUph;
-        return updated;
+        return {
+          ...prev,
+          [category]: {
+            ...prev[category],
+            [subCategory]: {
+              ...prev[category][subCategory],
+              [key]: newUph
+            }
+          }
+        };
       });
     }
   };
 
-  // 렌더링용: UPH를 개당 단가로 변환
+  // 렌더링용: UPH를 개당 단가로 변환 (0이면 빈칸으로 표시해 백스페이스 수정이 자유롭게 동작)
   const getUnitPrice = (uph) => {
-    if (!uph || uph === 0) return 0;
+    if (!uph || uph === 0) return '';
     return Math.round(pricing.hourlyRate / uph);
   };
 

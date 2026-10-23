@@ -10,6 +10,12 @@ const AdminPayments = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [linkAmount, setLinkAmount] = useState('');
+  const [filter, setFilter] = useState('all'); // all | completed | pending
+  const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
+
+  const isCompletedStatus = (status) => status === '결제완료' || status === '입금 완료';
 
   const handleCopyLink = () => {
     if (!linkAmount) {
@@ -114,9 +120,34 @@ const AdminPayments = () => {
   };
 
   const getStatusClass = (status) => {
-    if (status === '입금 완료') return 'status-badge completed';
+    if (isCompletedStatus(status)) return 'status-badge completed';
     return 'status-badge pending';
   };
+
+  const getStatusLabel = (status) => {
+    if (isCompletedStatus(status)) return '결제완료';
+    return '결제대기';
+  };
+
+  const filteredPayments = payments.filter(item => {
+    const completed = isCompletedStatus(item.status);
+    const matchFilter =
+      filter === 'all' ||
+      (filter === 'completed' && completed) ||
+      (filter === 'pending' && !completed);
+    const q = search.toLowerCase();
+    const matchSearch =
+      !search ||
+      (item.buyerName || '').toLowerCase().includes(q) ||
+      (item.buyerEmail || '').toLowerCase().includes(q);
+    return matchFilter && matchSearch;
+  });
+
+  const totalPages = Math.ceil(filteredPayments.length / ITEMS_PER_PAGE) || 1;
+  const currentPayments = filteredPayments.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   return (
     <AdminLayout>
@@ -150,11 +181,40 @@ const AdminPayments = () => {
           )}
         </div>
 
+        {/* 필터 및 검색 툴바 */}
+        <div className="payments-toolbar">
+          <div className="filter-tabs">
+            {[
+              ['all', '전체', payments.length],
+              ['completed', '결제완료', payments.filter(p => isCompletedStatus(p.status)).length],
+              ['pending', '결제대기', payments.filter(p => !isCompletedStatus(p.status)).length],
+            ].map(([val, label, count]) => (
+              <button
+                key={val}
+                className={`filter-tab ${filter === val ? 'active' : ''}`}
+                onClick={() => { setFilter(val); setCurrentPage(1); }}
+              >
+                {label}
+                <span className="tab-count">{count}</span>
+              </button>
+            ))}
+          </div>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="주문자명 또는 이메일 검색..."
+            value={search}
+            onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
+          />
+        </div>
+
         <div className="table-wrapper">
           {loading ? (
             <div className="loading-message">내역을 불러오는 중입니다...</div>
-          ) : payments.length === 0 ? (
-            <div className="empty-message">등록된 결제/주문 내역이 없습니다.</div>
+          ) : currentPayments.length === 0 ? (
+            <div className="empty-message">
+              {search ? '검색 결과가 없습니다.' : '등록된 결제/주문 내역이 없습니다.'}
+            </div>
           ) : (
             <table className="payments-table">
               <thead>
@@ -164,19 +224,29 @@ const AdminPayments = () => {
                   <th>이메일</th>
                   <th>결제/입금액</th>
                   <th>상태</th>
+                  <th>관리</th>
                 </tr>
               </thead>
               <tbody>
-                {payments.map(item => (
+                {currentPayments.map(item => (
                   <tr key={item.id} onClick={() => handleRowClick(item)} className="clickable-row">
                     <td>{formatDate(item.createdAt)}</td>
                     <td className="fw-bold">{item.buyerName}</td>
                     <td>{item.buyerEmail}</td>
                     <td className="amount-col">{Number(item.amount).toLocaleString()}원</td>
                     <td>
-                      <span className={getStatusClass(item.status || '입금 대기')}>
-                        {item.status || '입금 대기'}
+                      <span className={getStatusClass(item.status)}>
+                        {getStatusLabel(item.status)}
                       </span>
+                    </td>
+                    <td onClick={(e) => e.stopPropagation()}>
+                      <button
+                        className="row-delete-btn"
+                        onClick={() => handleDeletePayment(item.id)}
+                        disabled={isUpdating}
+                      >
+                        삭제
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -184,6 +254,35 @@ const AdminPayments = () => {
             </table>
           )}
         </div>
+
+        {/* 페이지네이션 */}
+        {!loading && totalPages > 1 && (
+          <div className="pagination">
+            <button
+              className="page-btn"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(p => p - 1)}
+            >
+              이전
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+              <button
+                key={page}
+                className={`page-btn ${currentPage === page ? 'active' : ''}`}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </button>
+            ))}
+            <button
+              className="page-btn"
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(p => p + 1)}
+            >
+              다음
+            </button>
+          </div>
+        )}
       </div>
 
       {/* 결제 상세 모달 팝업 */}
@@ -214,8 +313,8 @@ const AdminPayments = () => {
               </div>
               <div className="info-row">
                 <span className="info-label">현재 상태</span>
-                <span className={`info-value ${getStatusClass(selectedPayment.status || '입금 대기')}`}>
-                  {selectedPayment.status || '입금 대기'}
+                <span className={`info-value ${getStatusClass(selectedPayment.status)}`}>
+                  {getStatusLabel(selectedPayment.status)}
                 </span>
               </div>
             </div>
@@ -224,18 +323,18 @@ const AdminPayments = () => {
               <h3>상태 변경</h3>
               <div className="status-buttons">
                 <button 
-                  className={`status-btn pending-btn ${(selectedPayment.status || '입금 대기') === '입금 대기' ? 'active' : ''}`}
-                  onClick={() => handleUpdateStatus('입금 대기')}
+                  className={`status-btn pending-btn ${!isCompletedStatus(selectedPayment.status) ? 'active' : ''}`}
+                  onClick={() => handleUpdateStatus('결제대기')}
                   disabled={isUpdating}
                 >
-                  입금 대기
+                  결제대기
                 </button>
                 <button 
-                  className={`status-btn completed-btn ${selectedPayment.status === '입금 완료' ? 'active' : ''}`}
-                  onClick={() => handleUpdateStatus('입금 완료')}
+                  className={`status-btn completed-btn ${isCompletedStatus(selectedPayment.status) ? 'active' : ''}`}
+                  onClick={() => handleUpdateStatus('결제완료')}
                   disabled={isUpdating}
                 >
-                  입금 완료
+                  결제완료
                 </button>
               </div>
               <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #e5e7eb', display: 'flex', justifyContent: 'flex-end' }}>

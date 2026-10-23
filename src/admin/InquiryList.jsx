@@ -60,9 +60,19 @@ const InquiryList = () => {
     const q = search.toLowerCase();
     const matchSearch = !search
       || (i.from_company || '').toLowerCase().includes(q)
-      || (i.from_name || '').toLowerCase().includes(q);
+      || (i.from_name || '').toLowerCase().includes(q)
+      || (i.from_phone || '').toLowerCase().includes(q)
+      || (i.service_type || '').toLowerCase().includes(q);
     return matchStatus && matchSearch;
   });
+
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1;
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [totalPages, currentPage]);
 
   const handleDelete = async (e, inquiry) => {
     e.stopPropagation(); // 행 클릭(상세보기 이동) 방지
@@ -97,18 +107,17 @@ const InquiryList = () => {
       '담당자': item.from_name || '-',
       '연락처': item.from_phone || '-',
       '이메일': item.from_email || '-',
-      '서비스분야': item.req_type || '-',
-      '희망납기일': item.req_date || '-',
-      '예상물량': item.req_amount || '-',
-      '문의내용': item.req_content || '-',
+      '서비스분야': item.service_type || item.req_type || '-',
+      '예상물량': item.amount || item.req_amount || '-',
+      '문의내용': item.message || item.req_content || '-',
       '관리자메모': item.memos && item.memos.length > 0 ? item.memos.map(m => `[${m.time}] ${m.text}`).join('\n') : '-'
     }));
 
     const worksheet = XLSX.utils.json_to_sheet(excelData);
     // 열 너비 자동 맞춤 설정 (단순 구현)
     const wscols = [
-      {wch: 16}, {wch: 10}, {wch: 20}, {wch: 15}, 
-      {wch: 15}, {wch: 25}, {wch: 15}, {wch: 12}, 
+      {wch: 18}, {wch: 10}, {wch: 20}, {wch: 15}, 
+      {wch: 15}, {wch: 25}, {wch: 15}, 
       {wch: 15}, {wch: 50}, {wch: 40}
     ];
     worksheet['!cols'] = wscols;
@@ -118,7 +127,6 @@ const InquiryList = () => {
     XLSX.writeFile(workbook, `견적문의목록_${new Date().toISOString().slice(0,10)}.xlsx`);
   };
 
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1;
   const currentData = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
