@@ -15,7 +15,9 @@ const Service = () => {
   return (
     <section className="service" id="service">
       <div className="container">
-        <h2 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>수작업팩토리 핵심 서비스: 포장, 라벨링, 조립</h2>
+        <h2 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>
+          수작업팩토리 핵심 서비스: 임가공 업체, 포장 대행 업체, 수작업 포장 대행, 화장품 포장 임가공, 라벨 부착 대행, DM 발송 대행, 선물세트 포장 대행
+        </h2>
         <div className="service-list">
           {/* Row 1 */}
           <motion.article 
@@ -27,7 +29,7 @@ const Service = () => {
             custom={0}
           >
             <div className="service-img-col">
-              <img src="/service_kitting.png" alt="기획 세트 포장 및 조립 대행 (Kitting & Packaging)" />
+              <img src="/service_kitting.png" alt="수작업 포장 대행 및 선물세트 포장 대행·포장 대행 업체 (Kitting & Packaging)" />
             </div>
             <div className="service-text-col">
               <h3 className="service-item-title">Kitting & Packaging</h3>
@@ -50,7 +52,7 @@ const Service = () => {
             custom={1}
           >
             <div className="service-img-col">
-              <img src="/service_label.png" alt="라벨링 및 바코드 부착 작업 (Labeling)" />
+              <img src="/service_label.png" alt="라벨 부착 대행 및 화장품 포장 임가공·바코드 스티커 부착 (Labeling)" />
             </div>
             <div className="service-text-col">
               <h3 className="service-item-title">Labeling</h3>
@@ -73,7 +75,7 @@ const Service = () => {
             custom={2}
           >
             <div className="service-img-col">
-              <img src="/service_assembly.png" alt="복합 수작업 조립 및 세팅 (Assembly & Setting)" />
+              <img src="/service_assembly.png" alt="임가공 업체 복합 수작업 조립 및 DM 발송 대행·단상자 세팅 (Assembly & Setting)" />
             </div>
             <div className="service-text-col">
               <h3 className="service-item-title">Assembly & Setting</h3>

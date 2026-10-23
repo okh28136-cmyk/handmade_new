@@ -23,8 +23,8 @@ const About = () => {
   return (
     <div className="page-wrapper about-page">
       <Helmet>
-        <title>회사소개 | 수작업팩토리</title>
-        <meta name="description" content="수작업팩토리(이룸디자인)의 회사 비전, 포장 대행 철학 및 최적화된 물류 작업 환경을 소개합니다." />
+        <title>회사소개 | 수작업팩토리 - 임가공 업체·포장 대행 업체 전문</title>
+        <meta name="description" content="수작업 포장 대행, 화장품 포장 임가공, 라벨 부착 대행, 선물세트 포장 대행, DM 발송 대행 전문 기업 수작업팩토리(이룸디자인)를 소개합니다." />
       </Helmet>
       
       <Header />
