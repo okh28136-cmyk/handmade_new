@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import TermsModal from './TermsModal';
 import PrivacyModal from './PrivacyModal';
@@ -7,7 +7,6 @@ import PrivacyModal from './PrivacyModal';
 const Footer = () => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
-  const navigate = useNavigate();
 
   return (
     <>
@@ -22,10 +21,10 @@ const Footer = () => {
 
           <div className="footer-right">
             <div className="footer-nav">
-              <button className="footer-link-btn" onClick={() => navigate('/about')}>회사소개</button>
+              <Link to="/about" className="footer-link-btn">회사소개</Link>
               <button className="footer-link-btn" onClick={() => setIsTermsOpen(true)}>이용약관</button>
               <button className="footer-link-btn" onClick={() => setIsPrivacyOpen(true)}>개인정보처리방침</button>
-              <button className="footer-link-btn" onClick={() => navigate('/location')}>찾아오시는 길</button>
+              <Link to="/location" className="footer-link-btn">찾아오시는 길</Link>
             </div>
 
             <div className="footer-company-info">

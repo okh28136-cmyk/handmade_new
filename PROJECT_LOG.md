@@ -17,3 +17,9 @@
   2. `AdminPayments.jsx` / `AdminPayments.css`: KCP 결제 상태값(`결제완료` vs `입금 완료`) 불일치로 인해 결제완료 건이 노란색(대기) 뱃지로 표시되던 버그 수정, 상태 필터(전체/결제완료/결제대기)·검색·원클릭 삭제 버튼·페이지네이션 추가.
   3. `AdminPricing.jsx`: 단가 입력칸에서 백스페이스로 마지막 숫자를 지울 수 없던 입력 잠김 현상 개선.
 - **2026-10-23 (SEO 고도화):** B2B 검색량 상위 7대 핵심 키워드(`임가공 업체`, `포장 대행 업체`, `수작업 포장 대행`, `화장품 포장 임가공`, `라벨 부착 대행`, `DM 발송 대행`, `선물세트 포장 대행`)를 `index.html`(메타 태그, OpenGraph, JSON-LD `Service` 및 `OfferCatalog`), `App.jsx`(`Helmet`), `Service.jsx`(시맨틱 헤딩 및 이미지 alt), `About.jsx`, `sitemap.xml`에 전면 반영 및 배포.
+- **2026-11-20 (전문가 SEO 100점 패키지 적용 및 배포):**
+  1. `Header.jsx` 상단 메뉴 '현장스케치' 깨진 앵커(`#sketch` ➔ `#gallery`) 수정 및 `Footer.jsx` 서브페이지 링크를 크롤러 친화적인 `<Link>`(`<a>`)로 전환.
+  2. `Hero.jsx` 따옴표 오타(`"`) 수정 및 `Service.jsx`, `Features.jsx` 본문 가시 텍스트에 7대 B2B 핵심 키워드 자연스럽게 반영.
+  3. `index.html` 내 네이버 Yeti 및 초기 HTML 크롤러용 정적 시맨틱 폴백 콘텐츠 추가, `FAQPage` JSON-LD에 7대 키워드 Q&A 확장.
+  4. `App.jsx`, `About.jsx`, `Location.jsx` 페이지별 독립 `Canonical URL` 지정 및 `robots.txt` 비공개 경로(`/admin`, `/payment`, `/quote-test`) 크롤링 차단.
+  5. `Service.jsx`, `Gallery.jsx`, `AdminGallery.jsx` 이미지 `loading="lazy"` 및 SEO 키워드형 `alt` 자동 부여 적용.

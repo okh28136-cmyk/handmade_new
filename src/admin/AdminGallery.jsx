@@ -91,7 +91,7 @@ const AdminGallery = () => {
       const newImg = {
         url: url,
         path: fileRef.fullPath,
-        alt: selectedFile.name,
+        alt: `수작업팩토리 수작업 포장 대행 및 임가공 현장 - ${selectedFile.name}`,
         createdAt: serverTimestamp()
       };
       

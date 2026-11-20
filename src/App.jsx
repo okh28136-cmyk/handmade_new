@@ -89,6 +89,7 @@ const MainSite = () => {
         <title>수작업팩토리 - 임가공 업체·포장 대행 업체 | 수작업 포장·화장품 임가공·라벨 부착·DM 발송 대행</title>
         <meta name="description" content="기업 전문 임가공 업체·포장 대행 업체 수작업팩토리. 수작업 포장 대행, 화장품 포장 임가공, 라벨 부착 대행, 선물세트 포장 대행, DM 발송 대행까지 빠르고 정확하게 해결해 드립니다." />
         <meta name="keywords" content="임가공 업체, 포장 대행 업체, 수작업 포장 대행, 화장품 포장 임가공, 라벨 부착 대행, DM 발송 대행, 선물세트 포장 대행, 수작업포장, 조립대행, 단상자조립, 한글표시사항스티커, 기획세트포장, 물류대행, 수작업팩토리, 이룸디자인" />
+        <link rel="canonical" href="https://www.iroum.com/" />
       </Helmet>
       <Header />
       <main>

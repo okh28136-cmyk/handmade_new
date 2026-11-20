@@ -36,7 +36,7 @@ const Header = () => {
         <nav className={`nav-menu ${isMobileMenuOpen ? 'open' : ''}`}>
           <ul>
             <li><a href="#service" onClick={(e) => handleNavClick(e, '#service')}>Service</a></li>
-            <li><a href="#sketch" onClick={(e) => handleNavClick(e, '#sketch')}>현장스케치</a></li>
+            <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')}>현장스케치</a></li>
             <li><a href="#faq" onClick={(e) => handleNavClick(e, '#faq')}>FAQ</a></li>
             <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>견적문의</a></li>
           </ul>

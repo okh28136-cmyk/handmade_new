@@ -1,12 +1,18 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /payment
+Disallow: /quote-test
 
-# AI Crawlers explicitly allowed (though covered by *)
+# AI Crawlers explicitly allowed
 User-agent: GPTBot
 Allow: /
+Disallow: /admin
 User-agent: CCBot
 Allow: /
+Disallow: /admin
 User-agent: Google-Extended
 Allow: /
+Disallow: /admin
 
 Sitemap: https://www.iroum.com/sitemap.xml

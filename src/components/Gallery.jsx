@@ -65,7 +65,7 @@ const Gallery = () => {
                 variants={fadeUpVariant}
                 custom={(index % 5) + 1}
               >
-                <img src={img.url} alt={img.alt} className="gallery-image" />
+                <img src={img.url} alt={img.alt ? `수작업팩토리 수작업 포장 대행 및 임가공 작업 현장 (${img.alt})` : '수작업팩토리 수작업 포장 대행 및 임가공 작업 현장'} className="gallery-image" loading="lazy" />
                 <div className="gallery-overlay">
                   <span className="overlay-text">현장 보기</span>
                 </div>

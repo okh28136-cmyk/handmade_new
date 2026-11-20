@@ -23,8 +23,9 @@ const Location = () => {
   return (
     <div className="page-wrapper location-page">
       <Helmet>
-        <title>오시는길 | 수작업팩토리</title>
-        <meta name="description" content="서울 중구 충무로에 위치한 수작업팩토리 본사 및 공장 오시는 길과 상세 주소 안내." />
+        <title>오시는길 | 수작업팩토리 - 충무로 임가공 업체·포장 대행 공장</title>
+        <meta name="description" content="서울 중구 충무로에 위치한 수작업 포장 대행 및 임가공 업체 수작업팩토리(이룸디자인) 본사·공장 오시는 길과 상세 주소 안내." />
+        <link rel="canonical" href="https://www.iroum.com/location" />
       </Helmet>
       <Header />
       <div className="premium-container">

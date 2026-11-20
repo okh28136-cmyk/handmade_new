@@ -61,8 +61,8 @@ const Features = () => {
             <div className="feature-text">
               <h3 className="feature-title">신속한 긴급 대응</h3>
               <p className="feature-desc">
-                갑작스러운 대량 발주나 매우 촉박한 일정 등 예상치 못한 변수 앞에서도<br />
-                유연하게 대처할 수 있습니다.
+                갑작스러운 대량 임가공 발주나 매우 촉박한 포장 대행 일정 등<br />
+                예상치 못한 변수 앞에서도 유연하고 신속하게 대처할 수 있습니다.
               </p>
             </div>
           </motion.article>
