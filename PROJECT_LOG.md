@@ -23,3 +23,5 @@
   3. `index.html` 내 네이버 Yeti 및 초기 HTML 크롤러용 정적 시맨틱 폴백 콘텐츠 추가, `FAQPage` JSON-LD에 7대 키워드 Q&A 확장.
   4. `App.jsx`, `About.jsx`, `Location.jsx` 페이지별 독립 `Canonical URL` 지정 및 `robots.txt` 비공개 경로(`/admin`, `/payment`, `/quote-test`) 크롤링 차단.
   5. `Service.jsx`, `Gallery.jsx`, `AdminGallery.jsx` 이미지 `loading="lazy"` 및 SEO 키워드형 `alt` 자동 부여 적용.
+- **2026-11-20 (사칭 사기 주의 배너 및 상세 안내 모달 제작):**
+  - `ScamWarningBanner.jsx` / `ScamWarningBanner.css` 신규 제작 및 `App.jsx` 상단 배치, `Contact.jsx` 하단 사칭 주의 문구 추가 (재택 단순포장 부업 및 1577/1588/1599/1661 대표번호 개통 유도 보이스피싱 사칭 경고). 사용자 확인 후 배포 예정.

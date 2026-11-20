@@ -191,6 +191,9 @@ const Contact = () => {
             <div className="contact-notice">
               <p>* 방문 상담을 원하실 경우 사전에 전화로 일정을 예약해 주시기 바랍니다.</p>
               <p>* 대량 견적의 경우 샘플을 보내주시면 더 정확한 산출이 가능합니다.</p>
+              <p style={{ color: '#ff6b6b', fontWeight: 700, marginTop: '8px' }}>
+                * [사칭 주의] 당사는 자택 포장 부업(알바)을 모집하지 않으며, 대표번호(1577·1588 등) 개통을 절대 요구하지 않습니다.
+              </p>
             </div>
           </motion.div>
 

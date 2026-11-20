@@ -5,6 +5,7 @@ import { doc, onSnapshot } from 'firebase/firestore';
 
 // 메인 사이트 컴포넌트
 import Header from './components/Header';
+import ScamWarningBanner from './components/ScamWarningBanner';
 import Hero from './components/Hero';
 import Service from './components/Service';
 import Features from './components/Features';
@@ -93,6 +94,7 @@ const MainSite = () => {
       </Helmet>
       <Header />
       <main>
+        <ScamWarningBanner />
         <Hero />
         <Service />
         <Features />
